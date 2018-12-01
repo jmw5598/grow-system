@@ -1,0 +1,18 @@
+{
+  "name": "system-node",
+  "version": "1.0.0",
+  "description": "A single Raspberry Pi node that receives message from the System router",
+  "main": "system-node.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "Hyrdoponics",
+    "Automation",
+    "IoT",
+    "Raspberry",
+    "Pi"
+  ],
+  "author": "Jason White",
+  "license": "ISC"
+}
