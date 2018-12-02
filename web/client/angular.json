@@ -27,6 +27,11 @@
               "src/assets"
             ],
             "styles": [
+              "src/assets/scss/fontawesome/scss/fontawesome.scss",
+              "src/assets/scss/fontawesome/scss/brands.scss",
+              "src/assets/scss/fontawesome/scss/regular.scss",
+              "src/assets/scss/fontawesome/scss/solid.scss",
+              "src/assets/scss/fontawesome/scss/v4-shims.scss",
               "src/assets/scss/bootstrap.scss",
               "src/styles.sass"
             ],
