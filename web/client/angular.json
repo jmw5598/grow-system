@@ -10,7 +10,7 @@
       "prefix": "app",
       "schematics": {
         "@schematics/angular:component": {
-          "styleext": "sass"
+          "styleext": "scss"
         }
       },
       "architect": {
@@ -33,7 +33,7 @@
               "src/assets/scss/fontawesome/scss/solid.scss",
               "src/assets/scss/fontawesome/scss/v4-shims.scss",
               "src/assets/scss/bootstrap.scss",
-              "src/styles.sass"
+              "src/styles.scss"
             ],
             "scripts": [
               "src/assets/js/jquery/jquery-3.3.1.min.js",
