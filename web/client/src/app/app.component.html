@@ -1,5 +1,5 @@
 <div>
-  <grow-navigation></grow-navigation>
+  <grow-navigation *ngIf="isAuthenticated"></grow-navigation>
   <div style="margin-top: 50px;">
     <router-outlet></router-outlet>
   </div>
