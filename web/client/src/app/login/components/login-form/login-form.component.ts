@@ -1,7 +1,7 @@
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
-import { Credentials } from '@shared/models/credentials.model';
+import { Credentials } from '@shared/models';
 
 @Component({
   selector: 'grow-login-form',
@@ -12,8 +12,8 @@ export class LoginFormComponent implements OnInit {
 
   @Output()
   public onSubmit: EventEmitter<Credentials> = new EventEmitter<Credentials>();
-
   public form: FormGroup;
+  public hasError: boolean = true;
 
   constructor(private _formBuilder: FormBuilder) {
     this.form = this._formBuilder.group({

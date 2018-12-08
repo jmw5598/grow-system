@@ -1,13 +1,8 @@
 <!-- BEGIN : LOGIN-FORM COMPONENT -->
 <form (ngSubmit)="submit(form.value)" [formGroup]="form" novalidate>
 
-  <!-- BEGIN : ERROR OUTPUT -->
-  <!-- <gro-alert *ngIf="errorShown"
-             [message]="errorMessage"></gro-alert> -->
-
   <!-- INPUT USERNAME -->
-  <div class="form-group mb-3 ml-4 mr-4"
-      >
+  <div class="form-group mb-3 ml-4 mr-4">
     <label class="sr-only" for="username">Username</label>
     <input
         type="text"
@@ -20,8 +15,7 @@
   </div>
 
   <!-- INPUT PASSWORD -->
-  <div class="form-group mb-3 ml-4 mr-4"
-       >
+  <div class="form-group mb-3 ml-4 mr-4">
     <label class="sr-only" for="password">Password</label>
     <input
         type="password"

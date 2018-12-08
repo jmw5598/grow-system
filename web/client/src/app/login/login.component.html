@@ -11,10 +11,10 @@
           </div>
           <div class="card-body">
             <h2 class="text-center mb-4">Sign In</h2>
-            <grow-login-form
-                #loginForm
-                (onSubmit)="onSubmit($event)">
-              </grow-login-form>
+            <div *ngIf="hasError" class="ml-4 mr-4">
+              <grow-alert-message [alert]="alert"></grow-alert-message>
+            </div>
+            <grow-login-form #loginForm (onSubmit)="onSubmit($event)"></grow-login-form>
           </div>
         </div>
         <!-- END LOGIN CARD -->

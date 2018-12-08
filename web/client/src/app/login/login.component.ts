@@ -2,8 +2,9 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 
 import { LoginFormComponent } from './components/login-form/login-form.component';
-import { Credentials } from '@app/shared/models/credentials.model';
-import { AuthenticationService } from '@core/services/authentication.service';
+import { AlertMessage, AlertType } from '@shared/components/alert-message';
+import { Credentials } from '@shared/models';
+import { AuthenticationService } from '@core/services';
 
 @Component({
   selector: 'grow-login',
@@ -16,11 +17,16 @@ export class LoginComponent implements OnInit {
   loginForm: LoginFormComponent
 
   public form: FormGroup;
+  public alert: AlertMessage;
+  public hasError: boolean = false;
 
   constructor(
-    private _authenticationService: AuthenticationService,
-    private _formBuilder: FormBuilder
-  ) { }
+      private _authenticationService: AuthenticationService,
+      private _formBuilder: FormBuilder
+  ) {
+    this.alert = new AlertMessage(
+      "Invalid Username/Password", "", AlertType.WARNING);
+  }
 
   ngOnInit() {
     this.form = this._formBuilder.group({
