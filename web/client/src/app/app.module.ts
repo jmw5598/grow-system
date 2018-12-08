@@ -1,6 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { AppRoutingModule } from '@app/app.routing';
 import { CoreModule } from '@core/core.module';
@@ -8,20 +7,16 @@ import { SharedModule } from '@shared/shared.module';
 
 import { AppComponent } from './app.component';
 import { NavigationComponent } from './navigation/navigation.component';
-import { LoginComponent } from './login/login.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    LoginComponent,
     NavigationComponent
   ],
   imports: [
     AppRoutingModule,
     BrowserModule,
     CoreModule,
-    FormsModule,
-    ReactiveFormsModule,
     SharedModule
   ],
   providers: [],

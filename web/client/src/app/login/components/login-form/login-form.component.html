@@ -1,0 +1,46 @@
+<!-- BEGIN : LOGIN-FORM COMPONENT -->
+<form (ngSubmit)="submit(form.value)" [formGroup]="form" novalidate>
+
+  <!-- BEGIN : ERROR OUTPUT -->
+  <!-- <gro-alert *ngIf="errorShown"
+             [message]="errorMessage"></gro-alert> -->
+
+  <!-- INPUT USERNAME -->
+  <div class="form-group mb-3 ml-4 mr-4"
+      >
+    <label class="sr-only" for="username">Username</label>
+    <input
+        type="text"
+        class="col-12 form-control form-control-lg text-center"
+        [ngClass]="{ 'is-invalid' : form.controls.username.invalid && form.controls.username.touched }"
+        id="username"
+        placeholder="Username"
+        formControlName="username">
+    <small class="invalid-feedback font-weight-bold">Username is required</small>
+  </div>
+
+  <!-- INPUT PASSWORD -->
+  <div class="form-group mb-3 ml-4 mr-4"
+       >
+    <label class="sr-only" for="password">Password</label>
+    <input
+        type="password"
+        class="form-control form-control-lg text-center is-invalid"
+        [ngClass]="{ 'is-invalid' : form.controls.password.invalid && form.controls.password.touched }"
+        id="password"
+        placeholder="Password"
+        formControlName="password" />
+      <small class="invalid-feedback font-weight-bold">Password is required</small>
+  </div>
+
+  <!-- FORM BUTTONS -->
+  <div class="form-row mb-3 ml-4 mr-4">
+    <button
+        type="submit"
+        class="col-12 btn btn-lg btn-primary"
+        [disabled]="!form.valid">
+      Login
+    </button>
+  </div>
+
+</form>
