@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
-import { AuthenticationGuard } from '@core/guards/authentication.guard';
+import { AuthenticationGuard } from '@core/guards';
 
 const routes: Routes = [
   {
