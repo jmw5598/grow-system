@@ -1,0 +1,4 @@
+<div *ngIf="alert?.type" class="alert" [ngClass]="alert.type">
+  <h4 *ngIf="alert?.title" class="alert-heading">{{ alert.title }}</h4>
+  <p *ngIf="alert?.message" class="mb-0">{{ alert.message }}</p>
+</div>
