@@ -1,9 +1,10 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
+import { Router } from '@angular/router';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 
 import { LoginFormComponent } from './components/login-form/login-form.component';
 import { AlertMessage, AlertType } from '@shared/components/alert-message';
-import { Credentials } from '@shared/models';
+import { Credentials, Error, Token } from '@shared/models';
 import { AuthenticationService } from '@core/services';
 
 @Component({
@@ -22,10 +23,10 @@ export class LoginComponent implements OnInit {
 
   constructor(
       private _authenticationService: AuthenticationService,
-      private _formBuilder: FormBuilder
+      private _formBuilder: FormBuilder,
+      private _router: Router
   ) {
-    this.alert = new AlertMessage(
-      "Invalid Username/Password", "", AlertType.WARNING);
+    this.alert = new AlertMessage("Invalid Username/Password", "", AlertType.WARNING);
   }
 
   ngOnInit() {
@@ -35,13 +36,25 @@ export class LoginComponent implements OnInit {
     });
   }
 
-  login(user: any) {
-    this._authenticationService.login();
+
+  onSubmit(credentials: Credentials) {
+    console.log("credentials", credentials);
+    this._authenticationService.login(credentials)
+      .subscribe(
+        token => this.handleLoginSuccess(token),
+        error => this.handleLoginError(error)
+      );
   }
 
-  onSubmit(user: any) {
+  private handleLoginSuccess(token: Token) {
+    this.hasError = false;
     this.loginForm.form.reset();
-    this._authenticationService.login();
+    this._router.navigate(['dashboard']);
+  }
+
+  private handleLoginError(error: Error) {
+    this.hasError = true;
+    this.alert = new AlertMessage(error.error, "", AlertType.WARNING);
   }
 
 }
