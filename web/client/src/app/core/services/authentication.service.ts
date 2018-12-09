@@ -5,13 +5,14 @@ import { Observable, BehaviorSubject } from 'rxjs/Rx';
 import { map } from 'rxjs/operators';
 
 import { Credentials, Token } from '@shared/models';
+import { environment } from '@env/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthenticationService {
 
-  private base: string = 'http://localhost:3000';
+  private base: string = environment.auth.baseUrl;
 
   private _authenticated: boolean = false;
   private _authenticatedSource: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(this._authenticated);
@@ -23,7 +24,7 @@ export class AuthenticationService {
   ) {}
 
   login(credentials: Credentials): Observable<Token> {
-    return this._http.post<Token>(`${this.base}/auth`, credentials)
+    return this._http.post<Token>(`${this.base}`, credentials)
       .pipe(map(data => {
         this.token = new Token(data.token);
         this.authenticated = true;
