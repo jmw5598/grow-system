@@ -7,10 +7,13 @@ import { AlertMessage, AlertType } from '@shared/components/alert-message';
 import { Credentials, Error, Token } from '@shared/models';
 import { AuthenticationService } from '@core/services';
 
+import { FadeAnimation } from '@shared/animations';
+
 @Component({
   selector: 'grow-login',
   templateUrl: './login.component.html',
-  styleUrls: ['./login.component.scss']
+  styleUrls: ['./login.component.scss'],
+  animations: [FadeAnimation]
 })
 export class LoginComponent implements OnInit {
 

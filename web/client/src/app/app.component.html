@@ -1,5 +1,5 @@
 <div>
-  <grow-navigation *ngIf="isAuthenticated"></grow-navigation>
+  <grow-navigation [@fadeAnimation] *ngIf="isAuthenticated"></grow-navigation>
   <div>
     <router-outlet></router-outlet>
   </div>
