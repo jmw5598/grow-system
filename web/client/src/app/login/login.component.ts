@@ -38,7 +38,6 @@ export class LoginComponent implements OnInit {
 
 
   onSubmit(credentials: Credentials) {
-    console.log("credentials", credentials);
     this._authenticationService.login(credentials)
       .subscribe(
         token => this.handleLoginSuccess(token),
