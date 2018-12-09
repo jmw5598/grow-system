@@ -1,30 +1,54 @@
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
-import { BehaviorSubject } from 'rxjs/BehaviorSubject';
+import { HttpClient } from '@angular/common/http';
+import { Observable, BehaviorSubject } from 'rxjs/Rx';
+import { map } from 'rxjs/operators';
+
+import { Credentials, Token } from '@shared/models';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthenticationService {
 
-  private isAuthenticated: boolean = false;
-  private authenticatedSource: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(this.isAuthenticated);
-  public authenticated = this.authenticatedSource.asObservable();
+  private base: string = 'http://localhost:3000';
+
+  private _authenticated: boolean = false;
+  private _authenticatedSource: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(this._authenticated);
+  public isAuthenticated = this._authenticatedSource.asObservable();
 
   constructor(
+    private _http: HttpClient,
     private _router: Router
   ) {}
 
-  login() {
-    this.isAuthenticated = true;
-    this.authenticatedSource.next(this.isAuthenticated);
-    this._router.navigate(['dashboard']);
+  login(credentials: Credentials): Observable<Token> {
+    return this._http.post<Token>(`${this.base}/auth`, credentials)
+      .pipe(map(data => {
+        this.token = new Token(data.token);
+        this.authenticated = true;
+        return data;
+      }))
   }
 
   logout() {
-    this.isAuthenticated = false;
-    this.authenticatedSource.next(this.isAuthenticated);
+    this.authenticated = false;
+    localStorage.clear();
     this._router.navigate(['login']);
+  }
+
+  get token(): Token {
+    let value = localStorage.getItem('token');
+    return value ? JSON.parse(value) : new Token('');
+  }
+
+  set token(token: Token) {
+    localStorage.setItem('token', JSON.stringify(token));
+  }
+
+  set authenticated(authenticated: boolean) {
+    this._authenticated = authenticated;
+    this._authenticatedSource.next(this._authenticated);
   }
 
 }
