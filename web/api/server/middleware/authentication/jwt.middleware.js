@@ -19,7 +19,7 @@ class JwtMiddleware {
       const token = bearer.split(' ')[1] || '';
       const decoded = JwtService.decode(token);
       const foundRole = decoded.payload.roles.find(e => e.role === role);
-      return foundRole ? next() : rest.status(403).send('Access Denied');
+      return foundRole ? next() : res.status(403).send('Access Denied');
 
     }
   }
