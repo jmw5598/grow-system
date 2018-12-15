@@ -3,9 +3,9 @@
 const fs = require('fs');
 const jwt = require('jsonwebtoken');
 
-const jwtConfig = fs.readFileSync('config/jwt.json');
-const publicKey = fs.readFileSync('config/public.key');
-const privateKey = fs.readFileSync('config/private.key');
+const jwtConfig = JSON.parse(fs.readFileSync('config/jwt.json', 'utf8'));
+const publicKey = fs.readFileSync('config/public.key', 'utf8');
+const privateKey = fs.readFileSync('config/private.key', 'utf8');
 
 class JwtService {
 
@@ -17,8 +17,10 @@ class JwtService {
 
   verify(token) {
     try {
+      console.log("service token: " + token);
       return jwt.verify(token, publicKey, jwtConfig.options);
     } catch(error) {
+      console.log("error: " + error);
       return false;
     }
   }

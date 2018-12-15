@@ -35,7 +35,7 @@ class JwtMiddleware {
   }
 
   hasAnyRole(roles) {
-    return (req, res next) => {
+    return (req, res, next) => {
       const bearer = req.header('Authorization') || '';
       const token = bearer.split(' ')[1];
       const decoded = JwtService.decode(token);
