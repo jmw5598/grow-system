@@ -17,10 +17,8 @@ class JwtService {
 
   verify(token) {
     try {
-      console.log("service token: " + token);
       return jwt.verify(token, publicKey, jwtConfig.options);
     } catch(error) {
-      console.log("error: " + error);
       return false;
     }
   }
