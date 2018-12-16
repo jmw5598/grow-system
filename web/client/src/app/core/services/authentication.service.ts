@@ -24,7 +24,7 @@ export class AuthenticationService {
   ) {}
 
   login(credentials: Credentials): Observable<Token> {
-    return this._http.post<Token>(`${this.base}`, credentials)
+    return this._http.post<Token>(`${this.base}/tokens`, credentials)
       .pipe(map(data => {
         this.token = new Token(data.token);
         this.authenticated = true;
