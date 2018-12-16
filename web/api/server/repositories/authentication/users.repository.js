@@ -6,6 +6,15 @@ class UsersRepository {
 
   constructor() {}
 
+  exists(username) {
+    return User.count({ where: { username: username } })
+      .then(count => count > 0);
+  }
+
+  save(user) {
+    return User.build(user).save();
+  }
+
   findAll() {
     return User.findAll({
       include: [{
@@ -13,10 +22,7 @@ class UsersRepository {
         as: 'roles',
         attributes: ['role'],
         through: { attributes: [] }
-      }],
-      attributes: {
-        exclude: ['id', 'password']
-      }
+      }]
     });
   }
 
@@ -27,10 +33,7 @@ class UsersRepository {
         as: 'roles',
         attributes: ['role'],
         through: { attributes: [] }
-      }],
-      attributes: {
-        exclude: ['id', 'password']
-      }
+      }]
     });
   }
 
@@ -44,16 +47,9 @@ class UsersRepository {
     });
   }
 
-  save(user) {
-    return User.build(user).save()
-      .then((user) => user)
-      .catch((error) => new Promise((resolve, reject) => reject(error)));
-  }
-
-  exists(id) {
-    return User.count({
-      where: { id: id }
-    });
+  delete(id) {
+    return User.destroy({ where: { id: id } })
+      .then(res => res === 1);
   }
 
 }

@@ -15,8 +15,10 @@ module.exports = (sequelize, DataTypes) => {
   }, {
     timestamps: false,
     hooks: {
-      beforeCreate: (user, options) => {
+      beforeSave: (user, options) => {
         user.password = bcrypt.hashSync(user.password, 10);
+      },
+      afterSave: (user, options) => {
         user.addRole([1]);
       }
     }
@@ -28,5 +30,10 @@ module.exports = (sequelize, DataTypes) => {
       foreignKey: 'userId'
     });
   };
+  User.prototype.toJSON =  function () {
+    var values = Object.assign({}, this.get());
+    delete values.password;
+    return values;
+  }
   return User;
 };
