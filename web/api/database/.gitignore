@@ -1,0 +1,2 @@
+# Except sqlite files
+*.sqlite
