@@ -5,6 +5,7 @@ const express = require('express');
 const path = require('path');
 const cookieParser = require('cookie-parser');
 const logger = require('morgan');
+const cors = require('cors');
 
 const router = require('./routes');
 
@@ -23,6 +24,7 @@ class Server {
     this.server.set('view engine', 'ejs');
 
     this.server.use(logger(config.env));
+    this.server.use(cors());
     this.server.use(express.json());
     this.server.use(express.urlencoded({ extended: false }));
     this.server.use(cookieParser());
