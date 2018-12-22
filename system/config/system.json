@@ -1,0 +1,7 @@
+{
+  "name": "System Messaging Router",
+  "description": "Handles and routes MQTT messages from web api to appropriate system-node",
+  "system": {
+    "ip": "192.168.1.16"
+  }
+}
