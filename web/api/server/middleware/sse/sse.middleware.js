@@ -6,17 +6,18 @@ class SseMiddleware {
 
   enrich(req, res, next) {
 
-    res.sse = {
-      setup: () => {
-        res.writeHead(200, {
-          'Content-Type': 'text/event-stream',
-          'Cache-Control': 'no-cache',
-          'Connection': 'keep-alive'
-        });
-      },
-      send: (payload) => {
-        res.write(JSON.stringify(payload));
-      }
+    res.sseSetup = () => {
+      res.set({
+        'Content-Type': 'text/event-stream',
+        'Cache-Control': 'no-cache',
+        'Connection': 'keep-alive'
+      });
+    };
+
+    res.sseSend = (payload) => {
+      let data = JSON.stringify(payload);
+      res.write(`event: message\n`);
+      res.write(`data: ${data}\n\n`);
     }
 
     next();
