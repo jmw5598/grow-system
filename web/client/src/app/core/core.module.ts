@@ -4,6 +4,7 @@ import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 
 import { AuthenticationService } from './services';
 import { AuthenticationGuard } from './guards';
+import { SseService } from './services';
 import { TokenInterceptor } from './interceptors';
 
 @NgModule({
@@ -15,6 +16,7 @@ import { TokenInterceptor } from './interceptors';
   providers: [
     AuthenticationService,
     AuthenticationGuard,
+    SseService,
     {
       provide: HTTP_INTERCEPTORS,
       useClass: TokenInterceptor,
