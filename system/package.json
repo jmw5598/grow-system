@@ -2,7 +2,7 @@
   "name": "system",
   "version": "1.0.0",
   "description": "The main message routing system for grow automation project",
-  "main": "system.js",
+  "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
