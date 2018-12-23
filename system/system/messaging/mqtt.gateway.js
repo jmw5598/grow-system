@@ -11,12 +11,12 @@ class MqttGateway {
     this.config = config
     this.client = mqtt.connect(this.config.gateway.uri);
     this.client.on('connect', () => this.subscriptions(this.config.topics.subscriptions));
-    this.client.on('message', (topic, message) => MqttRouter.inbound(topic, message));
+    this.client.on('message', (topic, message) => MqttRouter.inbound(topic, message.toString()));
     MqttRouter.init(this.client);
   }
 
   outbound(topic, payload) {
-    MqttRouter.outbound(payload);
+    MqttRouter.outbound(topic, payload);
   }
 
   subscriptions(subscriptions) {

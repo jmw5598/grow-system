@@ -13,7 +13,6 @@ class MqttRouter {
   }
 
   outbound(topic, message) {
-    const topic = 'system/node/state';
     this.client.publish(topic, message);
   }
 
