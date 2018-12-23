@@ -9,7 +9,7 @@ class SseEmitterService {
   addEmitter(emitter) {
     emitter.on('close', () => this.removeEmitter(emitter));
     emitter.sseSetup();
-    emitter.sseSend("OK");
+    emitter.sseSend("");
     this.connections.push(emitter);
   }
 
@@ -18,9 +18,8 @@ class SseEmitterService {
     this.connections = this.connections.filter(e => !e.finished);
   }
 
-  emit(payload) {
-    let data = JSON.stringify(payload);
-    this.connections.forEach(e => e.sseSend(data));
+  emit(payload) {  
+    this.connections.forEach(e => e.sseSend(payload));
   }
 
 }

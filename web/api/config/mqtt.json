@@ -1,0 +1,16 @@
+{
+  "system": {
+    "gateway": {
+      "uri": "mqtt://192.168.1.11",
+      "username": "",
+      "password": ""
+    },
+    "options": {
+      "qos": 2
+    },
+    "topics": {
+      "subscriptions": ["system/node/state", "system/state"],
+      "publish": ["system/node/status", "system/status"]
+    }
+  }
+}

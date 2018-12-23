@@ -6,13 +6,18 @@ const path = require('path');
 const cookieParser = require('cookie-parser');
 const logger = require('morgan');
 const cors = require('cors');
+const fs = require('fs');
 
 const router = require('./routes');
+
+const { MqttGateway } = require('./messaging');
+const mqttConfig = JSON.parse(fs.readFileSync('config/mqtt.json', 'utf8'));
 
 class Server {
 
   constructor() {
     this.server = express();
+    this.mqttConfig = mqttConfig;
   }
 
   setup(config) {
@@ -42,6 +47,9 @@ class Server {
       res.status(err.status || 500);
       res.render('error');
     });
+
+    MqttGateway.init(this.mqttConfig);
+
   }
 
   start() {
