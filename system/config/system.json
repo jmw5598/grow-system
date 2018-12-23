@@ -1,7 +1,17 @@
 {
   "name": "System Messaging Router",
   "description": "Handles and routes MQTT messages from web api to appropriate system-node",
-  "system": {
-    "ip": "192.168.1.16"
+  "mqtt": {
+    "gateway": {
+      "uri": "mqtt://192.168.1.11",
+      "username": "",
+      "password": ""
+    },
+    "options": {
+      "qos": 2
+    },
+    "topics": {
+      "subscriptions": ["system/status", "system/node/status"]
+    }
   }
 }

@@ -14,5 +14,8 @@
     "Pi"
   ],
   "author": "Jason White",
-  "license": "ISC"
+  "license": "ISC",
+  "dependencies": {
+    "mqtt": "^2.18.8"
+  }
 }

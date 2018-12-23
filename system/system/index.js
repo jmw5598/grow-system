@@ -1,19 +1,17 @@
 'use strict';
 
+const { MqttGateway } = require('./messaging');
+
 class System {
 
-  constructor() {
-    console.log('System::constructor');
-  }
+  constructor() {}
 
   setup(config) {
-    console.log('System::initialization and setup process')
-    console.log('System::config file');
-    console.log(config);
+    this.config = config
   }
 
   start() {
-    console.log('System::starting system');
+    MqttGateway.init(this.config.mqtt);
   }
 
 }
