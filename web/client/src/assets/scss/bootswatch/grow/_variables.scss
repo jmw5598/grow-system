@@ -137,7 +137,7 @@ $popover-header-bg:                 $table-hover-bg !default;
 $list-group-bg:                     $gray-200 !default;
 $list-group-border-color:           transparent !default;
 
-$list-group-hover-bg:               $nav-link-disabled-color !default;
+$list-group-hover-bg:               darken($gray-200, 3.5) !default;
 
 $list-group-disabled-color:         $nav-link-disabled-color !default;
 
