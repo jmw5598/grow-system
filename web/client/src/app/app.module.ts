@@ -7,12 +7,13 @@ import { CoreModule } from '@core/core.module';
 import { SharedModule } from '@shared/shared.module';
 
 import { AppComponent } from './app.component';
-import { NavigationComponent } from './navigation/navigation.component';
+
+import { NavigationTopBarComponent } from './navigation/navigation-top-bar/navigation-top-bar.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    NavigationComponent
+    NavigationTopBarComponent
   ],
   imports: [
     AppRoutingModule,
