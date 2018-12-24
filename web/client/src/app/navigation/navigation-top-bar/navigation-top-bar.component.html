@@ -1,9 +1,9 @@
 <!-- TOP FIXED NAVBAR -->
-<div class="navbar navbar-expand-lg fixed-top navbar-dark bg-primary">
+<div class="navbar navbar-expand-lg fixed-top navbar-dark bg-info" style="padding: 0;">
 
   <!-- BEGIN : NAVBAR-HEADER -->
-  <div class="navbar-header">
-    <!--<a href="#" class="navbar-brand">Gro</a> -->
+  <div class="navbar-header bg-primary">
+    <a href="#" class="navbar-brand mr-0 text-center" style="padding-top: 1rem; padding-bottom: 1rem; width: 300px;">Grow System</a>
     <button class="navbar-toggler"
         type="button"
         data-toggle="collapse"
@@ -13,12 +13,11 @@
   </div>
   <!-- END : NAVBAR-HEADER -->
 
-
   <!-- BEGIN : NAVBAR-MENU -->
   <div class="navbar-collapse collapse" id="navbar-main">
 
-    <!-- LEFT NAVBAR BUTTONS -->
-    <ul class="navbar-nav mr-auto">
+    <!-- RIGHT NAVBAR BUTTONS -->
+    <ul class="navbar-nav ml-auto mr-4">
       <li class="nav-item">
         <a class="nav-link active"
             [routerLink]="['/dashboard']"
@@ -30,31 +29,17 @@
       </li>
       <li class="nav-item">
         <a class="nav-link"
-            [routerLink]="['schedule']"
-            [routerLinkActive]="['active']"
-            [routerLinkActiveOptions]="{exact:true}">
-          <i class="fas fa-calendar-alt fa-icon-adjustment"></i>
-          Scheduling
-        </a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link"
             [routerLink]="['settings/component']"
             [routerLinkActive]="['active']"
             [routerLinkActiveOptions]="{exact:true}">
-          <i class="fas fa-cogs fa-icon-adjustment"></i>
+          <i class="fas fa-sliders-h fa-icon-adjustment"></i>
           Settings
         </a>
       </li>
-    </ul>
-    <!-- END : LEFT NAVBAR BUTTONS -->
-
-    <!-- RIGHT NAVBAR BUTTONS -->
-    <ul class="navbar-nav ml-auto">
       <li class="nav-item">
         <a class="nav-link" href="#" (click)="logout()" >
-          <i class="fas fa-unlock-alt fa-icon-adjustment"></i>
-          Logout
+          <i class="fas fa-cog fa-icon-adjustment"></i>
+          System
        </a>
       </li>
     </ul>
