@@ -1,3 +1,26 @@
-<p>
-  dashboard works!
-</p>
+<div style="margin-top: 62px;" [@fadeAnimation]>
+  <grow-layout-three-column>
+
+    <!-- SIDE PANEL : LEFT -->
+    <grow-side-panel column-one>
+      <grow-dashboard-panel-left content></grow-dashboard-panel-left>
+    </grow-side-panel>
+
+    <!-- MAIN CONTENT : CENTER -->
+    <div class="container-fluid" column-two>
+      <div class="row mb-3 mt-3 ml-3 mr-3">
+        <div class="col-sm-12">
+          <div class="card">
+            <div class="card-body" style="height: 400px;"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- SIDE PANEL : RIGHT -->
+    <!-- <grow-side-panel column-three >
+      <grow-dashboard-panel-right content></grow-dashboard-panel-right>
+    </grow-side-panel> -->
+
+  </grow-layout-three-column>
+</div>
