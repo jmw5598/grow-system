@@ -1,0 +1,20 @@
+{
+  "name": "System Node 1",
+  "description": "First hydroponics setup",
+  "system": {
+    "mqtt": {
+      "gateway": {
+        "uri": "mqtt://192.168.1.19",
+        "username": "",
+        "password": ""
+      },
+      "options": {
+        "qos": 2
+      },
+      "topics": {
+        "subscrptions": ["system/node/state", "system/node/event"],
+        "publish": ["system/node/register", "system/node/status", "system/node/event/status"]
+      }
+    }
+  }
+}
