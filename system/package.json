@@ -16,6 +16,7 @@
   "author": "Jason White",
   "license": "ISC",
   "dependencies": {
-    "mqtt": "^2.18.8"
+    "mqtt": "^2.18.8",
+    "rxjs": "^6.3.3"
   }
 }

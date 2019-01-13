@@ -11,7 +11,7 @@
       "qos": 2
     },
     "topics": {
-      "subscriptions": ["system/status", "system/node/status"]
+      "subscriptions": ["system/status", "node/register", "node/status"]
     }
   }
 }

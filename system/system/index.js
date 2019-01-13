@@ -1,5 +1,9 @@
 'use strict';
 
+require('./services');
+require('./messaging/routers');
+
+const SystemContext = require('./system.context');
 const { MqttGateway } = require('./messaging');
 
 class System {
@@ -11,6 +15,7 @@ class System {
   }
 
   start() {
+    SystemContext.init(this.config);
     MqttGateway.init(this.config.mqtt);
   }
 
