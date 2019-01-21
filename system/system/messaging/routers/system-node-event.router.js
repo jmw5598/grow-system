@@ -21,9 +21,9 @@ class SystemNodeEventRouter {
     let [ event, subevent ] = topic.substring(topic.indexOf('/') + 1).split('/');
 
     console.log('SystemNodeEventRouter::Route');
-    console.log("SystemNodeEventRouter::Topic" + topic);
-    console.log("SystemNodeEventRouter::Event::" + event);
-    console.log("SystemNodeEventRouter::Subevent::" + subevent);
+    console.log('SystemNodeEventRouter::Topic' + topic);
+    console.log('SystemNodeEventRouter::Event::' + event);
+    console.log('SystemNodeEventRouter::Subevent::' + subevent);
 
     switch(event) {
       case 'register':
@@ -31,10 +31,10 @@ class SystemNodeEventRouter {
         console.log('SystemNodeEventRouter::Router::Registered new node');
         break;
       case 'status':
-        console.log("Sending MQTT message to get node status");
+        console.log('Sending MQTT message to get node status');
         break;
       case 'event':
-        console.log("Sending MQTT message to perform node event");
+        console.log('Sending MQTT message to perform node event');
         break;
     }
 

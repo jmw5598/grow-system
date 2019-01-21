@@ -15,17 +15,19 @@ class MqttRouter {
   inbound(topic, message) {
 
     let [event] = topic.split('/');
+    let routedTopic = topic.substring(topic.indexOf('/') + 1);
 
     console.log("MqttRouter::Inbound");
-    console.log("MqttRouter::Topic::" + topic)
+    console.log("MqttRouter::Topic::" + topic);
+    console.log("MqttRouter::RoutedTopic::" + routedTopic);
     console.log('MqttRouter::Event::' + event);
 
     switch(event) {
       case 'system':
-        SystemEventRouter.route(topic, message);
+        SystemMessageRouter.route(routedTopic, message);
         break;
       case 'node':
-        SystemNodeEventRouter.route(topic, message);
+        SystemNodeMessageRouter.route(routedTopic, message);
         break;
       default:
         break;
