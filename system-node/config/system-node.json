@@ -1,10 +1,11 @@
 {
+  "id": "19291",
   "name": "System Node 1",
   "description": "First hydroponics setup",
   "system": {
     "mqtt": {
       "gateway": {
-        "uri": "mqtt://192.168.1.19",
+        "uri": "mqtt://192.168.1.11",
         "username": "",
         "password": ""
       },
@@ -12,9 +13,22 @@
         "qos": 2
       },
       "topics": {
-        "subscrptions": ["system/node/state", "system/node/event"],
-        "publish": ["system/node/register", "system/node/status", "system/node/event/status"]
+        "subscriptions": [
+          "system/node/{id}/event",
+          "system/node/{id}/state",
+          "system/node/{id}/ping"
+        ],
+        "publish": {
+          "register": "node/register",
+          "status": "node/status",
+          "event-status": "node/event/status"
+        }
       }
     }
+  },
+  "node": {
+    "id": "19291",
+    "name": "System Node 1",
+    "description": "First hydroponics setup"
   }
 }
