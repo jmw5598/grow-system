@@ -1,6 +1,6 @@
 'use strict';
 
-const Rx = require('rx');
+const Rx = require('rxjs');
 
 class MqttRouter {
 
@@ -17,6 +17,7 @@ class MqttRouter {
     // router topic to appropriate Observable.
     // multiple service activators can be subscribe to each Observable
     // to perform their specific action.
+    console.log("NEW MESSAGE: " + topic + " : " + message);
     switch(topic) {
       case 'temperature':
         this._temperature.next(message);
