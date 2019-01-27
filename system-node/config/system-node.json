@@ -5,7 +5,7 @@
   "system": {
     "mqtt": {
       "gateway": {
-        "uri": "mqtt://192.168.1.11",
+        "uri": "mqtt://192.168.1.18",
         "username": "",
         "password": ""
       },
@@ -14,9 +14,9 @@
       },
       "topics": {
         "subscriptions": [
-          "system/node/{id}/event",
-          "system/node/{id}/state",
-          "system/node/{id}/ping"
+          "node/{id}/event",
+          "node/{id}/status",
+          "node/{id}/ping"
         ],
         "publish": {
           "register": "node/register",
@@ -29,6 +29,50 @@
   "node": {
     "id": "19291",
     "name": "System Node 1",
-    "description": "First hydroponics setup"
+    "description": "First hydroponics setup",
+    "components": {
+      "relays" : [
+        {
+          "id": "1234",
+          "type": "relay",
+          "pin": "14",
+          "state": "off",
+          "alias": "Light 1"
+        },
+        {
+          "id": "1235",
+          "type": "relay",
+          "pin": "15",
+          "state": "off",
+          "alias": "Fan 1"
+        }
+      ],
+      "sensors": [
+        {
+          "id": "1236",
+          "type": "temperature/humidity",
+          "model": "DHT22",
+          "pin": "17",
+          "alias": "Lower Shelf DHT22",
+          "preferences": {
+            "scale": "fahrenheit",
+            "threshold": 60,
+            "interval": 5000
+          }
+        },
+        {
+          "id": "1237",
+          "type": "temperature/humidity",
+          "model": "DHT22",
+          "pin": "18",
+          "alias": "Upper Shelf DHT22",
+          "preferences": {
+            "scale": "fahrenheit",
+            "threshold": 60,
+            "interval": 2000
+          }
+        }
+      ]
+    }
   }
 }
