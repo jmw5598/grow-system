@@ -1,6 +1,7 @@
 'use strict';
 
 const mqtt = require('mqtt');
+const MqttRouter = require('./mqtt.router');
 
 class MqttGateway {
 
@@ -23,8 +24,7 @@ class MqttGateway {
   }
 
   inbound(topic, message) {
-    console.log("topic: " + topic);
-    console.log("message: " + message);
+    MqttRouter.inbound(topic, message);
   }
 
   outbound(topic, message) {
