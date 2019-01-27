@@ -6,5 +6,8 @@ const TemperatureAction = require('./temperature.action');
 const TemperatureHumidityAction = require('./temperature-humidity.action');
 
 module.exports = {
+  HumidityAction,
+  RelayAction,
+  TemperatureAction,
   TemperatureHumidityAction
 }

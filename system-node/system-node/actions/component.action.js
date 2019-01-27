@@ -5,7 +5,7 @@ class ComponentAction {
   constructor(id, alias, type, pin) {
     this.id = id;
     this.alias = alias;
-    this.tpe = type;
+    this.type = type;
     this.pin = pin;
   }
 

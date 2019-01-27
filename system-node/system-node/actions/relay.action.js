@@ -13,9 +13,9 @@ class RelayAction extends ComponentAction {
 
   toggle(state) {
     console.log('RelayAction::Alias::' + this.alias);
-    console.log('RelayAction::CurrentState::' this.state);
+    console.log('RelayAction::CurrentState::' + this.state);
     this.state = state;
-    console.llg('RelayActoin::NewState::' + this.state);
+    console.log('RelayAction::NewState::' + this.state);
   }
 
 }
