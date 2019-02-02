@@ -5,14 +5,25 @@ const Rx = require('rxjs');
 class SystemNodeContext {
 
   constructor() {
+
+    this.configurationData = {};
     this.relaysData = [];
     this.sensorsData = {
       temperature: [], humidity: [], temperaturehumidity: [], proximity: []
     }
+
+    this.configurationSource = new Rx.BehaviorSubject({});
+    this.configuration = this.configurationSource.asObservable();
     this.relaysSource = new Rx.BehaviorSubject([]);
     this.relays = this.relaysSource.asObservable();
     this.sensorsSource = new Rx.BehaviorSubject({});
     this.sensors = this.sensorsSource.asObservable();
+
+  }
+
+  setConfiguration(configuration) {
+    this.configurationData = config;
+    this.configurationSource.next(this.configurationData);
   }
 
   register(component) {
@@ -38,7 +49,7 @@ class SystemNodeContext {
         break;
     }
   }
-  
+
 }
 
 module.exports = new SystemNodeContext();
