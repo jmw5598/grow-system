@@ -1,9 +1,11 @@
 'use strict';
 
-const SystemEventRouter = require('./system-event.router');
-const SystemNodeEventRouter = require('./system-node-event.router');
+const MqttRouter = require('./mqtt.router');
+const SystemNodeRouter = require('./system-node.router');
+const SystemRouter = require('./system.router');
 
 module.exports = {
-  SystemEventRouter,
-  SystemNodeEventRouter
+  MqttRouter,
+  SystemNodeRouter,
+  SystemRouter
 }
