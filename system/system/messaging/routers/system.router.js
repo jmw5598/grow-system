@@ -1,6 +1,8 @@
 'use strict';
 
 const { MqttMessage } = require('../models');
+const { MqttGateway } = require('../gateways');
+const Rx = require('rxjs');
 const MqttRouter = require('./mqtt.router');
 
 class SystemRouter {
@@ -10,7 +12,7 @@ class SystemRouter {
   }
 
   init() {
-    MqttRouter.systemRouter
+    MqttRouter.systemChannel
       .subscribe(payload => this.route(payload));
   }
 
