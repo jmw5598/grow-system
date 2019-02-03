@@ -20,11 +20,11 @@ class MqttRouter {
   }
 
   route(payload) {
-    let [event] = payload.topic.split('/');
+    let [topic] = payload.topic.split('/');
     let routedTopic = payload.topic.substring(payload.topic.indexOf('/') + 1);
     let message = new MqttMessage(routedTopic, payload.message);
 
-    switch(event) {
+    switch(topic) {
       case 'system':
         this.systemChannelSource.next(message);
         break;
