@@ -1,11 +1,16 @@
 'use strict';
 
+const Rx = require('rxjs');
 const mqtt = require('mqtt');
-const MqttRouter = require('./mqtt.router');
+
+const { MqttMessage } = require('../models');
 
 class MqttGateway {
 
-  constructor() {}
+  constructor() {
+    this.inboundChannelSource = new Rx.Subject();
+    this.inboundChannel = this.inboundChannelSource.asObservable();
+  }
 
   init(config) {
     this.config = config;
@@ -14,22 +19,22 @@ class MqttGateway {
     this.client.on('message', (topic, message) => this.inbound(topic, message.toString()));
   }
 
+  inbound(topic, message) {
+    let payload = new MqttMessage(topic, message);
+    this.inboundChannelSource.next(payload);
+  }
+
+  outbound(message) {
+    const payload = JSON.stringify(message.message);
+    this.client.publish(message.topic, payload);
+  }
+
   subscriptions(subscriptions) {
     subscriptions.forEach(e => {
       let topic = e.split("{id}");
-      console.log(`Subscribing to: ${topic[0]}${this.config.id}${topic[1]}`);
       this.client.subscribe(
         `${topic[0]}${this.config.id}${topic[1]}`, this.config.system.mqtt.options);
     })
-  }
-
-  inbound(topic, message) {
-    MqttRouter.inbound(topic, message);
-  }
-
-  outbound(topic, message) {
-    const payload = JSON.stringify(message);
-    this.client.publish(topic, payload);
   }
 
 }

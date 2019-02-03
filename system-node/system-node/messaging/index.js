@@ -1,8 +1,10 @@
 'use strict';
 
+require('./models');
+require('./routers');
 require('./services');
 
-const MqttGateway = require('./mqtt.gateway');
+const { MqttGateway } = require('./gateways');
 
 module.exports = {
   MqttGateway
