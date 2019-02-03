@@ -19,21 +19,19 @@ class TemperatureHumidityAction extends ComponentAction {
   }
 
   start() {
-    this.interval = setInterval(() => this.read(), this.preferences.interval);
+    this.interval = setInterval(() => {
+      DHTSensor.read(22, this.pin, (error, temperature, humidity) => {
+        if(!error) {
+          const message = this.buildMessage(temperature, humidity);
+          MqttGateway.outbound('node/action-event', message);
+        }
+      });
+    }, this.preferences.interval);
   }
 
   stop() {
     if(this.interval)
       clearInterval(this.interval);
-  }
-
-  read() {
-    DHTSensor.read(22, this.pin, (error, temperature, humidity) => {
-      if(!error) {
-        const message = this.buildMessage(temperature, humidity);
-        MqttGateway.outbound('node/event/action', message);
-      }
-    });
   }
 
   setInterval(value) {
