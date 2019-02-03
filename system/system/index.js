@@ -1,8 +1,5 @@
 'use strict';
 
-require('./services');
-require('./messaging/routers');
-
 const SystemContext = require('./system.context');
 const { MqttGateway } = require('./messaging');
 
