@@ -3,7 +3,7 @@
   "description": "Handles and routes MQTT messages from web api to appropriate system-node",
   "mqtt": {
     "gateway": {
-      "uri": "mqtt://192.168.1.11",
+      "uri": "mqtt://192.168.1.18",
       "username": "",
       "password": ""
     },
@@ -11,7 +11,7 @@
       "qos": 2
     },
     "topics": {
-      "subscriptions": ["system/status", "node/register", "node/status"]
+      "subscriptions": ["system/status", "system-node/register", "system-node/action/event"]
     }
   }
 }
