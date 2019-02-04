@@ -1,7 +1,6 @@
 'use strict';
 
 const { MqttMessage } = require('../models');
-const { MqttGateway } = require('../gateways');
 const Rx = require('rxjs');
 const MqttRouter = require('./mqtt.router');
 
@@ -17,7 +16,14 @@ class SystemRouter {
   }
 
   route(payload) {
-    console.log("new message for SystemRouter");
+    const [topic] = payload.topic.split('/');
+    const routedTopic = payload.topic.substring(payload.topic.indexOf('/') + 1);
+    const message = new MqttMessage(routedTopic, payload.message);
+
+    switch(topic) {
+      default:
+        console.log('SystemRouter::Default::No case for route');
+    }
   }
 
 }

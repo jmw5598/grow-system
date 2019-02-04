@@ -20,18 +20,19 @@ class MqttRouter {
   }
 
   route(payload) {
-    let [topic] = payload.topic.split('/');
-    let routedTopic = payload.topic.substring(payload.topic.indexOf('/') + 1);
-    let message = new MqttMessage(routedTopic, payload.message);
+    const [topic] = payload.topic.split('/');
+    const routedTopic = payload.topic.substring(payload.topic.indexOf('/') + 1);
+    const message = new MqttMessage(routedTopic, payload.message);
 
     switch(topic) {
       case 'system':
         this.systemChannelSource.next(message);
         break;
-      case 'node':
+      case 'system-node':
         this.systemNodeChannelSource.next(message);
         break;
       default:
+        console.log('MqttRouter::Default::No case for route');
         break;
     }
   }

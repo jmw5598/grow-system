@@ -1,7 +1,6 @@
 'use strict';
 
 const { MqttMessage } = require('../models');
-const { MqttGateway } = require('../gateways');
 const Rx = require('rxjs');
 const MqttRouter = require('./mqtt.router');
 
@@ -9,6 +8,8 @@ class SystemNodeRouter {
 
   constructor() {
     this.init();
+    this.systemNodeActionChannelSource = new Rx.Subject();
+    this.systemNodeActionChannel = this.systemNodeActionChannelSource.asObservable();
   }
 
   init() {
@@ -17,7 +18,21 @@ class SystemNodeRouter {
   }
 
   route(payload) {
-    console.log("new message for SystemNodeRouter");
+    const [topic] = payload.topic.split('/');
+    const routedTopic = payload.topic.substring(payload.topic.indexOf('/') + 1);
+    const message = new MqttMessage(routedTopic, payload.message);
+
+    switch(topic) {
+      case 'action':
+        this.systemNodeActionChannelSource.next(message);
+        break;
+      case 'register':
+        console.log('sending out node registration to systme');
+        break;
+      default:
+        console.log('SystemNodeRouter::Default::No case for route');
+        break;
+    }
   }
 
 }
