@@ -7,16 +7,11 @@ const Rx = require('rxjs');
 class MqttRouter {
 
   constructor() {
-    this.init();
     this.systemChannelSource = new Rx.Subject();
     this.systemChannel = this.systemChannelSource.asObservable();
     this.systemNodeChannelSource = new Rx.Subject();
     this.systemNodeChannel = this.systemNodeChannelSource.asObservable();
-  }
-
-  init() {
-    MqttGateway.inboundChannel
-      .subscribe(payload => this.route(payload));
+    MqttGateway.inboundChannel.subscribe(payload => this.route(payload));
   }
 
   route(payload) {
@@ -30,11 +25,10 @@ class MqttRouter {
         this.systemChannelSource.next(message);
         break;
       case 'system-node':
-        console.log("sending down system-node channel");
         this.systemNodeChannelSource.next(message);
         break
       default:
-        console.log('[WEB] MqttRouter::Default::No case for route');
+        console.log('[API] MqttRouter::Default::No case for route');
         break;
     }
   }

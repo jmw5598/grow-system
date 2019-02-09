@@ -7,7 +7,6 @@ const SystemNodeRouter = require('./system-node.router');
 class SystemNodeEventRouter {
 
   constructor() {
-    this.init();
     this.humidityEventChannelSource = new Rx.Subject();
     this.humidityEventChannel = this.humidityEventChannelSource.asObservable();
     this.proximityEventChannelSource = new Rx.Subject();
@@ -18,11 +17,7 @@ class SystemNodeEventRouter {
     this.temperatureEventChannel = this.temperatureEventChannelSource.asObservable();
     this.temperatureHumidityEventChannelSource = new Rx.Subject();
     this.temperatureHumidityEventChannel = this.temperatureHumidityEventChannelSource.asObservable();
-  }
-
-  init() {
-    SystemNodeRouter.systemNodeEventChannel
-      .subscribe(payload => this.route(payload));
+    SystemNodeRouter.systemNodeEventChannel.subscribe(payload => this.route(payload));
   }
 
   route(payload) {

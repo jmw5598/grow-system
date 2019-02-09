@@ -7,16 +7,18 @@ const MqttRouter = require('./mqtt.router');
 class SystemRouter {
 
   constructor() {
-    this.init();
-  }
-
-  init() {
-    MqttRouter.systemChannel
-      .subscribe(payload => this.route(payload));
+    MqttRouter.systemChannel.subscribe(payload => this.route(payload));
   }
 
   route(payload) {
-    console.log("SystemNodeRouter route method", payload);
+    const [topic] = payload.topic.split('/');
+    const routedTopic = payload.topic.substring(payload.topic.indexOf('/') + 1);
+    const message = new MqttMessage(routedTopic, payload.message);
+
+    switch(topic) {
+      default:
+        console.log('[API] SystmeRouter::No route for topic');
+    }
   }
 
 }
