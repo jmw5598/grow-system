@@ -1,7 +1,7 @@
 {
   "system": {
     "gateway": {
-      "uri": "mqtt://192.168.1.11",
+      "uri": "mqtt://192.168.1.18",
       "username": "",
       "password": ""
     },
@@ -9,8 +9,17 @@
       "qos": 2
     },
     "topics": {
-      "subscriptions": ["system/node/state", "system/state"],
-      "publish": ["system/node/status", "system/status"]
+      "subscriptions": [
+        "web/system/state",
+        "web/system-node/state",
+        "web/system-node/event",
+        "web/system-node/event/humidity",
+        "web/system-node/event/proximity",
+        "web/system-node/event/relay",
+        "web/system-node/event/temperature",
+        "web/system-node/event/temperature-humidity"
+      ],
+      "publish": ["system/status", "system-node/status", "system-node/action"]
     }
   }
 }
