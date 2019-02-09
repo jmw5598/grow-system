@@ -1,31 +1,16 @@
 'use strict';
 
-const MqttRouter from '../../mqtt.router';
+const { SystemNodeEventRouter } = require('../../routers');
 
 class HumidityPersistenceService {
 
   constructor() {
-    this.subscription = Mqtt.router.humidity$
-      .subscribe(
-        message => this.onMessage(message),
-        error => this.onError(error),
-        () => this.onComplete()
-      );
+    SystemNodeEventRouter.humidityEventChannel
+      .subscribe(payload => this.persist(payload));
   }
 
-  onMessage(message) {
-    console.log("[HumidityPersistenceService]::Message::" + message);
-    // use HumidityRepository to save data
-  }
-
-  onError(error) {
-    console.log("[HumidityPersistenceService::Error::]" + error);
-  }
-
-  onComplete() {
-    if(this.subscription)
-      this.subscription.unsubscribe();
-    console.log("[HumidityPersistenceService]::Completed::observable has completed");
+  persist(payload) {
+    console.log('[API] HumidityPersistenceService::Persisting event');
   }
 
 }

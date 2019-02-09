@@ -1,31 +1,16 @@
 'use strict';
 
-const MqttRouter = require('../../mqtt.router');
+const { SystemNodeEventRouter } = require('../../routers');
 
 class TemperaturePersistenceService {
 
-  constructor() {
-    this.subscription = MqttRouter.temperature$
-      subscribe(
-        message => this.onMessage(message),
-        error => this.onError(error),
-        () => this.onComplete()
-      );
+  constructor()   {
+    SystemNodeEventRouter.temperatureEventChannel
+      .subscribe(payload => this.persist(payload));
   }
 
-  onMessage(message) {
-    console.log("[TemperaturePersistenceService]::Message::" + message);
-    // use TemperatureRepository to save new temperature data.
-  }
-
-  onError(error) {
-    console.log("[TemperaturePersistenceService]::Error::" + error);
-  }
-
-  onComplete() {
-    if(this.subscription)
-      this.subscription.unsubscribe();
-    console.log("[TemperaturePersistenceService]::Completed::observable has completed");
+  persist(payload) {
+    console.log('[API] TemperaturePersistenceService::Persisting event');
   }
 
 }
