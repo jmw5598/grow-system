@@ -7,14 +7,9 @@ const MqttRouter = require('./mqtt.router');
 class SystemNodeRouter {
 
   constructor() {
-    this.init();
     this.systemNodeActionChannelSource = new Rx.Subject();
     this.systemNodeActionChannel = this.systemNodeActionChannelSource.asObservable();
-  }
-
-  init() {
-    MqttRouter.systemNodeChannel
-      .subscribe(payload => this.route(payload));
+    MqttRouter.systemNodeChannel.subscribe(payload => this.route(payload));
   }
 
   route(payload) {

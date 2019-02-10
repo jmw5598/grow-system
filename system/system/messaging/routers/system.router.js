@@ -7,12 +7,7 @@ const MqttRouter = require('./mqtt.router');
 class SystemRouter {
 
   constructor() {
-    this.init();
-  }
-
-  init() {
-    MqttRouter.systemChannel
-      .subscribe(payload => this.route(payload));
+    MqttRouter.systemChannel.subscribe(payload => this.route(payload));
   }
 
   route(payload) {
