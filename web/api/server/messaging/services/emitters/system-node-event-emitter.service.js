@@ -1,6 +1,7 @@
 'use strict';
 
 const { SystemNodeEventRouter } = require('../../routers');
+const { SseEmitterService } = require('../../../services');
 
 class SystemNodeEventEmitterService {
 
@@ -18,6 +19,7 @@ class SystemNodeEventEmitterService {
 
   emit(payload) {
     console.log('[API] SystemNodeEventEmitterService::Emitting new event');
+    SseEmitterService.emit(payload);
   }
 
 }
