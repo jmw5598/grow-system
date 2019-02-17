@@ -14,6 +14,7 @@
         "web/system-node/state",
         "web/system-node/event",
         "web/system-node/event/humidity",
+        "web/system-node/event/notification",
         "web/system-node/event/proximity",
         "web/system-node/event/relay",
         "web/system-node/event/temperature",
