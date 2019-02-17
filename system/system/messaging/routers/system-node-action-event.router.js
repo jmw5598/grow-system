@@ -15,10 +15,13 @@ class SystemNodeActionEventRouter {
   route(payload) {
     const [topic] = payload.topic.split('/');
     let routedTopic = '';
-
+    
     switch(topic) {
       case 'humidity':
         routedTopic = 'web/system-node/event/humidity';
+        break;
+      case 'notificaiton':
+        routedTopic = 'web/system-node/event/notification';
         break;
       case 'proximity':
         routedTopic = 'web/system-node/event/proximity';
