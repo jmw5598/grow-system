@@ -1,9 +1,9 @@
 'use strict';
 
 const MqttRouter = require('./mqtt.router');
-const SystemNodeEventRouter = require('./system-node-event.router');
+const SystemNodeActionRouter = require('./system-node-action.router');
 
 module.exports = {
   MqttRouter,
-  SystemNodeEventRouter
+  SystemNodeActionRouter
 }
