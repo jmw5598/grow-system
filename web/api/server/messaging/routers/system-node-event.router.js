@@ -17,6 +17,8 @@ class SystemNodeEventRouter {
     this.temperatureEventChannel = this.temperatureEventChannelSource.asObservable();
     this.temperatureHumidityEventChannelSource = new Rx.Subject();
     this.temperatureHumidityEventChannel = this.temperatureHumidityEventChannelSource.asObservable();
+    this.notificaitonEventChannelSource = new Rx.Subject();
+    this.notificationEventChannel = this.notificaitonEventChannelSource.asObservable();
     SystemNodeRouter.systemNodeEventChannel.subscribe(payload => this.route(payload));
   }
 
@@ -39,6 +41,9 @@ class SystemNodeEventRouter {
         break;
       case 'temperature-humidity':
         this.temperatureHumidityEventChannelSource.next(message);
+        break;
+      case 'notification':
+        this.notificaitonEventChannelSource.next(message);
         break;
       default:
         console.log('[API] SystemNodeEventRouter::No route for event');
