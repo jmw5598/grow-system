@@ -16,6 +16,7 @@
     "jsonwebtoken": "^8.4.0",
     "morgan": "~1.9.0",
     "mqtt": "^2.18.8",
+    "node-thermal-printer": "^2.0.1",
     "rxjs": "^6.3.3",
     "sequelize": "^4.41.2",
     "sqlite3": "^4.0.4"
