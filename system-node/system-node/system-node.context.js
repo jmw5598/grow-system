@@ -8,17 +8,13 @@ class SystemNodeContext {
 
     this.configurationData = {};
     this.relaysData = [];
-    this.sensorsData = {
-      temperature: [], humidity: [], temperaturehumidity: [], proximity: []
-    }
-
+    this.sensorsData = { temperature: [], humidity: [], temperaturehumidity: [], proximity: [] }
     this.configurationSource = new Rx.BehaviorSubject({});
     this.configuration = this.configurationSource.asObservable();
     this.relaysSource = new Rx.BehaviorSubject([]);
     this.relays = this.relaysSource.asObservable();
     this.sensorsSource = new Rx.BehaviorSubject({});
     this.sensors = this.sensorsSource.asObservable();
-
   }
 
   setConfiguration(configuration) {
@@ -30,19 +26,19 @@ class SystemNodeContext {
     switch(component.type) {
       case "temperature":
         this.sensorsData.temperature.push(component);
-        this.sensorsSource.next(this.relays);
+        this.sensorsSource.next(this.sensorsData);
         break;
       case "humidity":
         this.sensorsData.humidity.push(component);
-        this.sensorsSource.next(this.sensors);
+        this.sensorsSource.next(this.sensorsData);
         break;
       case "temperature/humidity":
         this.sensorsData.temperaturehumidity.push(component);
-        this.sensorsSource.next(this.sensors);
+        this.sensorsSource.next(this.sensorsData);
         break;
       case "relay":
         this.relaysData.push(component);
-        this.relaysSource.next(this.relays);
+        this.relaysSource.next(this.relaysData);
         break;
       default:
         console.log("ERROR: component type not recognized", component);
