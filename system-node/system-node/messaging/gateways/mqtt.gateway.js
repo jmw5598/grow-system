@@ -16,7 +16,7 @@ class MqttGateway {
     this.config = config;
     this.client = mqtt.connect(this.config.system.mqtt.gateway.uri);
     this.client.on('connect', () => this.subscriptions(this.config.system.mqtt.topics.subscriptions));
-    this.client.on('message', (topic, message) => this.inbound(topic, message.toString()));
+    this.client.on('message', (topic, message) => this.inbound(topic, JSON.parse(message.toString())));
   }
 
   inbound(topic, message) {
