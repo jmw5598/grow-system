@@ -1,24 +1,20 @@
 'use strict';
 
-const { SystemNodeEventRouter } = require('../routers');
+const SystemNodeContext = require('../../system-node.context');
+const { SystemNodeActionRouter } = require('../routers');
 
 class RelayEventService {
 
   constructor() {
-    this.relaysSubscription = SystemNodeEventRouter.relays
-      .subscribe(
-        relay => this.process(relay),
-        error => this.error(error)
-      );
+    this.relaysActionChannelSubscription = SystemNodeActionRouter.relayActionChannel
+      .subscribe(relay => this.process(relay));
+    this.relaysSubscription = SystemNodeContext.relays
+      .subscribe(relays => this.relays = relays);
   }
 
   process(message) {
-    console.log("processing relay toggle");
-    console.log("message: ", message);
-  }
-
-  error(error) {
-    console.log("RelayService::Error::" + error);
+    let [relay] = this.relays.filter(r => r.id === message.message.component.id);
+    if(relay) relay.toggle(message.message.component.state);
   }
 
 }
