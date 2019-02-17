@@ -14,9 +14,10 @@
       },
       "topics": {
         "subscriptions": [
-          "node/{id}/event",
-          "node/{id}/status",
-          "node/{id}/ping"
+          "system-node/{id}/action",
+          "system-node/{id}/action/relay",
+          "system-node/{id}/status",
+          "system-node/{id}/ping"
         ],
         "publish": {
           "register": "node/register",
@@ -35,16 +36,30 @@
         {
           "id": "1234",
           "type": "relay",
-          "pin": "14",
+          "pin": 12,
           "state": "off",
           "alias": "Light 1"
         },
         {
           "id": "1235",
           "type": "relay",
-          "pin": "15",
+          "pin": 16,
           "state": "off",
-          "alias": "Fan 1"
+          "alias": "Light 2"
+        },
+        {
+          "id": "1236",
+          "type": "relay",
+          "pin": 20,
+          "state": "off",
+          "alias": "Fan"
+        },
+        {
+          "id" : "1237",
+          "type": "relay",
+          "pin": 21,
+          "state": "off",
+          "alias": "Nutrient Pump"
         }
       ],
       "sensors": [
@@ -52,7 +67,7 @@
           "id": "1236",
           "type": "temperature/humidity",
           "model": "DHT22",
-          "pin": "17",
+          "pin": 19,
           "alias": "Lower Shelf DHT22",
           "preferences": {
             "scale": "fahrenheit",
@@ -64,7 +79,7 @@
           "id": "1237",
           "type": "temperature/humidity",
           "model": "DHT22",
-          "pin": "18",
+          "pin": 26,
           "alias": "Upper Shelf DHT22",
           "preferences": {
             "scale": "fahrenheit",
