@@ -15,13 +15,31 @@ class SystemNodeActionRouter {
 
   route(payload) {
     const [topic] = payload.topic.split('/');
-    const routedTopic = payload.topic.substring(payload.topic.indexOf('/') + 1);
-    const message = new MqttMessage(routedTopic, payload.message);
+    const routedTopic = `system-node/${payload.message.node.id}/action`;
 
     switch(topic) {
       case 'event':
-        console.log("new event to api");
         this.systemNodeActionEventChannelSource.next(message);
+        break;
+      case 'humidity':
+        const message = new MqttMessage(`${routedTopic}/humidity`, payload.message);
+        MqttGateway.outbound(message);
+        break;
+      case 'proximity':
+        const message = new MqttMessage(`${routedTopic}/proximity`, payload.message);
+        MqttGateway.outbound(message);
+        break;
+      case 'relay':
+        const message = new MqttMessage(`${routedTopic}/relay`, payload.message);
+        MqttGateway.outbound(message);
+        break;
+      case 'temperature':
+        const message = new MqttMessage(`${routedTopic}/temperature`, payload.message);
+        MqttGateway.outbound(message);
+        break;
+      case 'temperature-humidity':
+        const message = new MqtMessage(`${routedTopic}/temperature-humidity`, payload.message);
+        MqttGateway.outbound(message);
         break;
       default:
         console.log('[System] SystemNodeActionRouter::No topic match');
