@@ -11,6 +11,7 @@ class SystemNodeEventEmitterService {
 
   init() {
     SystemNodeEventRouter.humidityEventChannel.subscribe(payload => this.emit(payload));
+    SystemNodeEventRouter.notificationEventChannel.subscribe(payload => this.emit(payload));
     SystemNodeEventRouter.proximityEventChannel.subscribe(payload => this.emit(payload));
     SystemNodeEventRouter.relayEventChannel.subscribe(payload => this.emit(payload));
     SystemNodeEventRouter.temperatureEventChannel.subscribe(payload => this.emit(payload));
