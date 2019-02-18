@@ -7,7 +7,6 @@ const Rx = require('rxjs');
 class MqttRouter {
 
   constructor() {
-    this.init();
     this.systemNodeActionChannelSource = new Rx.Subject();
     this.systemNodeActionChannel = this.systemNodeActionChannelSource.asObservable();
     MqttGateway.inboundChannel.subscribe(payload => this.route(payload));
