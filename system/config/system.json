@@ -15,10 +15,16 @@
         "system/status",
         "system-node/register",
         "system-node/action/event/humidity",
+        "system-node/action/event/notification",
         "system-node/action/event/proximity",
         "system-node/action/event/relay",
         "system-node/action/event/temperature",
-        "system-node/action/event/temperature-humidity"
+        "system-node/action/event/temperature-humidity",
+        "system-node/action/humidity",
+        "system-node/action/proximity",
+        "system-node/action/relay",
+        "system-node/action/temperature",
+        "system-node/action/temperature-humidity"
       ]
     }
   }
