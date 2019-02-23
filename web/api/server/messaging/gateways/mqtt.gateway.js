@@ -25,9 +25,10 @@ class MqttGateway {
   }
 
 
-  outbound(topic, message) {
-    const payload = JSON.stringify(payload);
-    this.client.publish(topic, payload);
+  outbound(message) {
+    const payload = JSON.stringify(message.message);
+    console.log("sneding outboudn", message, payload);
+    this.client.publish(message.topic, payload);
   }
 
   subscriptions(subscriptions) {
