@@ -5,7 +5,7 @@
   "system": {
     "mqtt": {
       "gateway": {
-        "uri": "mqtt://192.168.1.18",
+        "uri": "mqtt://192.168.1.15",
         "username": "",
         "password": ""
       },
@@ -70,8 +70,11 @@
           "pin": 19,
           "alias": "Lower Shelf DHT22",
           "preferences": {
-            "scale": "fahrenheit",
-            "threshold": 60,
+            "scale": "celsius",
+            "threshold": {
+              "min": 20.5,
+              "max": 30
+            },
             "interval": 5000
           }
         },
@@ -82,8 +85,11 @@
           "pin": 26,
           "alias": "Upper Shelf DHT22",
           "preferences": {
-            "scale": "fahrenheit",
-            "threshold": 60,
+            "scale": "celsius",
+            "threshold": {
+              "min": 20.5,
+              "max": 30
+            },
             "interval": 2000
           }
         }
