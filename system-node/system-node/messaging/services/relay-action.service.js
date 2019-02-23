@@ -3,7 +3,7 @@
 const SystemNodeContext = require('../../system-node.context');
 const { SystemNodeActionRouter } = require('../routers');
 
-class RelayEventService {
+class RelayActionService {
 
   constructor() {
     this.relaysActionChannelSubscription = SystemNodeActionRouter.relayActionChannel
@@ -13,10 +13,10 @@ class RelayEventService {
   }
 
   process(message) {
-    let [relay] = this.relays.filter(r => r.id === message.message.component.id);
+    let relay = this.relays.find(r => r.id === message.message.component.id);
     if(relay) relay.toggle(message.message.component.state);
   }
 
 }
 
-module.exports = new RelayEventService();
+module.exports = new RelayActionService();

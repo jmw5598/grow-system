@@ -1,7 +1,7 @@
 'use strict';
 
-const RelayEventService = require('./relay-event.service');
+const RelayActionService = require('./relay-action.service');
 
 module.exports = {
-  RelayEventService
+  RelayActionService
 }
