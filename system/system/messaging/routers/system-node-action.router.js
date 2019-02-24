@@ -15,30 +15,37 @@ class SystemNodeActionRouter {
 
   route(payload) {
     const [topic] = payload.topic.split('/');
-    const routedTopic = `system-node/${payload.message.node.id}/action`;
+    // TODO: look into making this cleaner.  Not sure if there is a better option
+    // for handling routed vs outbound topics?
+    const outboundTopic = `system-node/${payload.message.node.id}/action`;
+    const routedTopic = payload.topic.split('/').slice(1);
+    let message;
 
     switch(topic) {
       case 'event':
+        message = new MqttMessage(`${routedTopic}`, payload.message);
         this.systemNodeActionEventChannelSource.next(message);
         break;
       case 'humidity':
-        const message = new MqttMessage(`${routedTopic}/humidity`, payload.message);
+        message = new MqttMessage(`${outboundTopic}/humidity`, payload.message);
         MqttGateway.outbound(message);
         break;
       case 'proximity':
-        const message = new MqttMessage(`${routedTopic}/proximity`, payload.message);
+        message = new MqttMessage(`${outboundTopic}/proximity`, payload.message);
         MqttGateway.outbound(message);
         break;
       case 'relay':
-        const message = new MqttMessage(`${routedTopic}/relay`, payload.message);
+        console.log("new relay action");
+        console.log("sending relay action to", outboundTopic);
+        message = new MqttMessage(`${outboundTopic}/relay`, payload.message);
         MqttGateway.outbound(message);
         break;
       case 'temperature':
-        const message = new MqttMessage(`${routedTopic}/temperature`, payload.message);
+        message = new MqttMessage(`${outboundTopic}/temperature`, payload.message);
         MqttGateway.outbound(message);
         break;
       case 'temperature-humidity':
-        const message = new MqtMessage(`${routedTopic}/temperature-humidity`, payload.message);
+        message = new MqtMessage(`${outboundTopic}/temperature-humidity`, payload.message);
         MqttGateway.outbound(message);
         break;
       default:
