@@ -7,6 +7,8 @@ const MqttRouter = require('./mqtt.router');
 class SystemRouter {
 
   constructor() {
+    this.systemActionChannelSource = new Rx.Subject();
+    this.systemActionChannel = this.systemActionChannelSource.asObservable();
     MqttRouter.systemChannel.subscribe(payload => this.route(payload));
   }
 
@@ -16,6 +18,9 @@ class SystemRouter {
     const message = new MqttMessage(routedTopic, payload.message);
 
     switch(topic) {
+      case 'action':
+        this.systemActionChannelSource.next(message);
+        break;
       default:
         console.log('SystemRouter::Default::No case for route');
     }
