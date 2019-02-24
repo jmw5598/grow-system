@@ -12,7 +12,9 @@
     },
     "topics": {
       "subscriptions": [
-        "system/status",
+        "system/action",
+        "system/action/node/register",
+        "system/action/node/registered",
         "system-node/register",
         "system-node/action/event/humidity",
         "system-node/action/event/notification",
