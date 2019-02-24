@@ -2,6 +2,7 @@
 
 require('./models');
 require('./routers');
+require('./services');
 
 const { MqttGateway } = require('./gateways');
 
