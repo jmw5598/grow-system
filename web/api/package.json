@@ -3,6 +3,8 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
+    "test-init": "./node_modules/jasmine/bin/jasmine.js init",
+    "test": "./node_modules/jasmine/bin/jasmine.js",
     "start": "node ./bin/www"
   },
   "dependencies": {
@@ -20,5 +22,8 @@
     "rxjs": "^6.3.3",
     "sequelize": "^4.41.2",
     "sqlite3": "^4.0.4"
+  },
+  "devDependencies": {
+    "jasmine": "^3.3.1"
   }
 }
