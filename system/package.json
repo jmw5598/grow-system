@@ -4,7 +4,9 @@
   "description": "The main message routing system for grow automation project",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test-init": "./node_modules/jasmine/bin/jasmine.js init",
+    "test": "./node_modules/jasmine/bin/jasmine.js",
+    "start": "node index.js"
   },
   "keywords": [
     "Hydroponics",
@@ -18,5 +20,8 @@
   "dependencies": {
     "mqtt": "^2.18.8",
     "rxjs": "^6.3.3"
+  },
+  "devDependencies": {
+    "jasmine": "^3.3.1"
   }
 }
