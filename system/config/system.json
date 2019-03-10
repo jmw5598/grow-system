@@ -12,21 +12,22 @@
     },
     "topics": {
       "subscriptions": [
-        "system/action",
-        "system/action/node/register",
-        "system/action/node/registered",
-        "system-node/register",
-        "system-node/action/event/humidity",
-        "system-node/action/event/notification",
-        "system-node/action/event/proximity",
-        "system-node/action/event/relay",
-        "system-node/action/event/temperature",
-        "system-node/action/event/temperature-humidity",
-        "system-node/action/humidity",
-        "system-node/action/proximity",
-        "system-node/action/relay",
-        "system-node/action/temperature",
-        "system-node/action/temperature-humidity"
+        "system/system/command/ping",
+        "system/system/command/status",
+        "system/system/event/status",
+        "system/system-node/register",
+        "system/system-node/registered",
+        "system/system-node/event/humidity",
+        "system/system-node/event/notification",
+        "system/system-node/event/proximity",
+        "system/system-node/event/relay",
+        "system/system-node/event/temperature",
+        "system/system-node/event/temperature-humidity",
+        "system/system-node/command/humidity",
+        "system/system-node/command/proximity",
+        "system/system-node/command/relay",
+        "system/system-node/command/temperature",
+        "system/system-node/command/temperature-humidity"
       ]
     }
   }
