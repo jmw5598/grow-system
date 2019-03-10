@@ -1,7 +1,7 @@
 'use strict';
 
-const { MqttMessage } = require('../models');
-const { MqttGateway } = require('../gateways');
+const { MqttMessage } = require('../../models');
+const { MqttGateway } = require('../../gateways');
 const Rx = require('rxjs');
 
 class MqttRouter {
@@ -11,12 +11,12 @@ class MqttRouter {
     this.systemChannel = this.systemChannelSource.asObservable();
     this.systemNodeChannelSource = new Rx.Subject();
     this.systemNodeChannel = this.systemNodeChannelSource.asObservable();
-    MqttGateway.inboundChannel.subscribe(payload => this.route(payload));
+    MqttGateway.inboundChannel.subscribe(payload => this.route);
   }
 
   route(payload) {
-    const [topic] = payload.topic.split('/');
-    const routedTopic = payload.topic.substring(payload.topic.indexOf('/') + 1);
+    const [component, topic] = payload.topic.split('/');
+    const routedTopic = payload.topic.split('/').slice(2).join('/');
     const message = new MqttMessage(routedTopic, payload.message);
 
     switch(topic) {
