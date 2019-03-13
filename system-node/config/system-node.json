@@ -14,16 +14,14 @@
       },
       "topics": {
         "subscriptions": [
-          "system-node/{id}/action",
-          "system-node/{id}/action/relay",
+          "system-node/{id}/command/humidity",
+          "system-node/{id}/command/proximity",
+          "system-node/{id}/command/relay",
+          "system-node/{id}/command/temperature",
+          "system-node/{id}/command/temperature-humidity",
           "system-node/{id}/status",
           "system-node/{id}/ping"
-        ],
-        "publish": {
-          "register": "node/register",
-          "status": "node/status",
-          "event-status": "node/event/status"
-        }
+        ]
       }
     }
   },
