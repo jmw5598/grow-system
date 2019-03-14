@@ -1,6 +1,8 @@
 'use strict';
 
+const { MqttGateway } = require('../gateways');
 const { SystemActionNodeRouter } = require('../routers');
+const SystemContext = require('../../system.context');
 
 class SystemNodeRegistrationService {
 
@@ -9,7 +11,7 @@ class SystemNodeRegistrationService {
   }
 
   register(payload) {
-    console.log('[SystemNodeRegistrationService] Registering new node to system');
+    SystemContext.registerNode(payload.message);
   }
 
 }
