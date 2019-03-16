@@ -7,42 +7,43 @@ const MqttRouter = require('../mqtt/mqtt.router');
 class SystemNodeCommandRouter {
 
   constructor() {
-    this.humidityActionChannelSource = new Rx.Subject();
-    this.humidityActionChannel = this.humidityActionChannelSource.asObservable();
-    this.proximityActionChannelSource = new Rx.Subject();
-    this.proximityActionChannel = this.proximityActionChannelSource.asObservable();
-    this.relayActionChannelSource = new Rx.Subject();
-    this.relayActionChannel = this.relayActionChannelSource.asObservable();
-    this.temperatureActionChannelSource = new Rx.Subject();
-    this.temperatureActionChannel = this.temperatureActionChannelSource.asObservable();
-    this.temperatureHumidityActionChannelSource = new Rx.Subject();
-    this.temperatureHumidityActionChannel = this.temperatureHumidityActionChannelSource.asObservable();
+    this.humidityCommandChannelSource = new Rx.Subject();
+    this.humidityCommandChannel = this.humidityCommandChannelSource.asObservable();
+    this.proximityCommandChannelSource = new Rx.Subject();
+    this.proximityCommandChannel = this.proximityCommandChannelSource.asObservable();
+    this.relayCommandChannelSource = new Rx.Subject();
+    this.relayCommandChannel = this.relayCommandChannelSource.asObservable();
+    this.temperatureCommandChannelSource = new Rx.Subject();
+    this.temperatureCommandChannel = this.temperatureCommandChannelSource.asObservable();
+    this.temperatureHumidityCommandChannelSource = new Rx.Subject();
+    this.temperatureHumidityCommandChannel = this.temperatureHumidityCommandChannelSource.asObservable();
     this.systemNodeCommandSubscription = MqttRouter.systemNodeCommandChannel
-      .subscribe(payload => this.route);
+      .subscribe(payload => this.route(payload));
   }
 
   route(payload) {
+    console.log("new command message", payload);
     const [topic] = payload.topic.split('/');
     const message = new MqttMessage('', payload.message);
 
     switch(topic) {
       case 'humidity':
-        this.humidityActionChannelSource.next(message);
+        this.humidityCommandChannelSource.next(message);
         break;
       case 'proximity':
-        this.proximityActionChannelSource.next(message);
+        this.proximityCommandChannelSource.next(message);
         break;
       case 'relay':
-        this.relayActionChannelSource.next(message);
+        this.relayCommandChannelSource.next(message);
         break;
       case 'temperature':
-        this.temperatureActionChannelSource.next(message);
+        this.temperatureCommandChannelSource.next(message);
         break;
       case 'temperature-humidity':
-        this.temperatureHumidityActionChannelSource.next(message);
+        this.temperatureHumidityCommandChannelSource.next(message);
         break;
       default:
-        console.log('[SYSTEM-NODE] SystemNodeActionRouter::No topic matching action');
+        console.log('[SYSTEM-NODE] SystemNodeCommandRouter::No topic matching command');
         break;
     }
   }

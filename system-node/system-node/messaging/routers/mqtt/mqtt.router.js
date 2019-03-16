@@ -9,7 +9,7 @@ class MqttRouter {
   constructor() {
     this.systemNodeCommandChannelSource = new Rx.Subject();
     this.systemNodeCommandChannel = this.systemNodeCommandChannelSource.asObservable();
-    MqttGateway.inboundChannel.subscribe(payload => this.route);
+    MqttGateway.inboundChannel.subscribe(payload => this.route(payload));
   }
 
   route(payload) {
