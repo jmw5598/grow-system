@@ -1,6 +1,6 @@
 'use strict';
 
-const { MqttMessage } = require('../models');
+const { MqttMessage } = require('../../models');
 const Rx = require('rxjs');
 const SystemNodeRouter = require('./system-node.router');
 
@@ -19,12 +19,13 @@ class SystemNodeEventRouter {
     this.temperatureHumidityEventChannel = this.temperatureHumidityEventChannelSource.asObservable();
     this.notificaitonEventChannelSource = new Rx.Subject();
     this.notificationEventChannel = this.notificaitonEventChannelSource.asObservable();
-    SystemNodeRouter.systemNodeEventChannel.subscribe(payload => this.route(payload));
+    SystemNodeRouter.systemNodeEventChannel.subscribe(payload => this.route);
   }
 
   route(payload) {
     const [topic] = payload.topic.split('/');
-    const message = new MqttMessage(topic, payload.message);
+    const routedTopic = payload.topic.split('/').slice(1).join('');
+    const message = new MqttMessage(routedTopic, payload.message);
 
     switch(topic) {
       case 'humidity':
