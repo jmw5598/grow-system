@@ -13,7 +13,7 @@ class SystemNodeRouter {
     this.systemNodeEventChannel = this.systemNodeEventChannelSource.asObservable();
     this.systemNodeRegisterChannelSource = new Rx.Subject();
     this.systemNodeRegisterChannel = this.systemNodeRegisterChannelSource.asObservable();
-    MqttRouter.systemNodeChannel.subscribe(payload => this.route);
+    MqttRouter.systemNodeChannel.subscribe(payload => this.route(payload));
   }
 
   route(payload) {

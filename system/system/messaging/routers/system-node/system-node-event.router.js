@@ -10,8 +10,7 @@ class SystemNodeEventRouter {
   constructor() {
     this.webOutboundChannelSource = new Rx.Subject();
     this.webOutboundChannel = this.webOutboundChannelSource.asObservable();
-    SystemNodeRouter.systemNodeEventChannel
-      .subscribe(payload => this.route);
+    SystemNodeRouter.systemNodeEventChannel.subscribe(payload => this.route(payload));
   }
 
   route(payload) {

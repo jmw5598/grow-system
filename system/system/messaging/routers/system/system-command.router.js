@@ -9,7 +9,7 @@ class SystemCommandRouter {
   constructor() {
     this.systemStatusChannelSource = new Rx.Subject();
     this.systemStatusChannel = this.systemStatusChannelSource.asObservable();
-    SystemRouter.systemCommandChannel.subscribe(payload => this.route);
+    SystemRouter.systemCommandChannel.subscribe(payload => this.route(payload));
   }
 
   route(payload) {

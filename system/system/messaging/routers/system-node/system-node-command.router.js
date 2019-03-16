@@ -10,7 +10,7 @@ class SystemNodeCommandRouter {
   constructor() {
     this.systemNodeOutboundMessageChannelSource = new Rx.Subject();
     this.systemNodeOutboundMessageChannel = this.systemNodeOutboundMessageChannelSource.asObservable();
-    SystemNodeRouter.systemNodeCommandChannel.subscribe(payload => this.route);
+    SystemNodeRouter.systemNodeCommandChannel.subscribe(payload => this.route(payload));
   }
 
   route(payload) {

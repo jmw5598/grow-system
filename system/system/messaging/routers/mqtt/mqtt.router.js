@@ -11,14 +11,14 @@ class MqttRouter {
     this.systemChannel = this.systemChannelSource.asObservable();
     this.systemNodeChannelSource = new Rx.Subject();
     this.systemNodeChannel = this.systemNodeChannelSource.asObservable();
-    MqttGateway.inboundChannel.subscribe(payload => this.route);
+    MqttGateway.inboundChannel.subscribe(payload => this.route(payload));
   }
 
   route(payload) {
     const [component, topic] = payload.topic.split('/');
     const routedTopic = payload.topic.split('/').slice(2).join('/');
     const message = new MqttMessage(routedTopic, payload.message);
-
+    
     switch(topic) {
       case 'system':
         this.systemChannelSource.next(message);

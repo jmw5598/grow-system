@@ -9,7 +9,7 @@ class SystemEventRouter {
   constructor() {
     this.systemStatusChannelSource = new Rx.Subject();
     this.systemStatusChannel = this.systemStatusChannelSource.asObservable();
-    SystemRouter.systemEventChannel.subscribe(payload => this.route);
+    SystemRouter.systemEventChannel.subscribe(payload => this.route(payload));
   }
 
   route(payload) {

@@ -13,6 +13,6 @@ module.exports = {
   SystemCommandRouter,
   SystemEventRouter,
   SystemNodeCommandRouter,
-  SystemNodeEventROuter,
+  SystemNodeEventRouter,
   SystemRouter
 }

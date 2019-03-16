@@ -11,7 +11,7 @@ class SystemRouter {
     this.systemCommandChannel = this.systemCommandChannelSource.asObservable();
     this.systemEventChannelSource = new Rx.Subject();
     this.systemEventChannel = this.systemEventChannelSource.asObservable();
-    MqttRouter.systemChannel.subscribe(payload => this.route);
+    MqttRouter.systemChannel.subscribe(payload => this.route(payload));
   }
 
   route(payload) {
