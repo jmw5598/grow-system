@@ -1,20 +1,21 @@
 'use strict';
 
 const { MqttGateway } = require('../gateways');
-const { SystemNodeEventRouer, SystemNodeCommandRouter } = require('../routers');
+const { SystemNodeEventRouter, SystemNodeCommandRouter } = require('../routers');
 
 class OutboundMessageService {
 
   constructor() {
     SystemNodeEventRouter.webOutboundChannel
-      .subscribe(payload => this.process);
-    SystemnodeCommnadRouter.systemNodeOutboundMessageChannel
-      .subscribe(payload => this.process);
+      .subscribe(payload => this.process(payload));
+    SystemNodeCommandRouter.systemNodeOutboundMessageChannel
+      .subscribe(payload => this.process(payload));
   }
 
   process(message) {
-    console.log("[OutboundMessagService] New message, sending outbound");
-    MqttGateway.outbound(message.topic, message.message);
+    MqttGateway.outbound(message);
   }
 
 }
+
+module.exports = new OutboundMessageService();
