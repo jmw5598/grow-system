@@ -1,9 +1,9 @@
 'use strict';
 
-const RelayActionService = require('./relay-action.service');
-const TemperatureHumidityActionService = require('./temperature-humidity-action.service');
+const RelayCommandService = require('./relay-command.service');
+const TemperatureHumidityCommandService = require('./temperature-humidity-command.service');
 
 module.exports = {
-  RelayActionService,
-  TemperatureHumidityActionService
+  RelayCommandService,
+  TemperatureHumidityCommandService
 }
