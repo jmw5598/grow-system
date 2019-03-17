@@ -14,6 +14,8 @@ class System {
   start() {
     SystemContext.init(this.config);
     MqttGateway.init(this.config.mqtt);
+    // Have a topic to request node to register on bootupd??
+    // If system loads after nodes, nodes should be notified to register.
   }
 
 }

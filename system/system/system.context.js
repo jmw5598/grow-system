@@ -1,6 +1,7 @@
 'use strict';
 
 const Rx = require('rxjs');
+const { MqttGateway } = require('./messaging');
 
 class SystemContext {
 
@@ -28,7 +29,8 @@ class SystemContext {
     temp.push(node);
     this.nodesData = temp;
     this.nodeSource.next(this.nodesData);
-    console.log("SystemNodeContext::Register::AddNode");
+    const message = new MqttMessage('web/system/event/nodes', this.nodeData)
+    MqttMessage.outbound(message);
   }
 
 }
