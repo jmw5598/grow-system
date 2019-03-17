@@ -5,10 +5,9 @@ const Rx = require('rxjs');
 class SystemNodeContext {
 
   constructor() {
-
     this.configurationData = {};
     this.relaysData = [];
-    this.sensorsData = { temperature: [], humidity: [], temperaturehumidity: [], proximity: [] }
+    this.sensorsData = { temperature: [], humidity: [], temperatureHumidity: [], proximity: [] }
     this.configurationSource = new Rx.BehaviorSubject({});
     this.configuration = this.configurationSource.asObservable();
     this.relaysSource = new Rx.BehaviorSubject([]);
@@ -33,7 +32,7 @@ class SystemNodeContext {
         this.sensorsSource.next(this.sensorsData);
         break;
       case "temperature/humidity":
-        this.sensorsData.temperaturehumidity.push(component);
+        this.sensorsData.temperatureHumidity.push(component);
         this.sensorsSource.next(this.sensorsData);
         break;
       case "relay":
