@@ -1,18 +1,34 @@
 'use strict';
 
-const MqttRouter = require('./mqtt/mqtt.router');
-const SystemCommandRouter = require('./system/system-command.router');
-const SystemEventRouter = require('./system/system-event.router');
-const SystemNodeCommandRouter = require('./system-node/system-node-command.router');
-const SystemNodeEventRouter = require('./system-node/system-node-event.router');
-const SystemNodeRouter = require('./system-node/system-node.router');
-const SystemRouter = require('./system/system.router');
+const MqttMessageRouter = require('./mqtt/mqtt-message.router');
+const SystemCommandMessageRouter = require('./system/system-command-message.router');
+const SystemEventMessageRouter = require('./system/system-event-message.router');
+const SystemMessageRouter = require('./system/system-message.router');
+const SystemNodeCommandMessageRouter = require('./system-node/system-node-command-message.router');
+const SystemNodeEventMessageRouter = require('./system-node/system-node-event-message.router');
+const SystemNodeMessageRouter = require('./system-node/system-node-message.router');
+
+MqttMessageRouter.routes.system.channel
+  .subscribe(message => SystemMessageRouter.route(message));
+
+MqttMessageRouter.routes.node.channel
+  .subscribe(message => SystemNodeMessageRouter.route(message));
+
+SystemMessageRouter.routes.command.channel
+  .subscribe(message => SystemCommandMessageRouter.route(message));
+
+SystemMessageRouter.routes.event.channel
+  .subscribe(message => SystemEventMessageRouter.route(message));
+
+SystemNodeMessageRouter.routes.command.channel
+  .subscribe(message => SystemNodeCommandMessageRouter.route(message));
+
+SystemNodeMessageRouter.routes.event.channel
+  .subscribe(message => SystemNodeEventMessageRouter.route(message));
 
 module.exports = {
-  MqttRouter,
-  SystemCommandRouter,
-  SystemEventRouter,
-  SystemNodeCommandRouter,
-  SystemNodeEventRouter,
-  SystemRouter
+  MqttMessageRouter,
+  SystemCommandMessageRouter,
+  SystemEventMessageRouter,
+  SystemMessageRouter
 }
