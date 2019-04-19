@@ -11,13 +11,13 @@
       },
       "topics": {
         "subscriptions": [
-          "system-node/{id}/command/humidity",
-          "system-node/{id}/command/proximity",
-          "system-node/{id}/command/relay",
-          "system-node/{id}/command/temperature",
-          "system-node/{id}/command/temperature-humidity",
-          "system-node/{id}/status",
-          "system-node/{id}/ping"
+          "node/{id}/command/humidity",
+          "node/{id}/command/proximity",
+          "node/{id}/command/relay",
+          "node/{id}/command/temperature",
+          "node/{id}/command/temperature-humidity",
+          "node/{id}/status",
+          "node/{id}/ping"
         ]
       }
     }
