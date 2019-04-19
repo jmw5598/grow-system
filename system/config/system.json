@@ -3,7 +3,7 @@
   "description": "Handles and routes MQTT messages from web api to appropriate system-node",
   "mqtt": {
     "gateway": {
-      "uri": "mqtt://192.168.1.15",
+      "uri": "mqtt://192.168.1.18",
       "username": "",
       "password": ""
     },
@@ -15,19 +15,19 @@
         "system/system/command/ping",
         "system/system/command/status",
         "system/system/event/status",
-        "system/system-node/register",
-        "system/system-node/registered",
-        "system/system-node/event/humidity",
-        "system/system-node/event/notification",
-        "system/system-node/event/proximity",
-        "system/system-node/event/relay",
-        "system/system-node/event/temperature",
-        "system/system-node/event/temperature-humidity",
-        "system/system-node/command/humidity",
-        "system/system-node/command/proximity",
-        "system/system-node/command/relay",
-        "system/system-node/command/temperature",
-        "system/system-node/command/temperature-humidity"
+        "system/node/register",
+        "system/node/registered",
+        "system/node/event/humidity",
+        "system/node/event/notification",
+        "system/node/event/proximity",
+        "system/node/event/relay",
+        "system/node/event/temperature",
+        "system/node/event/temperature-humidity",
+        "system/node/command/humidity",
+        "system/node/command/proximity",
+        "system/node/command/relay",
+        "system/node/command/temperature",
+        "system/node/command/temphum"
       ]
     }
   }

@@ -1,7 +1,4 @@
 {
-  "id": "19291",
-  "name": "System Node 1",
-  "description": "First hydroponics setup",
   "system": {
     "mqtt": {
       "gateway": {
@@ -29,69 +26,83 @@
     "id": "19291",
     "name": "System Node 1",
     "description": "First hydroponics setup",
-    "components": {
-      "relays" : [
-        {
-          "id": "1234",
-          "type": "relay",
-          "pin": 12,
-          "state": "off",
-          "alias": "Light 1"
+    "components": [
+      {
+        "id": "1234",
+        "type": {
+          "model": "SRD05",
+          "description": "relay"
         },
-        {
-          "id": "1235",
-          "type": "relay",
-          "pin": 16,
-          "state": "off",
-          "alias": "Light 2"
+        "pin": 12,
+        "state": "off",
+        "alias": "Light 1"
+      },
+      {
+        "id": "1235",
+        "type": {
+          "model": "SRD05",
+          "description": "relay"
         },
-        {
-          "id": "1236",
-          "type": "relay",
-          "pin": 20,
-          "state": "off",
-          "alias": "Fan"
+        "pin": 16,
+        "state": "off",
+        "alias": "Light 2"
+      },
+      {
+        "id": "1236",
+        "type": {
+          "model": "SRD05",
+          "description": "relay"
         },
-        {
-          "id" : "1237",
-          "type": "relay",
-          "pin": 21,
-          "state": "off",
-          "alias": "Nutrient Pump"
-        }
-      ],
-      "sensors": [
-        {
-          "id": "1236",
-          "type": "temperature/humidity",
+        "pin": 20,
+        "state": "off",
+        "alias": "Fan"
+      },
+      {
+        "id" : "1237",
+        "type": {
+          "model": "SRD05",
+          "description": "relay"
+        },
+        "pin": 21,
+        "state": "off",
+        "alias": "Nutrient Pump"
+      },
+      {
+        "id": "1236",
+        "alias": "Lower Shelf DHT22",
+        "type": {
           "model": "DHT22",
-          "pin": 19,
-          "alias": "Lower Shelf DHT22",
-          "preferences": {
-            "scale": "celsius",
-            "threshold": {
-              "min": 20.5,
-              "max": 30
-            },
-            "interval": 5000
-          }
+          "description": "temperature/humidity"
         },
-        {
-          "id": "1237",
-          "type": "temperature/humidity",
-          "model": "DHT22",
-          "pin": 26,
-          "alias": "Upper Shelf DHT22",
-          "preferences": {
-            "scale": "celsius",
-            "threshold": {
-              "min": 20.5,
-              "max": 30
-            },
-            "interval": 2000
-          }
+        "pin": 19,
+        "state": "on",
+        "preferences": {
+          "scale": "celsius",
+          "threshold": {
+            "min": 20.5,
+            "max": 30
+          },
+          "interval": 5000
         }
-      ]
-    }
+      },
+      {
+        "id": "1237",
+        "alias": "Upper Shelf DHT22",
+        "type": {
+          "model": "DHT22",
+          "description": "temperature/humidity"
+        },
+        "pin": 26,
+        "state": "on",
+        "preferences": {
+          "scale": "celsius",
+          "threshold": {
+            "min": 20.5,
+            "max": 30
+          },
+          "interval": 2000
+        }
+      }
+    ]
   }
 }

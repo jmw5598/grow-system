@@ -11,16 +11,16 @@
     "topics": {
       "subscriptions": [
         "web/system/state",
+        "web/system/event/nodes",
         "web/system-node/state",
-        "web/system-node/event",
-        "web/system-node/event/humidity",
-        "web/system-node/event/notification",
-        "web/system-node/event/proximity",
-        "web/system-node/event/relay",
-        "web/system-node/event/temperature",
-        "web/system-node/event/temperature-humidity"
-      ],
-      "publish": ["system/status", "system-node/status", "system-node/action"]
+        "web/node/event",
+        "web/node/event/humidity",
+        "web/node/event/notification",
+        "web/node/event/proximity",
+        "web/node/event/relay",
+        "web/node/event/temperature",
+        "web/node/event/temphum"
+      ]
     }
   }
 }
