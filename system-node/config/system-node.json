@@ -15,7 +15,7 @@
           "node/{id}/command/proximity",
           "node/{id}/command/relay",
           "node/{id}/command/temperature",
-          "node/{id}/command/temperature-humidity",
+          "node/{id}/command/temphum",
           "node/{id}/status",
           "node/{id}/ping"
         ]

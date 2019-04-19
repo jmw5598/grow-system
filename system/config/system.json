@@ -22,7 +22,7 @@
         "system/node/event/proximity",
         "system/node/event/relay",
         "system/node/event/temperature",
-        "system/node/event/temperature-humidity",
+        "system/node/event/temphum",
         "system/node/command/humidity",
         "system/node/command/proximity",
         "system/node/command/relay",
