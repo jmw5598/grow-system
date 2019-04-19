@@ -16,6 +16,7 @@ class MessageRouter {
     });
   }
 
+  // route(message, props) where props contains a routed topic override?
   route(message) {
     const keys = Object.keys(this.routes);
     const [segment] = message.topic.split('/');
