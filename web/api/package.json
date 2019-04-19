@@ -20,6 +20,7 @@
     "mqtt": "^2.18.8",
     "node-thermal-printer": "^2.0.1",
     "rxjs": "^6.3.3",
+    "rxjs-compat": "^6.4.0",
     "sequelize": "^4.41.2",
     "sqlite3": "^4.0.4"
   },

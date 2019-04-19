@@ -19,7 +19,8 @@
   "dependencies": {
     "mqtt": "^2.18.8",
     "onoff": "^3.2.6",
-    "rxjs": "^6.3.3"
+    "rxjs": "^6.3.3",
+    "rxjs-compat": "^6.4.0"
   },
   "devDependencies": {
     "jasmine": "^3.3.1"
