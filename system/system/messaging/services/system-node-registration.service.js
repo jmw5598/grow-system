@@ -1,18 +1,22 @@
 'use strict';
 
+const ApplicationContext = require('../../application.context');
 const { MqttGateway } = require('../gateways');
-//const { SystemActionNodeRouter } = require('../routers');
-const SystemContext = require('../../system.context');
+const { SystemNodeMessageRouter } = require('../routers');
 
 class SystemNodeRegistrationService {
 
   constructor() {
-    // Subscribe to node registration topic and send new node to web.
-    // SystemActionNodeRouter.systemNodeRegistrationChannel.subscribe(payload => this.register(payload));
+    SystemNodeMessageRouter.routes.register.channel
+      .subscribe(message => this.register(message));
   }
 
   register(payload) {
-    SystemContext.registerNode(payload.message);
+    console.log('payload:', payload);
+    /*
+      Do node registration logic here.  Register with ApplicationContext.
+      Send out new node registration to web.
+    */
   }
 
 }
