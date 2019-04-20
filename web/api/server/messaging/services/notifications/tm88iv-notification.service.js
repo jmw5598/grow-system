@@ -1,13 +1,13 @@
 'use strict';
 
-const { SystemNodeEventRouter } = require('../../routers');
+const { SystemNodeEventMessageRouter } = require('../../routers');
 const Printer = require('node-thermal-printer');
 
 class TM88IVNotificationService {
 
   constructor() {
-    SystemNodeEventRouter.notificationEventChannel
-      .subscribe(notification => this.notify(notification));
+    SystemNodeEventMessageRouter.routes.notification.channel
+      .subscribe(message => this.notify(message));
     Printer.init({
       type: Printer.printerTypes.EPSON,
       interface: 'tcp://192.168.1.9:9100',

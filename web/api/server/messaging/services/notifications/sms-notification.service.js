@@ -1,12 +1,12 @@
 'use strict';
 
-const { SystemNodeEventRouter } = require('../../routers');
+const { SystemNodeEventMessageRouter } = require('../../routers');
 
 class SmsNotificationService {
 
   constructor() {
-    SystemNodeEventRouter.notificationEventChannel
-      .subscribe(notification => this.notify(notification));
+    SystemNodeEventMessageRouter.routes.notification.channel
+      .subscribe(message => this.notify(message));
   }
 
   notify(message) {

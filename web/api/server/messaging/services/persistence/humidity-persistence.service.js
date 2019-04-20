@@ -1,12 +1,12 @@
 'use strict';
 
-const { SystemNodeEventRouter } = require('../../routers');
+const { SystemNodeEventMessageRouter } = require('../../routers');
 
 class HumidityPersistenceService {
 
   constructor() {
-    SystemNodeEventRouter.humidityEventChannel
-      .subscribe(payload => this.persist(payload));
+    SystemNodeEventMessageRouter.routes.humidity.channel
+      .subscribe(message => this.persist(message));
   }
 
   persist(payload) {

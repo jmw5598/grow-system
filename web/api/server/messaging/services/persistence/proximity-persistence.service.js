@@ -1,12 +1,12 @@
 'use strict';
 
-const { SystemNodeEventRouter } = require('../../routers');
+const { SystemNodeEventMessageRouter } = require('../../routers');
 
 class ProximityPersistenceService {
 
   constructor() {
-    SystemNodeEventRouter.proximityEventChannel
-      .subscribe(payload => this.persist(payload));
+    SystemNodeEventMessageRouter.routes.proximity.channel
+      .subscribe(message => this.persist(message));
   }
 
   persist(payload) {
