@@ -15,7 +15,6 @@ class SystemNodeOutboundMessageService {
     const routedTopic = `node/${message.message.node.id}/command/${message.topic}`;
     const outbound = new MqttMessage(routedTopic, message.message);
     MqttGateway.outbound(outbound);
-    console.log('outbound to node');
   }
 
 }
