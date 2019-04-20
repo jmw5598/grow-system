@@ -7,6 +7,6 @@ const SystemNodeRouter = require('./system-node');
 SystemRouter.route('/')
   .get((req, res) => res.status(200).send({ message: 'List of systems' }));
 
-SystemRouter.use('/system-node', SystemNodeRouter);
+SystemRouter.use('/node', SystemNodeRouter);
 
 module.exports = SystemRouter;
