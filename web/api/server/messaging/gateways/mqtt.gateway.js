@@ -33,7 +33,7 @@ class MqttGateway {
   }
 
   subscriptions(subscriptions) {
-    subscriptions.forEach(e => {console.log(e); this.client.subscribe(e, this.config.options);});
+    subscriptions.forEach(e => this.client.subscribe(e, this.config.options));
   }
 
 }
