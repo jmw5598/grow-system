@@ -12,6 +12,7 @@ class TemperatureHumidityCommandService {
   }
 
   process(message) {
+    if(!this.actions) return;
     let sensor = this.sensors.temperatureHumidity.find(s => s.id === message.message.component.id);
     const event = message.message.command;
 
