@@ -1,19 +1,18 @@
 'use strict';
 
-const SystemNodeContext = require('../../system-node.context');
-const { SystemNodeCommandRouter } = require('../routers');
+const ApplicationContext = require('../../application.context');
+const SystemNodeCommandMessageRouter = require('../routers').SystemNodeCommandMessageRouter;
 
 class RelayCommandService {
 
   constructor() {
-    this.relaysCommandChannelSubscription = SystemNodeCommandRouter.relayCommandChannel
-      .subscribe(relay => this.process(relay));
-    this.relaysSubscription = SystemNodeContext.relays
-      .subscribe(relays => this.relays = relays);
+    ApplicationContext.getItem('actions').subscribe(actions => this.actions = actions);
+    SystemNodeCommandMessageRouter.routes.relay.channel
+      .subscribe(message => this.process(message));
   }
 
   process(message) {
-    let relay = this.relays.find(r => r.id === message.message.component.id);
+    let relay = this.actions.find(r => r.id === message.message.component.id);
     if(relay) relay.toggle(message.message.payload.state);
   }
 

@@ -1,19 +1,17 @@
 'use strict';
 
-const SystemNodeContext = require('../../system-node.context');
-const { SystemNodeCommandRouter } = require('../routers');
+const ApplicationContext = require('../../application.context');
+const SystemNodeCommandMessageRouter = require('../routers').SystemNodeCommandMessageRouter;
 
 class TemperatureHumidityCommandService {
 
   constructor() {
-      this.temperatureHumidityCommandSubscription = SystemNodeCommandRouter.temperatureHumidityCommandChannel
-        .subscribe(sensor => this.process(sensor));
-      this.sensorsSubscription = SystemNodeContext.sensors
-        .subscribe(sensors => this.sensors = sensors);
+    ApplicationContext.getItem('actions').subscribe(actions => this.actions = actions);
+    SystemNodeCommandMessageRouter.routes.temphum.channel
+      .subscribe(message => this.process(message));
   }
 
   process(message) {
-    console.log("processing temp hum sensor message", message);
     let sensor = this.sensors.temperatureHumidity.find(s => s.id === message.message.component.id);
     const event = message.message.command;
 
@@ -41,4 +39,3 @@ class TemperatureHumidityCommandService {
 
 }
 module.exports = new TemperatureHumidityCommandService();
-//module.exports = new TemperatureHumidityCommandService();
