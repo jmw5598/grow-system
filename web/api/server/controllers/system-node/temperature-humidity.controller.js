@@ -3,14 +3,14 @@
 const { MqttGateway } = require('../../messaging');
 const { MqttMessage } = require('../../messaging/models');
 
-class RelayController {
+class TemperatureHumidityController {
 
   constructor() {}
 
   command(req, res) {
     const message = this._generateCommandMessage(
       req.params.nodeId,
-      req.params.relayId,
+      req.params.sensorId,
       req.body.command,
       req.body.payload
     );
@@ -19,7 +19,7 @@ class RelayController {
   }
 
   _generateCommandMessage(node, sensor, command, payload) {
-    const topic = 'system/node/command/relay';
+    const topic = 'system/node/command/temperature-humidity';
     return new MqttMessage(topic, {
       command: command,
       node: { id: node },
@@ -30,4 +30,4 @@ class RelayController {
 
 }
 
-module.exports = new RelayController();
+module.exports = new TemperatureHumidityController();
