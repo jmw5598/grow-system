@@ -19,7 +19,7 @@ class TemperatureHumidityController {
   }
 
   _generateCommandMessage(node, sensor, command, payload) {
-    const topic = 'system/node/command/temperature-humidity';
+    const topic = 'system/node/command/temphum';
     return new MqttMessage(topic, {
       command: command,
       node: { id: node },
