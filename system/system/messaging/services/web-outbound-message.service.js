@@ -12,7 +12,7 @@ class WebOutboundMessageService {
   }
 
   process(message) {
-    const routedTopic = `web/node/event/${message.message.node.component.type.description}`;
+    const routedTopic = `web/node/event/${message.topic}`;
     const outbound = new MqttMessage(routedTopic, message.message);
     MqttGateway.outbound(outbound);
     console.log('outbound to web');
