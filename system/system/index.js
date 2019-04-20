@@ -1,19 +1,18 @@
 'use strict';
 
-const SystemContext = require('./system.context');
-const { MqttGateway } = require('./messaging');
+const ApplicationContext = require('./application.context');
+const MqttGateway = require('./messaging').MqttGateway;
 
 class System {
 
   constructor() {}
 
   setup(config) {
-    this.config = config
+    ApplicationContext.setItem('config', config);
+    MqttGateway.setup(config.mqtt);
   }
 
   start() {
-    SystemContext.init(this.config);
-    MqttGateway.init(this.config.mqtt);
     // Have a topic to request node to register on bootupd??
     // If system loads after nodes, nodes should be notified to register.
   }
