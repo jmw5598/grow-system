@@ -20,7 +20,7 @@ class ApplicationContext {
   }
 
   getItem(key) {
-    if (this.context.hasOwnProperty(key))
+    if (this._context.hasOwnProperty(key))
       return this._context[key].observable;
     else
       return Rx.EMPTY;
