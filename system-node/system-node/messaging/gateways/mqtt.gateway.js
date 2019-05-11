@@ -35,9 +35,12 @@ class MqttGateway {
 
   subscriptions(subscriptions) {
     subscriptions.forEach(e => {
-      let topic = e.split("{id}");
-      this.client.subscribe(
-        `${topic[0]}${this.config.node.id}${topic[1]}`, this.config.system.mqtt.options);
+      let topic = e;
+      if(e.includes('{id}')) {
+        let segments = e.split("{id}");
+        topic = `${segments[0]}${this.config.node.id}${segments[1]}`
+      }
+      this.client.subscribe(topic, this.config.system.mqtt.options);
     })
   }
 
