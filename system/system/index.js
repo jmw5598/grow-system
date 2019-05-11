@@ -2,6 +2,7 @@
 
 const ApplicationContext = require('./application.context');
 const MqttGateway = require('./messaging').MqttGateway;
+const MqttMessage = require('./messaging/models').MqttMessage;
 
 class System {
 
@@ -13,8 +14,8 @@ class System {
   }
 
   start() {
-    // Have a topic to request node to register on bootupd??
-    // If system loads after nodes, nodes should be notified to register.
+    const registrationRequest = new MqttMessage('node/0/register', { message: 'Regsiter your node' });
+    MqttGateway.outbound(registrationRequest);
   }
 
 }
