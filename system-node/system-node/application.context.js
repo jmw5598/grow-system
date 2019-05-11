@@ -20,10 +20,14 @@ class ApplicationContext {
   }
 
   getItem(key) {
-    if (this._context.hasOwnProperty(key))
+    if (this._context.hasOwnProperty(key)) {
       return this._context[key].observable;
-    else
-      return Rx.EMPTY;
+    } else {
+      this._context[key] = { data: null };
+      this._context[key].source = new Rx.BehaviorSubject(this._context[key].data);
+      this._context[key].observable = this._context[key].source.asObservable();
+      return this._context[key].observable;
+    }
   }
 
 }
