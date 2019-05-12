@@ -1,19 +1,21 @@
 'use strict';
 
-const SystemContext = require('./system.context');
-const { MqttGateway } = require('./messaging');
+const ApplicationContext = require('./application.context');
+const MqttGateway = require('./messaging').MqttGateway;
+const MqttMessage = require('./messaging/models').MqttMessage;
 
 class System {
 
   constructor() {}
 
   setup(config) {
-    this.config = config
+    ApplicationContext.setItem('config', config);
+    MqttGateway.setup(config.mqtt);
   }
 
   start() {
-    SystemContext.init(this.config);
-    MqttGateway.init(this.config.mqtt);
+    const registrationRequest = new MqttMessage('node/0/register', { message: 'Regsiter your node' });
+    MqttGateway.outbound(registrationRequest);
   }
 
 }

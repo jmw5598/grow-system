@@ -4,6 +4,7 @@ const DHTSensor = require('node-dht-sensor');
 const ComponentAction = require('./component.action');
 const SystemNodeContext = require('../system-node.context');
 const { MqttGateway } = require('../messaging');
+const { MqttMessage } = require('../messaging/models');
 
 
 class TemperatureHumidityAction extends ComponentAction {
@@ -22,8 +23,12 @@ class TemperatureHumidityAction extends ComponentAction {
     this.interval = setInterval(() => {
       DHTSensor.read(22, this.pin, (error, temperature, humidity) => {
         if(!error) {
-          const message = this.buildMessage(temperature, humidity);
-          MqttGateway.outbound('node/action-event', message);
+          const message = new MqttMessage('system/system-node/event/temperature-humidity', this.buildMessage(temperature, humidity));
+          MqttGateway.outbound(message);
+          if(temperature > this.preferences.threshold.max || temperature < this.preferences.threshold.min) {
+            const notification = new MqttMessage('system/system-node/event/notification', this.buildMessage(temperature, humidity));
+            MqttGateway.outbound(notification);
+          }
         }
       });
     }, this.preferences.interval);
@@ -51,7 +56,7 @@ class TemperatureHumidityAction extends ComponentAction {
       node: {
         id: 123,
         alias: "Alias",
-        component: {
+        component: [{
           id: this.id,
           alias: this.alias,
           type: this.type,
@@ -59,7 +64,7 @@ class TemperatureHumidityAction extends ComponentAction {
           preferences: this.preferences,
           temperature: temperature,
           humidity: humidity
-        }
+        }]
       }
     }
   }

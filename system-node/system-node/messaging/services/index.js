@@ -1,7 +1,9 @@
 'use strict';
 
-const RelayEventService = require('./relay-event.service');
+const RelayCommandService = require('./relay-command.service');
+const TemperatureHumidityCommandService = require('./temperature-humidity-command.service');
 
 module.exports = {
-  RelayEventService
+  RelayCommandService,
+  TemperatureHumidityCommandService
 }
