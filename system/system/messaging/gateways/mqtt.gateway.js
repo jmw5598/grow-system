@@ -8,25 +8,27 @@ const { MqttMessage } = require('../models');
 class MqttGateway {
 
   constructor() {
-    this.inboundChannelSource = new Rx.Subject();
-    this.inboundChannel = this.inboundChannelSource.asObservable();
+    this.routes = {};
+    this.routes.inbound = { source: new Rx.Subject() };
+    this.routes.inbound.channel = this.routes.inbound.source.asObservable();
   }
 
-  init(config) {
+  setup(config) {
     this.config = config;
     this.client = mqtt.connect(this.config.gateway.uri);
     this.client.on('connect', () => this.subscriptions(this.config.topics.subscriptions));
-    this.client.on('message', (topic, message) => this.inbound(topic, message.toString()));
+    this.client.on('message', (topic, message) => this.inbound(topic, JSON.parse(message.toString())));
   }
 
   inbound(topic, message) {
-    let payload = new MqttMessage(topic, message);
-    this.inboundChannelSource.next(payload);
+    const routedTopic = topic.split('/').slice(1).join('/');
+    const payload = new MqttMessage(routedTopic, message);
+    this.routes.inbound.source.next(payload);
   }
 
   outbound(message) {
-    console.log("new outboudn message");
-    this.client.publish('node/event', message.message);
+    const payload = JSON.stringify(message.message);
+    this.client.publish(message.topic, payload);
   }
 
   subscriptions(subscriptions) {

@@ -7,7 +7,7 @@ const ApiRouter = require('./api');
 const AuthenticationRouter = require('./authentication');
 const { JwtMiddleware } = require('../middleware');
 
-Router.use('/api', JwtMiddleware.verify, ApiRouter);
+Router.use('/api', ApiRouter);
 Router.use('/auth', AuthenticationRouter);
 
 module.exports = Router;

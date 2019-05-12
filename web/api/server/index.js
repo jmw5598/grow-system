@@ -48,7 +48,7 @@ class Server {
       res.render('error');
     });
 
-    MqttGateway.init(this.mqttConfig);
+    MqttGateway.setup(this.mqttConfig);
 
   }
 

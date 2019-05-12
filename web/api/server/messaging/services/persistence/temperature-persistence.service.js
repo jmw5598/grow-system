@@ -1,12 +1,12 @@
 'use strict';
 
-const { SystemNodeEventRouter } = require('../../routers');
+const { SystemNodeEventMessageRouter } = require('../../routers');
 
 class TemperaturePersistenceService {
 
   constructor()   {
-    SystemNodeEventRouter.temperatureEventChannel
-      .subscribe(payload => this.persist(payload));
+    SystemNodeEventMessageRouter.routes.temperature.channel
+      .subscribe(message => this.persist(message));
   }
 
   persist(payload) {

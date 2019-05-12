@@ -1,13 +1,27 @@
 'use strict';
 
-const MqttRouter = require('./mqtt.router');
-const SystemNodeActionRouter = require('./system-node-action.router');
-const SystemNodeRouter = require('./system-node.router');
-const SystemRouter = require('./system.router');
+const MqttMessageRouter = require('./mqtt/mqtt-message.router');
+const SystemCommandMessageRouter = require('./system/system-command-message.router');
+const SystemEventMessageRouter = require('./system/system-event-message.router');
+const SystemMessageRouter = require('./system/system-message.router');
+const SystemNodeMessageRouter = require('./system-node/system-node-message.router');
+
+MqttMessageRouter.routes.system.channel
+  .subscribe(message => SystemMessageRouter.route(message));
+
+MqttMessageRouter.routes.node.channel
+  .subscribe(message => SystemNodeMessageRouter.route(message));
+
+SystemMessageRouter.routes.command.channel
+  .subscribe(message => SystemCommandMessageRouter.route(message));
+
+SystemMessageRouter.routes.event.channel
+  .subscribe(message => SystemEventMessageRouter.route(message));
 
 module.exports = {
-  MqttRouter,
-  SystemNodeActionRouter,
-  SystemNodeRouter,
-  SystemRouter
+  MqttMessageRouter,
+  SystemCommandMessageRouter,
+  SystemEventMessageRouter,
+  SystemMessageRouter,
+  SystemNodeMessageRouter
 }
