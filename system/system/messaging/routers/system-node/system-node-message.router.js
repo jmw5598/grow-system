@@ -8,7 +8,8 @@ const SystemNodeMessageRouter = new MessageRouter();
 SystemNodeMessageRouter.setup([
   new MessageRoute('command', 'command'),
   new MessageRoute('event', 'event'),
-  new MessageRoute('register', 'register')
+  new MessageRoute('register', 'register'),
+  new MessageRoute('status', 'status')
 ]);
 
 module.exports = SystemNodeMessageRouter;
