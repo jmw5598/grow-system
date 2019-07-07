@@ -19,7 +19,8 @@
         "web/node/event/proximity",
         "web/node/event/relay",
         "web/node/event/temperature",
-        "web/node/event/temphum"
+        "web/node/event/temphum",
+        "web/node/event/status"
       ]
     }
   }
