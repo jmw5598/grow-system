@@ -29,7 +29,8 @@ class Logger {
   }
 
   _log(type, message) {
-    console.log(`[${type}][${this._class}] ${message}`);
+    const timestamp = new Date();
+    console.log(`[${type}][${timestamp.toISOString()}][${this._class}] ${message}`);
   }
 
 }
