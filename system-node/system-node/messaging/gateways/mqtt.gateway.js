@@ -2,12 +2,13 @@
 
 const Rx = require('rxjs');
 const mqtt = require('mqtt');
-
-const { MqttMessage } = require('../models');
+const Logger = require('../../utilities').Logger;
+const MqttMessage = require('../models').MqttMessage;
 
 class MqttGateway {
 
   constructor() {
+    this.logger = new Logger(this.constructor.name);
     this.routes = {};
     this.routes.inbound = { source: new Rx.Subject() };
     this.routes.inbound.channel = this.routes.inbound.source.asObservable();
@@ -21,6 +22,7 @@ class MqttGateway {
   }
 
   inbound(topic, message) {
+    this.logger.debug(`[MqttGateway] New inbound message: ${topic}`);
     let routedTopic = topic.split("/");
     routedTopic.splice(1, 1);
     routedTopic = routedTopic.join('/');
@@ -29,6 +31,7 @@ class MqttGateway {
   }
 
   outbound(message) {
+    this.logger.debug(`New outbound message: ${message.topic}`);
     const payload = JSON.stringify(message.message);
     this.client.publish(message.topic, payload);
   }
