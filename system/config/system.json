@@ -17,6 +17,7 @@
         "system/system/event/status",
         "system/node/register",
         "system/node/registered",
+        "system/node/status",
         "system/node/event/humidity",
         "system/node/event/notification",
         "system/node/event/proximity",
