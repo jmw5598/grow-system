@@ -2,36 +2,44 @@
 
 const DHTSensor = require('node-dht-sensor');
 const ComponentAction = require('./component.action');
-const SystemNodeContext = require('../system-node.context');
-const { MqttGateway } = require('../messaging');
-const { MqttMessage } = require('../messaging/models');
+const Logger = require('../utilities').Logger;
+const MqttGateway = require('../messaging').MqttGateway;
+const MqttMessage = require('../messaging/models').MqttMessage;
 
 
 class TemperatureHumidityAction extends ComponentAction {
 
   constructor(config) {
     super(config.id, config.alias, config.type, config.pin);
+    this.logger = new Logger(this.constructor.name);
     this.temperature = 0;
     this.humidity = 0;
     this.preferences = config.preferences;
-    SystemNodeContext.configuration
-      .subscribe(configuration => this.systemConfiguration = configuration);
     this.start();
   }
 
   start() {
     this.interval = setInterval(() => {
+      // this._fakeRead();
       DHTSensor.read(22, this.pin, (error, temperature, humidity) => {
         if(!error) {
-          const message = new MqttMessage('system/system-node/event/temperature-humidity', this.buildMessage(temperature, humidity));
+          const message = new MqttMessage('system/node/event/temphum', this.buildMessage(temperature, humidity));
           MqttGateway.outbound(message);
           if(temperature > this.preferences.threshold.max || temperature < this.preferences.threshold.min) {
-            const notification = new MqttMessage('system/system-node/event/notification', this.buildMessage(temperature, humidity));
+            const notification = new MqttMessage('system/node/event/notification', this.buildMessage(temperature, humidity));
             MqttGateway.outbound(notification);
           }
         }
       });
     }, this.preferences.interval);
+  }
+
+  _fakeRead() {
+    const temperature = Math.random() * (80 - 65) + 65;
+    const humidity = Math.random() * (40 - 25) + 40;
+    const event = new MqttMessage('system/node/event/temphum', this.buildMessage(temperature, humidity));
+    this.logger.debug(`${this.alias} : T: ${temperature} - H: ${humidity}`);
+    MqttGateway.outbound(event);
   }
 
   stop() {
@@ -42,7 +50,6 @@ class TemperatureHumidityAction extends ComponentAction {
   setInterval(value) {
     this.stop();
     this.preferences.interval = value;
-    this.start();
   }
 
   setThreshold(value) {

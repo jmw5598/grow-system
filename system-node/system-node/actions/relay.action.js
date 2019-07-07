@@ -2,19 +2,22 @@
 
 const Gpio = require('onoff').Gpio;
 const ComponentAction = require('./component.action');
-const { MqttGateway } = require('../messaging');
-const { MqttMessage } = require('../messaging/models');
+const Logger = require('../utilities').Logger;
+const MqttGateway = require('../messaging').MqttGateway;
+const MqttMessage = require('../messaging/models').MqttMessage;
 
 class RelayAction extends ComponentAction {
 
   constructor(config) {
     super(config.id, config.alias, config.type, config.pin);
+    this.logger = new Logger(this.constructor.name);
     this.state = config.state;
     this.relay = new Gpio(this.pin, 'out');
     this.toggle('off');
   }
 
   toggle(state) {
+    this.logger.debug(`Toggling relay: ${this.alias} - ${state}`);
     switch(state.toLowerCase()) {
       case 'on':
         this.state = state.toLowerCase();
@@ -31,7 +34,7 @@ class RelayAction extends ComponentAction {
   }
 
   _notify(state) {
-    console.log("[SystemNode] Sending updated value after relay action");
+    this.logger.debug(`Sending to new stat (${this.alias} : ${state})`);
     const message = new MqttMessage('system/system-node/event/relay', "message");
     MqttGateway.outbound(message);
   }
