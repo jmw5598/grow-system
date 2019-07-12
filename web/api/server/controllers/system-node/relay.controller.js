@@ -1,13 +1,17 @@
 'use strict';
 
+const { Logger } = require('../../utilities');
 const { MqttGateway } = require('../../messaging');
 const { MqttMessage } = require('../../messaging/models');
 
 class RelayController {
 
-  constructor() {}
+  constructor() {
+    this.logger = new Logger(this.constructor.name);
+  }
 
   command(req, res) {
+    this.logger.debug(`Executing new relay command`);
     const message = this._generateCommandMessage(
       req.params.nodeId,
       req.params.relayId,

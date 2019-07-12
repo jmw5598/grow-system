@@ -1,13 +1,17 @@
 'use strict';
 
+const { Logger } = require('../../utilities');
 const { MqttGateway } = require('../../messaging');
 const { MqttMessage } = require('../../messaging/models');
 
 class TemperatureHumidityController {
 
-  constructor() {}
+  constructor() {
+    this.logger = new Logger(this.constructor.name);
+  }
 
   command(req, res) {
+    this.logger.debug(`Executing new temphum command`);
     const message = this._generateCommandMessage(
       req.params.nodeId,
       req.params.sensorId,
