@@ -8,7 +8,7 @@ class ComponentController {
         return res.status(200).send({ status: 'Component created' });
     }
 
-    upate(req, res) {
+    update(req, res) {
         return res.status(200).send({ status: 'Component updated' });
     }
 
