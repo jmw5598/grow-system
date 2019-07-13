@@ -2,7 +2,7 @@
   "system": {
     "mqtt": {
       "gateway": {
-        "uri": "mqtt://192.168.1.46",
+        "uri": "mqtt://192.168.1.15",
         "username": "",
         "password": ""
       },
@@ -18,6 +18,9 @@
           "node/{id}/command/temperature",
           "node/{id}/command/temphum",
           "node/{id}/command/heartbeat",
+          "node/{id}/component/create",
+          "node/{id}/component/update",
+          "node/{id}/component/delete",
           "node/{id}/status",
           "node/{id}/ping"
         ]
@@ -70,7 +73,7 @@
         "alias": "Nutrient Pump"
       },
       {
-        "id": "1236",
+        "id": "1238",
         "alias": "Lower Shelf DHT22",
         "type": {
           "model": "DHT22",
@@ -88,7 +91,7 @@
         }
       },
       {
-        "id": "1237",
+        "id": "1239",
         "alias": "Upper Shelf DHT22",
         "type": {
           "model": "DHT22",
