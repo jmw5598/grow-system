@@ -6,7 +6,10 @@ const ComponentController = require('../../../../controllers').ComponentControll
 
 ComponentRouter
     .route('/')
-        .post((req, res) => ComponentController.create(req,res))
+        .post((req, res) => ComponentController.create(req,res));
+
+ComponentRouter
+    .route('/:componentId')
         .put((req, res) => ComponentController.update(req, res))
         .delete((req, res) => ComponentController.delete(req, res));
 
