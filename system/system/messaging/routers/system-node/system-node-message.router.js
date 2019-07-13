@@ -7,6 +7,7 @@ const SystemNodeMessageRouter = new MessageRouter();
 
 SystemNodeMessageRouter.setup([
   new MessageRoute('command', 'command'),
+  new MessageRoute('component', 'component'),
   new MessageRoute('event', 'event'),
   new MessageRoute('register', 'register'),
   new MessageRoute('status', 'status')

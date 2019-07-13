@@ -1,12 +1,14 @@
 'use strict';
 
-const SystemNodeOutboundMessageService = require('./system-node-outbound-message.service');
+const SystemNodeCommandMessageService = require('./system-node-command-message.service');
+const SystemNodeComponentMessageService = require('./syste-node-component-message.service');
 const SystemNodeRegistrationService = require('./system-node-registration.service');
 const SystemNodeStatusService = require('./system-node-status.service');
 const WebOutboundMessageService = require('./web-outbound-message.service');
 
 module.exports = {
-  SystemNodeOutboundMessageService,
+  SystemNodeCommandMessageService,
+  SystemNodeComponentMessageService,
   SystemNodeRegistrationService,
   SystemNodeStatusService,
   WebOutboundMessageService

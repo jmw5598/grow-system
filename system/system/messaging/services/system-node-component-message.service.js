@@ -4,19 +4,19 @@ const { MqttGateway } = require('../gateways');
 const { MqttMessage } = require('../models');
 const { SystemNodeMessageRouter } = require('../routers');
 
-class SystemNodeOutboundMessageService {
+class SystemNodeComponentMessageService {
 
   constructor() {
-    SystemNodeMessageRouter.routes.command.channel
+    SystemNodeMessageRouter.routes.component.channel
       .subscribe(message => this.process(message));
   }
 
   process(message) {
-    const routedTopic = `node/${message.message.node.id}/command/${message.topic}`;
+    const routedTopic = `node/${message.message.node.id}/component/${message.topic}`;
     const outbound = new MqttMessage(routedTopic, message.message);
     MqttGateway.outbound(outbound);
   }
 
 }
 
-module.exports = new SystemNodeOutboundMessageService();
+module.exports = new SystemNodeComponentMessageService();
