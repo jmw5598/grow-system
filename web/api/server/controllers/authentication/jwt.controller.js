@@ -1,16 +1,18 @@
 'use strict';
 
 const bcrypt = require('bcrypt');
-
+const { Logger } = require('../../utilities');
 const { UsersRepository } = require('../../repositories');
 const { JwtService } = require('../../services');
 
 class JwtController {
 
-  constructor() {}
+  constructor() {
+    this.logger = new Logger(this.constructor.name);
+  }
 
   authenticate(req, res) {
-    console.log("inside auth");
+    this.logger.debug(`Authenticating user ${req.body.username}`);
     const username = req.body.username;
     const password = req.body.password;
 
