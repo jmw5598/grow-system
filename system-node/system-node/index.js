@@ -5,6 +5,8 @@ const { MqttGateway } = require('./messaging');
 const { MqttMessage } = require('./messaging/models');
 const { RelayAction, TemperatureHumidityAction } = require('./actions');
 
+require('./services');
+
 class SystemNode {
 
   constructor() {}
