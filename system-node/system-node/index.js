@@ -1,9 +1,9 @@
 'use strict';
 
+const ActionFactory = require('./actions').ActionFactory;
 const ApplicationContext = require('./application.context');
-const { MqttGateway } = require('./messaging');
-const { MqttMessage } = require('./messaging/models');
-const { RelayAction, TemperatureHumidityAction } = require('./actions');
+const MqttGateway = require('./messaging').MqttGateway;
+const MqttMessage = require('./messaging/models').MqttMessage;
 
 require('./services');
 
@@ -13,8 +13,6 @@ class SystemNode {
 
   setup(config) {
     this.config = config;
-    // TODO: Initialize node attribute in config with unique id if not already initialized.
-    // This if for new nodes only.
     ApplicationContext.setItem('config', config);
     MqttGateway.setup(config);
   }
@@ -23,18 +21,8 @@ class SystemNode {
     const registration = new MqttMessage('system/node/register', this.config.node);
     const actions = [];
 
-    // TODO: Not sure if this is the best place to initialize all the actions??
-    this.config.node.components.forEach(a => {
-      switch(a.type.model) {
-        case 'SRD05':
-          actions.push(new RelayAction(a));
-          break;
-        case 'DHT22':
-          actions.push(new TemperatureHumidityAction(a));
-          break;
-        default: break;
-      }
-    });
+    this.config.node.components.forEach(a => 
+      this.actions.push(ActionFactorty.get(a.type.model, a)));
 
     ApplicationContext.setItem('actions', actions);
     MqttGateway.outbound(registration);
