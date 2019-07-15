@@ -7,8 +7,8 @@ class ActionFactory {
 
   constructor() {}
 
-  get(obj) {
-    switch(obj.type.model) {
+  static get(model, component) {
+    switch(model) {
       case 'SRD05': return new RelayAction(obj);
       case 'DHT22': return new TemperatureHumidityAction(obj);
       default: console.log('Invalid component type'); break;
@@ -17,4 +17,4 @@ class ActionFactory {
 
 }
 
-module.exports = new ActionFactory();
+module.exports = ActionFactory;
