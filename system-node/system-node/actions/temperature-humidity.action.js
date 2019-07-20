@@ -3,24 +3,20 @@
 const DHTSensor = require('node-dht-sensor');
 const ComponentAction = require('./component.action');
 const Logger = require('../utilities').Logger;
-const MqttGateway = require('../messaging').MqttGateway;
+const MqttGateway = require('../messaging/gateways/mqtt.gateway');
 const MqttMessage = require('../messaging/models').MqttMessage;
-
 
 class TemperatureHumidityAction extends ComponentAction {
 
   constructor(config) {
     super(config.id, config.alias, config.type, config.pin);
     this.logger = new Logger(this.constructor.name);
-    this.temperature = 0;
-    this.humidity = 0;
     this.preferences = config.preferences;
     this.start();
   }
 
   start() {
     this.interval = setInterval(() => {
-      // this._fakeRead();
       DHTSensor.read(22, this.pin, (error, temperature, humidity) => {
         if(!error) {
           const message = new MqttMessage('system/node/event/temphum', this.buildMessage(temperature, humidity));

@@ -3,7 +3,7 @@
 const Gpio = require('onoff').Gpio;
 const ComponentAction = require('./component.action');
 const Logger = require('../utilities').Logger;
-const MqttGateway = require('../messaging').MqttGateway;
+const MqttGateway = require('../messaging/gateways/mqtt.gateway');
 const MqttMessage = require('../messaging/models').MqttMessage;
 
 class RelayAction extends ComponentAction {

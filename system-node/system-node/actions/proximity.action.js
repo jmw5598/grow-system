@@ -1,6 +1,6 @@
 'use strict';
 
-const usonic = require('mmm-sonic');
+const usonic = require('mmm-usonic-fixed');
 const ComponentAction = require('./component.action');
 
 class ProximityAction extends ComponentAction {
@@ -26,3 +26,5 @@ class ProximityAction extends ComponentAction {
   }
 
 }
+
+module.exports = ProximityAction;
