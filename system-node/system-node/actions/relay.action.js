@@ -39,6 +39,12 @@ class RelayAction extends ComponentAction {
     MqttGateway.outbound(message);
   }
 
+  destroy() {
+    this.logger.debug(`Destroying relay ${this.alias}`);
+    this.toggle('off');
+    this.relay.unexport();
+  }
+
 }
 
 module.exports = RelayAction;

@@ -72,6 +72,11 @@ class TemperatureHumidityAction extends ComponentAction {
     }
   }
 
+  destroy() {
+    this.logger.debug(`Destroying temperature-humidity action, ${this.alias}`);
+    this.stop();
+  }
+
 }
 
 module.exports = TemperatureHumidityAction;

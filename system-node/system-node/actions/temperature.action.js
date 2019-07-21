@@ -1,12 +1,14 @@
 'use strict';
 
 const ComponentAction = require('./component.action');
+const Logger = require('../utilities').Logger;
 const { MqttGateway } = require('../messaging');
 
 class TemperatureAction extends ComponentAction {
 
   constructor(config) {
     super(config.id, config.alias, config.type, config.pin);
+    this.logger = new Logger(this.constructor.name);
     this.temperature = 0;
     this.preferences = config.preferences;
     this.start();
@@ -33,6 +35,11 @@ class TemperatureAction extends ComponentAction {
 
   setThreshold(value) {
     this.preferences.threshold = value;
+  }
+
+  destroy() {
+    this.logger.debug(`Destroying temperature sensor, ${this.alias}`);
+    this.stop();
   }
 
 }

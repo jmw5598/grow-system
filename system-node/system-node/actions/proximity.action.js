@@ -1,12 +1,14 @@
 'use strict';
 
 const usonic = require('mmm-usonic-fixed');
+const Logger = require('../utilities').Logger;
 const ComponentAction = require('./component.action');
 
 class ProximityAction extends ComponentAction {
 
   contructor() {
     //https://www.npmjs.com/package/mmm-usonic-fixed
+    this.logger = new Logger(this.constructor.name);
   }
 
   start() {
@@ -23,6 +25,11 @@ class ProximityAction extends ComponentAction {
 
   setThreshold(value) {
 
+  }
+
+  destroy() {
+    this.logger.debug(`Destroying proximity sensor`);
+    this.stop();
   }
 
 }
