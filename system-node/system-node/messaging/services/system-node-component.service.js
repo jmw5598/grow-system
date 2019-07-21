@@ -5,7 +5,7 @@ const ApplicationContext = require('../../application.context');
 const ActionFactory = require('../../action.factory');
 const SystemNodeMessageRouter = require('../routers').SystemNodeMessageRouter;
 const Logger = require('../../utilities').Logger;
-console.log('SNCP: ', ActionFactory);
+
 class SystemNodeComponentService {
 
   constructor() {
@@ -45,21 +45,30 @@ class SystemNodeComponentService {
 
   _updateComponent(message) {
     this.logger.debug(`Updating component...`);
-    const component = message.message.payload;
-    const found = this.config.node.components.find(e => e.id === component.id);
+    const component = message.message;
+    const componentIndex = this.config.node.components.findIndex(e => e.id === component.id);
     
-    if(!found) return;
+    if(componentIndex < 0) return;
     
-    Object.assign(found, component);
-    ApplicationContext.setItem('config', this.confg);
+    Object.assign(this.config.node.components[componentIndex], component);
+    ApplicationContext.setItem('config', this.config);
   }
 
   _deleteComponent(message) {
-    if(!this.config) return;
     this.logger.debug(`Deleting component...`);
-    // TODO : Logic to create new component and add to config.
-    // TODO : Update config and save in application context.
-    ApplicationContext.setItem('config', this.confg);
+    console.log(this.config.node.components);
+    console.log(this.actions);
+    const componentIndex = this.config.node.components.findIndex(c => c.id === message.message.id);
+    const actionIndex = this.actions.findIndex(a => a.id === message.message.id);
+
+    if(componentIndex < 0 || actionIndex < 0) return;
+    
+    this.actions[actionIndex].destroy();
+    this.actions.splice(actionIndex, 1);
+    this.config.node.components.splice(componentIndex, 1);
+
+    ApplicationContext.setItem('config', this.config);
+    ApplicationContext.setItem('actions', this.actions);
   }
 
 }
