@@ -32,7 +32,6 @@ class SystemNodeComponentService {
 
   _createComponent(message) {
     this.logger.debug(`Creating new component...`);
-    
     const component = Object.assign({ id: shortid.generate() }, message.message);
     this.config.node.components.push(component);
       
@@ -56,8 +55,6 @@ class SystemNodeComponentService {
 
   _deleteComponent(message) {
     this.logger.debug(`Deleting component...`);
-    console.log(this.config.node.components);
-    console.log(this.actions);
     const componentIndex = this.config.node.components.findIndex(c => c.id === message.message.id);
     const actionIndex = this.actions.findIndex(a => a.id === message.message.id);
 
