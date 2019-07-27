@@ -17,6 +17,20 @@
     "lib": [
       "es2018",
       "dom"
-    ]
+    ],
+    "paths": {
+      "gs-common": [
+        "dist/gs-common"
+      ],
+      "gs-common/*": [
+        "dist/gs-common/*"
+      ],
+      "gs-assets": [
+        "dist/gs-assets"
+      ],
+      "gs-assets/*": [
+        "dist/gs-assets/*"
+      ]
+    }
   }
 }
