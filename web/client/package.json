@@ -9,7 +9,8 @@
     "lint": "ng lint",
     "e2e": "ng e2e",
     "serve:dashboard": "ng serve dashboard -o --port 3001",
-    "build:dashboard": "ng build dashboard --prod"
+    "build:dashboard": "ng build dashboard --prod",
+    "build:gs-core": "ng build gs-core"
   },
   "private": true,
   "dependencies": {

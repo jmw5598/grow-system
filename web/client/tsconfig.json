@@ -30,6 +30,12 @@
       ],
       "gs-assets/*": [
         "dist/gs-assets/*"
+      ],
+      "gs-core": [
+        "dist/gs-core"
+      ],
+      "gs-core/*": [
+        "dist/gs-core/*"
       ]
     }
   }
