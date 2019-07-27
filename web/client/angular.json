@@ -134,6 +134,86 @@
           }
         }
       }
+    },
+    "gs-common": {
+      "root": "projects/gs-common",
+      "sourceRoot": "projects/gs-common/src",
+      "projectType": "library",
+      "prefix": "gs-common",
+      "schematics": {
+        "@schematics/angular:component": {
+          "styleext": "scss"
+        }
+      },
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-ng-packagr:build",
+          "options": {
+            "tsConfig": "projects/gs-common/tsconfig.lib.json",
+            "project": "projects/gs-common/ng-package.json"
+          }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "projects/gs-common/src/test.ts",
+            "tsConfig": "projects/gs-common/tsconfig.spec.json",
+            "karmaConfig": "projects/gs-common/karma.conf.js"
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "projects/gs-common/tsconfig.lib.json",
+              "projects/gs-common/tsconfig.spec.json"
+            ],
+            "exclude": [
+              "**/node_modules/**"
+            ]
+          }
+        }
+      }
+    },
+    "gs-assets": {
+      "root": "projects/gs-assets",
+      "sourceRoot": "projects/gs-assets/src",
+      "projectType": "library",
+      "prefix": "gs",
+      "schematics": {
+        "@schematics/angular:component": {
+          "styleext": "scss"
+        }
+      },
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-ng-packagr:build",
+          "options": {
+            "tsConfig": "projects/gs-assets/tsconfig.lib.json",
+            "project": "projects/gs-assets/ng-package.json"
+          }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "projects/gs-assets/src/test.ts",
+            "tsConfig": "projects/gs-assets/tsconfig.spec.json",
+            "karmaConfig": "projects/gs-assets/karma.conf.js"
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "projects/gs-assets/tsconfig.lib.json",
+              "projects/gs-assets/tsconfig.spec.json"
+            ],
+            "exclude": [
+              "**/node_modules/**"
+            ]
+          }
+        }
+      }
     }
   },
   "defaultProject": "dashboard"
