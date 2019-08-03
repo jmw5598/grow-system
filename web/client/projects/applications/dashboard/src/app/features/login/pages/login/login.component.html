@@ -1,4 +1,4 @@
-<div class="container">
+<div class="container" [@fadeAnimation]>
   <div class="container-fluid">
     <div class="row" style="height: 100vh;">
       <div class="col-12 col-sm-8 col-md-6 col-lg-5 ml-auto mr-auto mb-auto mt-auto">
@@ -10,8 +10,8 @@
           </div>
           <div class="card-body">
             <h2 class="text-center mb-4">Sign In</h2>
-            <div *ngIf="hasError" class="ml-4 mr-4">
-              <!-- <grow-alert-message [alert]="alert"></grow-alert-message> -->
+            <div *ngIf="hasError" class="ml-4 mr-4" [@fadeAnimation]>
+              <gs-alert-message [alert]="alert"></gs-alert-message>
             </div>
             <gs-login-form #loginForm (onSubmit)="onSubmit($event)"></gs-login-form>
           </div>
