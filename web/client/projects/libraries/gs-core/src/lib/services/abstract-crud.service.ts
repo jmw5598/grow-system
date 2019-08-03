@@ -2,7 +2,7 @@ import { Observable } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { ICrud } from './crud.interface';
 
-export abstract class CrudService<T, ID> implements ICrud<T, ID> {
+export abstract class AbstractCrudService<T, ID> implements ICrud<T, ID> {
 
   constructor(
     protected _http: HttpClient,
