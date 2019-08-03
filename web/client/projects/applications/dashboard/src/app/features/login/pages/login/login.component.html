@@ -1,3 +1,23 @@
-<p>
-  login works!
-</p>
+<div class="container">
+  <div class="container-fluid">
+    <div class="row" style="height: 100vh;">
+      <div class="col-12 col-sm-8 col-md-6 col-lg-5 ml-auto mr-auto mb-auto mt-auto">
+
+        <!-- Login Card -->
+        <div class="card">
+          <div class="card-header login-header">
+            <img class="img-fluid login-logo" src="assets/img/dropflowerlogo.svg" />
+          </div>
+          <div class="card-body">
+            <h2 class="text-center mb-4">Sign In</h2>
+            <div *ngIf="hasError" class="ml-4 mr-4">
+              <!-- <grow-alert-message [alert]="alert"></grow-alert-message> -->
+            </div>
+            <gs-login-form #loginForm (onSubmit)="onSubmit($event)"></gs-login-form>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</div>
