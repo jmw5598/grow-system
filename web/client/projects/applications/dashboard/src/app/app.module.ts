@@ -2,6 +2,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
 
+import { CoreModule } from './core/core.module';
 import { GsCommonModule } from '@gs/common';
 import { GsCoreModule } from '@gs/core';
 
@@ -17,6 +18,7 @@ import { environment } from '../environments/environment';
   imports: [
     BrowserModule,
     AppRoutingModule,
+    CoreModule,
     GsCommonModule,
     GsCoreModule.forRoot(environment),
     HttpClientModule
