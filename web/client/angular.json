@@ -27,9 +27,20 @@
               "projects/applications/dashboard/src/assets"
             ],
             "styles": [
-              "projects/applications/dashboard/src/styles.scss"
+              "projects/applications/dashboard/src/assets/scss/fontawesome/scss/fontawesome.scss",
+              "projects/applications/dashboard/src/assets/scss/fontawesome/scss/brands.scss",
+              "projects/applications/dashboard/src/assets/scss/fontawesome/scss/regular.scss",
+              "projects/applications/dashboard/src/assets/scss/fontawesome/scss/solid.scss",
+              "projects/applications/dashboard/src/assets/scss/fontawesome/scss/v4-shims.scss",
+              "projects/applications/dashboard/src/assets/scss/bootstrap.scss",
+              "projects/applications/dashboard/src/styles.scss",
+              "./node_modules/ngx-ui-switch/ui-switch.component.css"
             ],
-            "scripts": [],
+            "scripts": [
+              "projects/applications/dashboard/src/assets/js/jquery/jquery-3.3.1.min.js",
+              "projects/applications/dashboard/src/assets/js/popper/popper.min.js",
+              "projects/applications/dashboard/src/assets/js/bootstrap/bootstrap.min.js"
+            ],
             "es5BrowserSupport": true
           },
           "configurations": {
@@ -151,7 +162,7 @@
           "options": {
             "tsConfig": "projects/libraries/gs-common/tsconfig.lib.json",
             "project": "projects/libraries/gs-common/ng-package.json"
-          }
+          }            
         },
         "test": {
           "builder": "@angular-devkit/build-angular:karma",
