@@ -25,6 +25,7 @@
     "@gs/common": "file:dist/libraries/gs-common",
     "@gs/core": "file:dist/libraries/gs-core",
     "core-js": "^2.5.4",
+    "gs-common": "^0.1.1",
     "ngx-ui-switch": "^8.1.0",
     "rxjs": "~6.3.3",
     "tslib": "^1.9.0",
