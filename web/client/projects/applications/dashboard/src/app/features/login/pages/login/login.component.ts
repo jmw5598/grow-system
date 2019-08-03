@@ -38,7 +38,7 @@ export class LoginComponent implements OnInit {
   private handleLoginSuccess(token: Token) {
     this.hasError = false;
     this.loginForm.form.reset();
-    this._router.navigate(['dashboard']);
+    this._router.navigate(['system']);
   }
 
   private handleLoginError(error: Error) {
