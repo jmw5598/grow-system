@@ -14,30 +14,34 @@
   <!-- Navigation Bar Links -->
   <div class="navbar-collapse collapse" id="navbar-main">
 
-    <!-- Right Nav Links -->
-    <ul class="navbar-nav ml-auto mr-4">
+    <!-- Left Nav Links -->
+    <ul class="navbar-nav mr-auto ml-4">
       <li class="nav-item">
         <a class="nav-link active"
-            [routerLink]="['/dashboard']"
+            [routerLink]="['/system']"
             [routerLinkActive]="['active']"
             [routerLinkActiveOptions]="{exact:true}">
-          <i class="fas fa-tachometer-alt fa-icon-adjustment"></i>
-          Dashboard
+          <i class="fas fa-project-diagram fa-fw"></i>
+          System Overview
         </a>
       </li>
       <li class="nav-item">
         <a class="nav-link"
-            [routerLink]="['settings/component']"
+            [routerLink]="['settings']"
             [routerLinkActive]="['active']"
             [routerLinkActiveOptions]="{exact:true}">
-          <i class="fas fa-sliders-h fa-icon-adjustment"></i>
+            <i class="fas fa-cog fa-fw"></i>
           Settings
         </a>
       </li>
+    </ul>
+
+    <!-- Right Nav Links -->
+    <ul class="navbar-nav ml-auto mr-4">
       <li class="nav-item">
         <a class="nav-link" href="#" (click)="logout()" >
-          <i class="fas fa-cog fa-icon-adjustment"></i>
-          System
+          <i class="fas fa-lock fa-fw"></i>
+          Logout
         </a>
       </li>
     </ul>
