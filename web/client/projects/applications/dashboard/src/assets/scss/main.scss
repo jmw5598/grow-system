@@ -1,0 +1,17 @@
+@import "theme/grow/variables";
+@import "theme/grow/navigation";
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  color: $body-color;
+}
+
+body {
+  background: $body-bg;
+}
+
+ul {
+  list-style: none;
+}

@@ -1,0 +1,46 @@
+.navbar {
+  display: flex;
+  position: sticky;
+  top: 0;
+  justify-content: space-between;
+  background: $info;
+
+  .navbar-nav {
+    ul {
+      display: flex;
+      background: $primary;
+
+      li {
+        a {
+          text-decoration: none;
+          display: block;
+          padding: 2rem 2.5rem;
+          transition: background 250ms;
+
+          &:hover {
+            background: darken($primary, 10%);
+            color: white;
+          }
+        }
+
+        &.active {
+          background: darken($primary, 10%);
+        }
+
+        &.branding {
+          a {
+            padding: 0 1.5rem;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100%;
+
+            img {
+              max-height: 42px;
+            }
+          }
+        }
+      }
+    }// end navbar-nav ul
+  } // endn navbar-nav
+} // end navbar
