@@ -10,21 +10,15 @@
       </li>
       
       <!-- System Overview -->
-      <li class="active">
-        <a href="#"
-            [routerLink]="['/system']"
-            [routerLinkActive]="['active']"
-            [routerLinkActiveOptions]="{exact:true}">
+      <li [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact:true}">
+        <a href="#" [routerLink]="['/system']">
           <i class="fas fa-project-diagram fa-fw"></i>
         </a>
       </li>
 
       <!-- System Settings -->
-      <li>
-        <a href="#"
-            [routerLink]="['settings']"
-            [routerLinkActive]="['active']"
-            [routerLinkActiveOptions]="{exact:true}">
+      <li [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact:true}">
+        <a href="#" [routerLink]="['settings']">
           <i class="fas fa-cog fa-fw"></i>
         </a>
       </li>
