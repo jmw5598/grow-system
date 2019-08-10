@@ -29,8 +29,12 @@
   <div id="navigation-right" class="navbar-nav">
     <ul>
       <li>
-        <a href="#" (click)="logout()">
-          <i class="fas fa-lock fa-fw"></i>
+        <a>
+          <i class="fas fa-user-circle fa-fw"></i>
+          <ul class="dropdown">
+            <li><a href="#"><i class="fas fa-user-circle"></i>Manage Account</a></li>
+            <li><a href="#" (click)="logout()"><i class="fas fa-lock fa-fw"></i>Sign Out</a></li>
+          </ul>
         </a>
       </li>
     </ul>

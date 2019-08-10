@@ -1,12 +1,13 @@
 .navbar {
   display: flex;
   position: sticky;
+  z-index: 100;
   top: 0;
   justify-content: space-between;
   background: $info;
 
   .navbar-nav {
-    ul {
+    > ul {
       display: flex;
       background: $primary;
 
@@ -15,13 +16,43 @@
           text-decoration: none;
           display: block;
           padding: 2rem 2.5rem;
-          transition: background 250ms;
+          transition: $transition-bg;
+          position: relative;
 
           &:hover {
             background: darken($primary, 10%);
             color: white;
           }
-        }
+
+          ul.dropdown {
+            background: darken($gray-200, 5%);
+            position: absolute;
+            top: 83px;
+            right: 0;
+            z-index: 10;
+            display: none;
+
+            
+            li {
+              display: block;
+              min-width: 300px;
+              border-bottom: 1px solid darken($gray-200, 7%);
+
+              a {
+                transition: $transition-bg;
+                cursor: pointer
+
+                i {
+                  margin-right: 1rem;
+                }
+              }
+              
+              a:hover {
+                background: darken($gray-200, 2%);
+              }
+            } // end dropdown ul li
+          }// end dropdown ul
+        }// end archor
 
         &.active {
           background: darken($primary, 10%);
@@ -40,7 +71,13 @@
             }
           }
         }
-      }
+
+        &:hover {
+          ul.dropdown {
+            display: block;
+          }
+        }
+      }// end navbar-nav ul li
     }// end navbar-nav ul
   } // endn navbar-nav
 } // end navbar
