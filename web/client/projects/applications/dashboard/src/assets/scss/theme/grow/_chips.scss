@@ -1,0 +1,60 @@
+.chip-group {
+  display: flex;
+  padding: 2rem;
+
+  .chip-item {
+    position: relative;
+    min-width: 200px;
+    min-height: 200px;
+    padding: 2.5rem;
+    
+    &:nth-child(even) {
+      background: darken($gray-200, 5%);
+    }
+
+    &:nth-child(odd) {
+      background: darken($gray-200, 2%);
+    }
+
+    &:not(:last-child) {
+      &:after {
+        content: '';
+        width: 32px;
+        height: 32px;
+        position: absolute;
+        z-index: 10;
+        background: inherit;
+      }
+    }
+  }// end chip-item
+
+  &.chip-group-horizontal {
+    flex-direction: row;
+
+    .chip-item {
+      &:not(:last-child) {
+        &:after {
+          display: inline-block;
+          right: -16px;
+          top: 50%;
+          transform: translateY(-50%) rotate(45deg);
+        }
+      }
+    }
+  }// end chip-group-horizontal
+
+  &.chip-group-vertical {
+    flex-direction: column;
+
+    .chip-item {
+      &:not(:last-child) {
+        &:after {
+          display: block;
+          left: 50%;
+          bottom: -16px;
+          transform: translateX(-50%) rotate(45deg);
+        }
+      }
+    }
+  }// end chip-group-verital
+}
