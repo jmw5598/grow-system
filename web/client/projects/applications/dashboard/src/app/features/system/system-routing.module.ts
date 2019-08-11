@@ -5,12 +5,12 @@ import { SystemNodeListComponent } from './pages/system-node-list/system-node-li
 
 const routes: Routes = [
 	{
-		path: 'list',
+		path: '',
 		component: SystemNodeListComponent
 	},
 	{
 		path: '**',
-		redirectTo: 'list',
+		redirectTo: '/system',
 		pathMatch: 'full'
 	}
 ];

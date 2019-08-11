@@ -1,0 +1,12 @@
+.system-node-details {
+  display: flex;
+  flex-direction: column;
+
+  img {
+    display: block;
+    width: 128px;
+    height: 128px;
+    margin: auto;
+    border-radius: 50%;
+  }
+}
