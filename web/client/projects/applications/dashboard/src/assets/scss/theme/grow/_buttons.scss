@@ -1,0 +1,43 @@
+.btn {
+  background: $gray-700;
+  border: 0;
+  outline: 0;
+  padding: $padding;
+  cursor: pointer;
+  text-align: center;
+  border-radius: 2px;
+}
+
+.btn-primary {
+  background: $primary;
+  transition: $transition-bg;
+
+  &:hover {
+    background: darken($primary, 10%);
+  }
+
+  &:active {
+    background: darken($primary, 20%);
+  }
+}
+
+.btn-info {
+  background: $info;
+  transition: $transition-bg;
+
+  &:hover {
+    background: darken($info, 10%);
+  }
+
+  &:active {
+    background: darken($info, 20%);
+  }
+}
+
+// .btn-sm {
+//   padding: $padding-xs;
+// }
+
+// .btn-lg {
+//   padding: $padding-lg $padding-xl;
+// }

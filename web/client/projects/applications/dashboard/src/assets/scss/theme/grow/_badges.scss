@@ -1,0 +1,13 @@
+.badge {
+  padding: 0.4rem 1rem;
+  font-size: 0.75rem;
+  border-radius: 2px;
+
+  &.badge-pill {
+    border-radius: 20px;
+  }
+
+  &.badge-primary {
+    background: $primary;
+  }
+}

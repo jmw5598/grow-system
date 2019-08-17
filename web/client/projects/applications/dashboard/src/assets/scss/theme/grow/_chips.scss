@@ -1,10 +1,12 @@
 .chip-group {
+  width: 100%;
   display: flex;
+  // flex-wrap: wrap;
   padding: 2rem;
 
   .chip-item {
     position: relative;
-    min-width: 200px;
+    min-width: 350px;
     min-height: 200px;
     padding: 2.5rem;
     

@@ -1,0 +1,20 @@
+.form-control {
+  border: 0;
+  outline: 0;
+  padding: 1rem;
+  background: $body-color;
+  color: $body-bg;
+
+  &.is-invalid {
+    outline: 2px solid $warning;
+  }
+}
+
+.form-control-lg {
+  font-size: 1.2rem;
+}
+
+.form-group {
+  display: block;
+  
+}
