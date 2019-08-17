@@ -5,12 +5,12 @@ import { SystemNodeComponent } from './pages/system-node/system-node.component';
 
 const routes: Routes = [
   {
-    path: '',
+    path: ':id',
     component: SystemNodeComponent
   },
   {
     path: '**',
-    redirectTo: 'system-node',
+    redirectTo: '/system',
     pathMatch: 'full'
   }
 ];
