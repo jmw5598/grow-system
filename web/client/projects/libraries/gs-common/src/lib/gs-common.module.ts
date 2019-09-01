@@ -4,6 +4,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { UiSwitchModule } from 'ngx-ui-switch';
 
 import { AlertMessageComponent } from './components/alert-message/alert-message.component';
+import { KeysPipe } from './pipes/keys.pipe';
 import { LayoutThreeColumnComponent } from './components/layout-three-column/layout-three-column.component';
 import { ToggleSwitchComponent } from './components/toggle-switch/toggle-switch.component';
 import { SidePanelComponent } from './components/side-panel/side-panel.component';
@@ -13,7 +14,8 @@ import { SidePanelComponent } from './components/side-panel/side-panel.component
     AlertMessageComponent,
     LayoutThreeColumnComponent,
     SidePanelComponent,
-    ToggleSwitchComponent
+    ToggleSwitchComponent,
+    KeysPipe
   ],
   imports: [
     CommonModule,
@@ -28,6 +30,7 @@ import { SidePanelComponent } from './components/side-panel/side-panel.component
   ],
   exports: [
     AlertMessageComponent,
+    KeysPipe,
     LayoutThreeColumnComponent,
     SidePanelComponent,
     ToggleSwitchComponent,
