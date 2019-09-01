@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { SystemNodeComponent, SystemNodeComponentType } from '@gs/common';
+import { SystemNodeComponent, SystemNodeComponentType, System } from '@gs/common';
 
 @Component({
   selector: 'gs-component-form-add',
@@ -24,8 +24,9 @@ export class ComponentFormAddComponent implements OnInit {
   }
 
   addComponent(component: SystemNodeComponent) {
-    console.log("adding new component");
-    console.log(component);
+
+    let test:SystemNodeComponent = Object.assign({}, this.form.value);
+    console.log(this.form);
   }
 
 }

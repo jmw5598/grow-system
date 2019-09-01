@@ -6,12 +6,23 @@
 
       <div class="form-group">
         <label for="alias">Alias</label>
-        <input id="alias" name="alias" type="text" class="form-control" formControlName="alias" />
+        <input 
+            id="alias" 
+            name="alias" 
+            type="text" 
+            class="form-control" 
+            [ngClass]="{ 'is-invalid' : form.controls.alias.invalid && form.controls.alias.touched }"
+            formControlName="alias" />
       </div>
 
       <div class="form-group">
         <label for="type">Type</label>
-        <select id="type" name="type" class="form-control" formControlName="type">
+        <select 
+            id="type" 
+            name="type" 
+            class="form-control"
+            [ngClass]="{ 'is-invalid' : form.controls.type.invalid && form.controls.type.touched }"
+            formControlName="type">
           <option [value]="null" hidden selected disabled>Select a type</option>
           <ng-container *ngFor="let type of SystemNodeComponentType | keys">
             <option [ngValue]="SystemNodeComponentType[type]">{{ type }} ({{ SystemNodeComponentType[type].description }})</option>
@@ -21,7 +32,15 @@
 
       <div class="form-group">
         <label for="pin">GPIO Pin</label>
-        <input id="pin" name="pin" type="number" class="form-control" min="1" max="40" formControlName="pin" /> 
+        <input 
+            id="pin" 
+            name="pin" 
+            type="number" 
+            min="1" 
+            max="40" 
+            class="form-control"
+            [ngClass]="{ 'is-invalid' : form.controls.pin.invalid && form.controls.pin.touched }"
+            formControlName="pin" /> 
       </div>
     </div>
 
@@ -49,7 +68,7 @@
 
     <!-- Form Buttons-->
     <div class="form-group">
-      <button type="submit" class="btn btn-primary" role="button">Add Component</button>
+      <button type="submit" class="btn btn-primary" role="button" [disabled]="form.invalid">Add Component</button>
     </div>
 
   </fieldset>
