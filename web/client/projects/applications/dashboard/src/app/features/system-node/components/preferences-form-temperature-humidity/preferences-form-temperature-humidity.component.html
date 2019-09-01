@@ -9,13 +9,13 @@
       </ng-container>
     </select>
   </div>
-  <div class="form-group">
+  <div class="form-group" formGroupName="threshold">
     <label for="min">Min</label>
-    <input id="min" name="min" type="number" min="0" max="100" class="form-control"  />
+    <input id="min" name="min" type="number" min="0" max="100" class="form-control" formControlName="min" />
   </div>
-  <div class="form-group">
+  <div class="form-group" formGroupName="threshold">
     <label for="min">Max</label>
-    <input id="min" name="min" type="number" min="0" max="100" class="form-control"  />
+    <input id="min" name="min" type="number" min="0" max="100" class="form-control" formControlName="max" />
   </div>
   <div class="form-group">
     <label for="interval">Interval (ms)</label>
