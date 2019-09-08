@@ -1,0 +1,11 @@
+<div *ngIf="options.isShown" class="modal-overlay">
+  <div class="modal-window" [ngClass]="options.size">
+    <div class="modal-heading">
+      <h3 class="modal-heading">Modal Heading</h3>
+      <span class="modal-close">X</span>
+    </div>
+    <div class="modal-body">
+      <ng-content select="[modalBody]"></ng-content>
+    </div>
+  </div>
+</div>
