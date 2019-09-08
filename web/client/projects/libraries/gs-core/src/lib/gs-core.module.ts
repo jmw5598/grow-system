@@ -1,4 +1,5 @@
 import { NgModule } from '@angular/core';
+import { CommonModule } from '@angular/common';
 import { ModuleWithProviders } from '@angular/compiler/src/core';
 
 import { GsCoreModuleConfig } from './gs-core.config';
@@ -8,18 +9,26 @@ import { AbstractCrudService } from './services/abstract-crud.service';
 import { AuthenticationService } from './services/authentication.service';
 import { RelayService } from './services/relay.service';
 import { SseService } from './services/sse.service';
+import { ToasterService } from './components/toaster/toaster.service';
 
+import { ToasterComponent } from './components/toaster/toaster.component';
 import { ICrud } from './services/crud.interface';
 
-
 @NgModule({
-  declarations: [],
-  imports: [],
-  exports: [],
+  declarations: [
+    ToasterComponent
+  ],
+  imports: [
+    CommonModule
+  ],
+  exports: [
+    ToasterComponent
+  ],
   providers: [
     AuthenticationService,
     RelayService,
-    SseService
+    SseService,
+    ToasterService
   ]
 })
 export class GsCoreModule {
