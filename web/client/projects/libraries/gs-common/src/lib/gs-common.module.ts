@@ -6,6 +6,7 @@ import { UiSwitchModule } from 'ngx-ui-switch';
 import { AlertMessageComponent } from './components/alert-message/alert-message.component';
 import { KeysPipe } from './pipes/keys.pipe';
 import { LayoutThreeColumnComponent } from './components/layout-three-column/layout-three-column.component';
+import { ModalComponent } from './components/modal/modal.component';
 import { ToggleSwitchComponent } from './components/toggle-switch/toggle-switch.component';
 import { SidePanelComponent } from './components/side-panel/side-panel.component';
 
@@ -13,6 +14,7 @@ import { SidePanelComponent } from './components/side-panel/side-panel.component
   declarations: [
     AlertMessageComponent,
     LayoutThreeColumnComponent,
+    ModalComponent,
     SidePanelComponent,
     ToggleSwitchComponent,
     KeysPipe
@@ -32,6 +34,7 @@ import { SidePanelComponent } from './components/side-panel/side-panel.component
     AlertMessageComponent,
     KeysPipe,
     LayoutThreeColumnComponent,
+    ModalComponent,
     SidePanelComponent,
     ToggleSwitchComponent,
   ]
