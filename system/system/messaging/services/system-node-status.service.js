@@ -17,16 +17,17 @@ class SystemNodeStatusService {
   }
 
   emit(message) {
-    this.logger.debug(`Receive new node status: ${message.message.name}`);
+    this.logger.debug(`Receive new node status: ${message.message.payload.id}`);
     if (!this.nodes) return;
-    let found = this.nodes.find(e => e.id = message.message.id);
+
+    let found = this.nodes.find(e => e.id = message.message.payload.id);
     
     if (found) {
-      found.status = { state: 'online', timestamp: new Date() };
-      found.details = message.message.details;
+      found.status = message.message.payload.status;
+      found.details = message.message.payload.details;
       ApplicationContext.setItem('nodes', this.nodes);
     } else {
-      this.logger.warning(`Could not find node to update status: ${message.message.id} - ${message.message.name}`);
+      this.logger.warn(`Could not find node to update status: ${message.message.id} - ${message.message.name}`);
     } 
     
     const outbound = new MqttMessage(`web/node/event/status`, message.message);
