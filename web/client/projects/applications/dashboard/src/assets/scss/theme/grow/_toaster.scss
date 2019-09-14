@@ -1,0 +1,109 @@
+.toaster-container {
+  position: absolute;
+  width: 350px;
+  z-index: 120;
+
+  .toast-message {
+    .toast-heading {
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+      font-size: 0.9rem;
+
+      .toast-dismiss {
+        cursor: pointer !important;
+      }
+    }
+
+    .toast-content {
+      .toast-text {
+        font-size: 0.8rem;
+      }
+    }
+
+    .toast-heading,
+    .toast-content {
+      padding: 0.5rem 1rem !important;
+    }
+    
+    &:not(last-child) {
+      margin-bottom: 0.5rem;
+    }
+  }
+
+  .toast-default {
+    background: lighten($gray-700, 5%);
+
+    .toast-heading {
+      background: $gray-700;
+    }
+  }
+
+  .toast-success {
+    background: $primary;
+
+    .toast-heading {
+      background: darken($primary, 3%);
+      border-bottom: 1px solid darken($primary, 5%);
+    }
+  }
+
+  .toast-info {
+    background: $info;
+
+    .toast-heading {
+      background: darken($info, 3%);
+      border-bottom: 1px solid darken($info, 5%);
+    }
+  }
+
+  .toast-warning {
+    background: $warning;
+
+    .toast-heading {
+      background: darken($warning, 5%);
+      border-bottom: 1px solid darken($warning, 5%);
+    }
+  }
+
+  .toast-danger {
+    background: $danger;
+
+    .toast-heading {
+      background: darken($danger, 2%);
+      border-bottom: 1px solid darken($danger, 5%);
+    }
+  }
+
+  &.toast-upper-left {
+    top: 1rem;
+    left: 1rem !important;
+  }
+
+  &.toast-upper-right {
+    top: 1rem !important;
+    right: 1rem !important;
+  }
+
+  &.toast-lower-right {
+    bottom: 1rem !important;
+    right: 1rem !important;
+  }
+
+  &.toast-lower-left {
+    bottom: 1rem !important;
+    left: 1rem !important;
+  }
+
+  &.toast-top-center {
+    top: 1rem;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+
+  &.toast-bottom-center {
+    bottom: 1rem;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+}

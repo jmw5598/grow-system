@@ -13,6 +13,7 @@ SystemNodeEventMessageRouter.setup([
   new MessageRoute('relay', 'relay'),
   new MessageRoute('temperature', 'temperature'),
   new MessageRoute('temphum', 'temphum'),
+  new MessageRoute('status', 'status')
 ]);
 
 module.exports = SystemNodeEventMessageRouter;

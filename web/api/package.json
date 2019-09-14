@@ -8,7 +8,7 @@
     "start": "node ./bin/www"
   },
   "dependencies": {
-    "bcrypt": "^3.0.2",
+    "bcrypt": "^3.0.6",
     "cookie-parser": "~1.4.3",
     "cors": "^2.8.5",
     "debug": "~2.6.9",
@@ -21,8 +21,8 @@
     "node-thermal-printer": "^2.0.1",
     "rxjs": "^6.3.3",
     "rxjs-compat": "^6.4.0",
-    "sequelize": "^4.41.2",
-    "sqlite3": "^4.0.4"
+    "sequelize": "^6.0.0",
+    "sqlite3": "^4.1.0"
   },
   "devDependencies": {
     "jasmine": "^3.3.1"

@@ -1,4 +1,5 @@
 <div>
+<<<<<<< Updated upstream:web/client/src/app/app.component.html
   <grow-navigation-top-bar [@fadeAnimation] *ngIf="isAuthenticated"></grow-navigation-top-bar>
   <div>
     <router-outlet></router-outlet>
@@ -8,3 +9,15 @@
   </grow-toaster> -->
 </div>
 2
+=======
+  <gs-navigation-bar *ngIf="isAuthenticated"></gs-navigation-bar>
+  <main>
+    <gs-breadcrumbs *ngIf="isAuthenticated"></gs-breadcrumbs>
+    <router-outlet></router-outlet>
+  </main>
+</div>
+
+<div>
+  <gs-core-toaster [options]="toasterOptions"></gs-core-toaster>
+</div>
+>>>>>>> Stashed changes:web/client/projects/applications/dashboard/src/app/app.component.html

@@ -2,13 +2,14 @@
 
 require('rxjs/add/observable/merge');
 const Rx = require('rxjs');
-
-const { SystemNodeEventMessageRouter } = require('../../routers');
-const { SseEmitterService } = require('../../../services');
+const Logger = require('../../../utilities').Logger;
+const SystemNodeEventMessageRouter = require('../../routers').SystemNodeEventMessageRouter;
+const SseEmitterService = require('../../../services').SseEmitterService;
 
 class SystemNodeEventEmitterService {
 
   constructor() {
+    this.logger = new Logger(this.constructor.name);
     Rx.Observable.merge(
       SystemNodeEventMessageRouter.routes.humidity.channel,
       SystemNodeEventMessageRouter.routes.moisture.channel,
@@ -16,13 +17,14 @@ class SystemNodeEventEmitterService {
       SystemNodeEventMessageRouter.routes.proximity.channel,
       SystemNodeEventMessageRouter.routes.relay.channel,
       SystemNodeEventMessageRouter.routes.temperature.channel,
-      SystemNodeEventMessageRouter.routes.temphum.channel
+      SystemNodeEventMessageRouter.routes.temphum.channel,
+      SystemNodeEventMessageRouter.routes.status.channel
     ).subscribe(message => this.emit(message));
   }
 
-  emit(payload) {
-    console.log('[API] SystemNodeEventEmitterService::Emitting new event', payload);
-    SseEmitterService.emit(payload);
+  emit(message) {
+    this.logger.debug(`Emitting new event ${message.topic}`);
+    SseEmitterService.emit(message.message);
   }
 
 }

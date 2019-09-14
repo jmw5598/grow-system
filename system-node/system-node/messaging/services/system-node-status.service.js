@@ -1,8 +1,9 @@
 'use strict';
 
 const os = require('os');
-
 const ApplicationContext = require('../../application.context');
+const EventMessage = require('../models').EventMessage;
+const EventMessageType = require('../models').EventMessageType;
 const MqttGateway = require('../gateways').MqttGateway;
 const MqttMessage = require('../models').MqttMessage;
 const SystemNodeMessageRouter = require('../routers').SystemNodeMessageRouter;
@@ -20,15 +21,16 @@ class SystemNodeStatuService {
     this.interval = setInterval(() => {
       if(!this.config || !this.config.node) return;
 
-      let node = JSON.parse(JSON.stringify(this.config.node));
-      delete node.components;
-      node.details = this._generateSystemDetails();
-      node.status = {
+      let nodeState = { id: this.config.node.id };
+      nodeState.details = this._generateSystemDetails();
+      nodeState.status = {
         state: 'online',
         timestamp: new Date()
       }
       
-      const outbound = new MqttMessage('system/node/status', node);
+      const event = new EventMessage(EventMessageType.NODE_STATE, nodeState);
+      const outbound = new MqttMessage('system/node/status', event);
+
       MqttGateway.outbound(outbound);
     }, 1000);
   }

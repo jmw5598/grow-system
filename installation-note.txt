@@ -1,0 +1,78 @@
+## SYSTEM NODE INSTALLATION NOTES
+
+- DHT sensors node library `node-dht-sensor` requires `bcm2835` C library
+1. `wget http://www.airspayce.com/mikem/bcm2835/bcm2835-1.58.tar.gz`
+2. Follow instructions in link.
+3. Can't install `node-dht-sensor` without `bcm2835` installed.  Need to install
+both manually on the Raspberry Pi.
+4 `node-dht-sensor` uses Rapsberry Pi GPIO pin number and not physical pin numbers.
+
+Link : http://www.airspayce.com/mikem/bcm2835/index.html
+
+
+- HC-SR04 sensor node library `mmm-usonic-fixed`
+
+### TOPIC SCHEMA
+sys/subsys/action/component
+
+SYSTEM SUBS
+
+system/system-node/commnad/relay -> web send command to system-node
+system/system-node/event/relay -> system-node send relay event/change to web
+system/system-node/register -> system-node registers itself to system
+system/system-node/registered -> system sends registered nodes to web.
+
+
+"If you plan on being anything less than you are capable of being, you will probably be unhappy all the days of your life" ~ Abraham Mslow, Toward a Psychology of Being
+
+"...realign your life towards getting done what reality sends that needs doing.  In other words we advise you to foucs more on purposeful behavior.  Let the feelings take care of themselves.  What I tihnk you will find is that when you get good at doing what needs doing in your life,  the feelings stop give you such trouble.  And even if your feelings become troublesome, when you are involved in constructive activity, they remain in perspective.  Feelings cease to be the whole show" ~ David Reynolds, A Handbook for Constructive Living.
+
+"Do you have the courage to act in the face of these feelings/fears or not? Those who find such courage will live far better lives than those who cower the face of their fears."
+
+"Do the thing you fear and the death of fear is certain" ~ Ralph Waldo Emerson
+
+
+
+Create dyanmica router where I can configure based on object passed it as opposed to repeating router pattern.
+Think similar to express router.
+
+router will talk in array of object container path and channel to setup
+the path segment will route through observable channel (create observable channead)
+
+routes = [
+  {
+    segment: 'system-node',
+    channel: 'system-node'
+  },
+  {
+    segement: 'system',
+    channel: 'system'
+  },
+  {
+    segement: 'scheduler',
+    channel: 'scheduler'
+  }
+]
+
+Router.setup(routes);
+MqttRouter.routes.system.channel.subscribe(message => Router.route(message));
+
+setup(routes) {
+
+}
+
+router will bind to another router as passing messages between routers.
+router will maintain a channels Object with next segement as
+
+
+ngrx store
+- each node will be the base store
+- updates will updated the appropriate attributes of the selected noded
+- selects will select a node by id
+- each node will contain status and deatils
+- each node will contain all components
+- each component will contain the current configuration and state of the component (current values)
+
+- login in take to node selection screen.
+- each selection will have link to dashbaord for the node or configurtation/settings page
+- dashboard will contain components and graphs for the selected node only

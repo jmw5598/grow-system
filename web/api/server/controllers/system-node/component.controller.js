@@ -29,7 +29,7 @@ class ComponentController {
   delete(req, res) {
     this.logger.debug(`Deleting component on node with id ${req.params.nodeId}`);
     const message = this._generateMessage(
-      req.params.nodeId, req.params.componentId, 'delete', null);
+      req.params.nodeId, req.params.componentId, 'delete', { id: req.params.componentId });
     MqttGateway.outbound(message);
     return res.status(200).send({ status: 'Ok', message: message });
   }

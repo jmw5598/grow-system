@@ -1,0 +1,42 @@
+.breadcrumbs {
+  margin: 0;
+  background: lighten($body-bg, 7%);
+  border-bottom: 1px solid darken($body-bg, 1%);
+
+  .breadcrumbs-nav {
+    background: inherit;
+    display: flex;
+    flex-direction: row;
+
+    .breadcrumbs-item {
+      padding-top: 1rem;
+      padding-bottom: 1rem;
+      font-size: 0.8rem;
+      text-transform: uppercase;
+
+      &.current {
+        font-weight: bold;
+      }
+
+      &:first-child {
+        padding-left: 1rem;
+      }
+
+      &:last-child {
+        padding-right: 1rem;
+      }
+
+      &:not(:last-child) {
+        &:after {
+          display: inline-block;
+          content: '\002F';
+          font-weight: bold;
+          font-size: 0.8rem;
+          margin-left: 1rem;
+          margin-right: 1rem;
+          
+        }
+      }
+    }
+  }
+}

@@ -1,33 +1,37 @@
 'use strict';
 
 const DHTSensor = require('node-dht-sensor');
-const ComponentAction = require('./component.action');
 const Logger = require('../utilities').Logger;
 const MqttGateway = require('../messaging/gateways/mqtt.gateway');
 const MqttMessage = require('../messaging/models').MqttMessage;
 
-class TemperatureHumidityAction extends ComponentAction {
+class TemperatureHumidityAction {
 
-  constructor(config) {
-    super(config.id, config.alias, config.type, config.pin);
+  constructor(node, config) {
+    this.node = node;
+    this.config = config;
     this.logger = new Logger(this.constructor.name);
-    this.preferences = config.preferences;
     this.start();
   }
 
   start() {
     this.interval = setInterval(() => {
-      DHTSensor.read(22, this.pin, (error, temperature, humidity) => {
+      DHTSensor.read(22, this.config.pin, (error, temperature, humidity) => {
         if(!error) {
-          const message = new MqttMessage('system/node/event/temphum', this.buildMessage(temperature, humidity));
+          const message = new MqttMessage(
+            'system/node/event/temphum', 
+            this.buildMessage(temperature, humidity)
+          );
+          
           MqttGateway.outbound(message);
-          if(temperature > this.preferences.threshold.max || temperature < this.preferences.threshold.min) {
+          
+          if(temperature > this.config.preferences.threshold.max || temperature < this.config.preferences.threshold.min) {
             const notification = new MqttMessage('system/node/event/notification', this.buildMessage(temperature, humidity));
             MqttGateway.outbound(notification);
           }
         }
       });
-    }, this.preferences.interval);
+    }, this.config.preferences.interval);
   }
 
   _fakeRead() {
@@ -45,11 +49,11 @@ class TemperatureHumidityAction extends ComponentAction {
 
   setInterval(value) {
     this.stop();
-    this.preferences.interval = value;
+    this.config.preferences.interval = value;
   }
 
   setThreshold(value) {
-    this.preferences.threshold = value;
+    this.config.preferences.threshold = value;
   }
 
   buildMessage(temperature, humidity) {
@@ -60,11 +64,11 @@ class TemperatureHumidityAction extends ComponentAction {
         id: 123,
         alias: "Alias",
         component: [{
-          id: this.id,
-          alias: this.alias,
-          type: this.type,
-          pin: this.pin,
-          preferences: this.preferences,
+          id: this.config.id,
+          alias: this.config.alias,
+          type: this.config.type,
+          pin: this.config.pin,
+          preferences: this.config.preferences,
           temperature: temperature,
           humidity: humidity
         }]
@@ -73,7 +77,7 @@ class TemperatureHumidityAction extends ComponentAction {
   }
 
   destroy() {
-    this.logger.debug(`Destroying temperature-humidity action, ${this.alias}`);
+    this.logger.debug(`Destroying temperature-humidity action, ${this.config.alias}`);
     this.stop();
   }
 

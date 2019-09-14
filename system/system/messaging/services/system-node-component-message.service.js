@@ -13,7 +13,7 @@ class SystemNodeComponentMessageService {
 
   process(message) {
     const routedTopic = `node/${message.message.node.id}/component/${message.topic}`;
-    const outbound = new MqttMessage(routedTopic, message.message);
+    const outbound = new MqttMessage(routedTopic, message.message.payload);
     MqttGateway.outbound(outbound);
   }
 

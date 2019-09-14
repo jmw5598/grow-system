@@ -27,6 +27,7 @@
               "src/assets"
             ],
             "styles": [
+<<<<<<< Updated upstream
               "src/assets/scss/fontawesome/scss/fontawesome.scss",
               "src/assets/scss/fontawesome/scss/brands.scss",
               "src/assets/scss/fontawesome/scss/regular.scss",
@@ -41,6 +42,19 @@
               "src/assets/js/popper/popper.min.js",
               "src/assets/js/bootstrap/bootstrap.min.js"
             ]
+=======
+              "projects/applications/dashboard/src/assets/scss/fontawesome/scss/fontawesome.scss",
+              "projects/applications/dashboard/src/assets/scss/fontawesome/scss/brands.scss",
+              "projects/applications/dashboard/src/assets/scss/fontawesome/scss/regular.scss",
+              "projects/applications/dashboard/src/assets/scss/fontawesome/scss/solid.scss",
+              "projects/applications/dashboard/src/assets/scss/fontawesome/scss/v4-shims.scss",
+              "projects/applications/dashboard/src/assets/scss/main.scss",
+              "projects/applications/dashboard/src/styles.scss",
+              "./node_modules/ngx-ui-switch/ui-switch.component.css"
+            ],
+            "scripts": [],
+            "es5BrowserSupport": true
+>>>>>>> Stashed changes
           },
           "configurations": {
             "production": {
