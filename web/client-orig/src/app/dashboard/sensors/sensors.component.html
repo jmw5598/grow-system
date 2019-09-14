@@ -1,0 +1,11 @@
+<div>
+  <ul>
+    <li *ngFor="let relay of relays">
+      <grow-toggle-switch
+          [state]="relay.state"
+          [label]="relay.alias"
+          (onToggle)="toggle(relay)">
+      </grow-toggle-switch>
+    </li>
+  </ul>
+</div>

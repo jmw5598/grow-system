@@ -1,0 +1,13 @@
+.layout-three-column {
+
+  display: flex;
+
+  .column {
+    overflow-y: auto;
+  }
+
+  .column-two {
+    flex: 1;
+  }
+
+}

@@ -1,0 +1,16 @@
+.login-header {
+  position: relative;
+  min-height: 4rem;
+  background: inherit !important;
+  border: 0;
+
+  .login-logo {
+    width: 200px;
+    z-index: 2;
+    position: absolute;
+    top: -142px;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+
+}
