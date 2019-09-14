@@ -1,21 +1,20 @@
 'use strict';
 
-const ComponentAction = require('./component.action');
 const Logger = require('../utilities').Logger;
 const { MqttGateway } = require('../messaging');
 
-class HumidityAction extends ComponentAction {
+class HumidityAction {
 
-  constructor(config) {
-    super(config.id, config.alias, config.type, config.pin);
+  constructor(node, config) {
+    this.node = node;
+    this.config = config
     this.logger = new Logger(this.constructor.name);
-    this.preferences = config.preferences;
     this.start();
   }
 
   start() {
     this.interval = setInterval(() => {
-      console.log('HumidityAction::Alias:' + this.alias);
+      console.log('HumidityAction::Alias:' + this.config.alias);
       console.log('HumidityAction::Taking reading');
       console.log('HumidityAction::Publishing reading');
     }, this.preferences.interval)
@@ -23,17 +22,17 @@ class HumidityAction extends ComponentAction {
 
   stop() {
     if(this.interval)
-      clearInterval(this.interval);
+      clearInterval(this.config.interval);
   }
 
   setInterval(value) {
     this.stop();
-    this.preferences.interval = value;
+    this.config.preferences.interval = value;
     this.start();
   }
 
   setThreshold(value) {
-    this.preferences.threshold = value;
+    this.config.preferences.threshold = value;
   }
 
   destroy() {

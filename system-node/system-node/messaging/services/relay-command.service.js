@@ -13,8 +13,8 @@ class RelayCommandService {
 
   process(message) {
     if (!this.actions || !message.message.payload.state) return;
-    let relay = this.actions.find(r => r.id === message.message.component.id);
-    if(relay) relay.toggle(message.message.payload.state);
+    let relay = this.actions.find(r => r.config.id === message.message.component.id);
+    if(relay && relay.type.model === "SRD05") relay.toggle(message.message.payload.state);
   }
 
 }

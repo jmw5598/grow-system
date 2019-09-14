@@ -11,12 +11,12 @@ class ActionFactory {
     this.logger = new Logger(this.constructor.name);
   }
 
-  create(model, component) {
+  create(model, node, component) {
     this.logger.debug(`Creating component of type ${model}`);
     switch(model) {
-      case 'SRD05': return new RelayAction(component);
-      case 'DHT22': return new TemperatureHumidityAction(component);
-      case 'HCSR04': return new ProximityAction(component);
+      case 'SRD05': return new RelayAction(node, component);
+      case 'DHT22': return new TemperatureHumidityAction(node, component);
+      case 'HCSR04': return new ProximityAction(node, component);
       default: console.log('Invalid component type'); break;
     }
   }

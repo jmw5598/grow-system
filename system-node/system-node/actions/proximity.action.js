@@ -2,11 +2,12 @@
 
 const usonic = require('mmm-usonic-fixed');
 const Logger = require('../utilities').Logger;
-const ComponentAction = require('./component.action');
 
-class ProximityAction extends ComponentAction {
+class ProximityAction {
 
-  contructor() {
+  contructor(node, config) {
+    this.node = node;
+    this.config = config;
     //https://www.npmjs.com/package/mmm-usonic-fixed
     this.logger = new Logger(this.constructor.name);
   }

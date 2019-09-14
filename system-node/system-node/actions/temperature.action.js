@@ -1,13 +1,13 @@
 'use strict';
 
-const ComponentAction = require('./component.action');
 const Logger = require('../utilities').Logger;
 const { MqttGateway } = require('../messaging');
 
-class TemperatureAction extends ComponentAction {
+class TemperatureAction {
 
-  constructor(config) {
-    super(config.id, config.alias, config.type, config.pin);
+  constructor(node, config) {
+    this.node = node;
+    this.config = config;
     this.logger = new Logger(this.constructor.name);
     this.temperature = 0;
     this.preferences = config.preferences;
@@ -16,10 +16,10 @@ class TemperatureAction extends ComponentAction {
 
   start() {
     this.interval = setInterval(() => {
-      console.log('TemperatureAction::Alias::' + this.alias);
+      console.log('TemperatureAction::Alias::' + this.config.alias);
       console.log('TemperatureAction::Taking reading');
       console.log('TemperatureAction::Publishing reading');
-    }, this.preferences.interval);
+    }, this.config.preferences.interval);
   }
 
   stop() {
@@ -29,16 +29,16 @@ class TemperatureAction extends ComponentAction {
 
   setInterval(value) {
     this.stop();
-    this.preferences.interval = value;
+    this.config.preferences.interval = value;
     this.start();
   }
 
   setThreshold(value) {
-    this.preferences.threshold = value;
+    this.config.preferences.threshold = value;
   }
 
   destroy() {
-    this.logger.debug(`Destroying temperature sensor, ${this.alias}`);
+    this.logger.debug(`Destroying temperature sensor, ${this.config.alias}`);
     this.stop();
   }
 

@@ -1,30 +1,31 @@
 'use strict';
 
+const EventMessage = require('../messaging/models').EventMessage;
+const EventMessageType = require('../messaging/models/event-message-type.model');
 const Gpio = require('onoff').Gpio;
-const ComponentAction = require('./component.action');
 const Logger = require('../utilities').Logger;
 const MqttGateway = require('../messaging/gateways/mqtt.gateway');
 const MqttMessage = require('../messaging/models').MqttMessage;
 
-class RelayAction extends ComponentAction {
+class RelayAction {
 
-  constructor(config) {
-    super(config.id, config.alias, config.type, config.pin);
+  constructor(node, config) {
+    this.node = node; 
+    this.config = config;
     this.logger = new Logger(this.constructor.name);
-    this.state = config.state;
-    this.relay = new Gpio(this.pin, 'out');
+    this.relay = new Gpio(this.config.pin, 'out');
     this.toggle('off');
   }
 
   toggle(state) {
-    this.logger.debug(`Toggling relay: ${this.alias} - ${state}`);
+    this.logger.debug(`Toggling relay: ${this.config.alias} - ${state}`);
     switch(state.toLowerCase()) {
       case 'on':
-        this.state = state.toLowerCase();
+        this.config.state = state.toLowerCase();
         this.relay.writeSync(0, this._notify(state));
         break;
       case 'off':
-        this.state = state.toLowerCase();
+        this.config.state = state.toLowerCase();
         this.relay.writeSync(1, this._notify(state));
         break;
       default:
@@ -34,13 +35,15 @@ class RelayAction extends ComponentAction {
   }
 
   _notify(state) {
-    this.logger.debug(`Sending to new stat (${this.alias} : ${state})`);
-    const message = new MqttMessage('system/system-node/event/relay', "message");
+    this.logger.debug(`Sending to new stat (${this.config.alias} : ${state})`);
+    const componentState = { nodeId: this.node.id, componentId: this.config.id, state: state };
+    const event = new EventMessage(EventMessageType.RELAY_STATE, componentState);
+    const message = new MqttMessage('system/node/event/relay', event);
     MqttGateway.outbound(message);
   }
 
   destroy() {
-    this.logger.debug(`Destroying relay ${this.alias}`);
+    this.logger.debug(`Destroying relay ${this.config.alias}`);
     this.toggle('off');
     this.relay.unexport();
   }
