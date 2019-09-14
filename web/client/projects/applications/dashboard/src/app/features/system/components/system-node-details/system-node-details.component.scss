@@ -9,4 +9,17 @@
     margin: auto;
     border-radius: 50%;
   }
+
+  .status {
+    display: flex;
+    flex-direction: row;
+    align-content: space-between !important;
+    align-items: center;
+    
+    label {
+      
+      font-size: 0.8rem;
+      font-weight: thin;
+    }
+  }
 }

@@ -19,6 +19,11 @@
   &:active {
     background: darken($primary, 20%);
   }
+
+  &:disabled {
+    background: lighten($primary, 5%);
+    cursor: not-allowed;
+  }
 }
 
 .btn-info {

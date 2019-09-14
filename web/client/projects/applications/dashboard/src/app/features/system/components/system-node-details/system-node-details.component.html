@@ -1,5 +1,9 @@
 <div class="system-node-details">
-  <img class="mb-2" [src]="details.imgUrl" />
-  <h4 class="mb-2">{{ details.alias }} <span class="badge badge-primary badge-pill float-right">&nbsp;&nbsp;</span></h4>
-  <a class="col-12 btn btn-primary" [routerLink]="['/system-node', details.id]">View</a>
+  <img class="mb-1" [src]="details.imgUrl" />
+  <h4 class="text-center mb-1">{{ details.alias }}</h4>
+  <div class="status mb-1 text-center m-auto">
+    <label class="mr-1">Status:</label>
+    <div class="badge badge-primary badge-pill text-center">Online</div>
+  </div>
+  <a class="btn btn-info" [routerLink]="['/system-node', details.id]">View</a>
 </div>

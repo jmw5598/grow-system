@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { SystemNodeComponent, SystemNodeComponentType, System } from '@gs/common';
 
+import { SystemNodeComponentService } from '../../../../core/services/system-node-component.service';
+
 @Component({
   selector: 'gs-component-form-add',
   templateUrl: './component-form-add.component.html',
@@ -12,7 +14,10 @@ export class ComponentFormAddComponent implements OnInit {
   public form: FormGroup
   public SystemNodeComponentType = SystemNodeComponentType;
 
-  constructor(private _formBuilder: FormBuilder) { }
+  constructor(
+    private _formBuilder: FormBuilder,
+    private _systemNodeComponentService: SystemNodeComponentService  
+  ) { }
 
   ngOnInit() {
     this.form = this._formBuilder.group({
@@ -24,9 +29,11 @@ export class ComponentFormAddComponent implements OnInit {
   }
 
   addComponent(component: SystemNodeComponent) {
-
-    let test:SystemNodeComponent = Object.assign({}, this.form.value);
-    console.log(this.form);
+    this._systemNodeComponentService.create(19291, component)
+      .subscribe(
+        success => alert("Success!!"),
+        error => console.log(error)
+      )
   }
 
 }

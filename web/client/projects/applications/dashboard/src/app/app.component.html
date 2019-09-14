@@ -1,9 +1,11 @@
 <div>
   <gs-navigation-bar *ngIf="isAuthenticated"></gs-navigation-bar>
-  <div>
+  <main>
+    <gs-breadcrumbs *ngIf="isAuthenticated"></gs-breadcrumbs>
     <router-outlet></router-outlet>
-  </div>
-  <!-- <grow-toaster
-      [location]="toasterLocation.BOTTOM_RIGHT">
-  </grow-toaster> -->
+  </main>
+</div>
+
+<div>
+  <gs-core-toaster [options]="toasterOptions"></gs-core-toaster>
 </div>

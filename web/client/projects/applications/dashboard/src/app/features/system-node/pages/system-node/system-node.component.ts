@@ -2,6 +2,9 @@ import { Component, OnInit } from '@angular/core';
 
 import { FadeAnimation } from '../../../../shared/animations';
 
+import { ModalOptions, ModalType, ModalSize } from '@gs/common';
+import { ToasterService, ToastType } from '@gs/core';
+
 @Component({
   selector: 'gs-system-node',
   templateUrl: './system-node.component.html',
@@ -9,6 +12,14 @@ import { FadeAnimation } from '../../../../shared/animations';
   animations: [FadeAnimation]
 })
 export class SystemNodeComponent implements OnInit {
+
+  public options: ModalOptions = {
+    isShown: false,
+    type: ModalType.DEFAULT,
+    size: ModalSize.MEDIUM
+  }
+
+  public toastCount: number = 0;
 
   public relays: any = [
     {
@@ -29,9 +40,19 @@ export class SystemNodeComponent implements OnInit {
     }
   ];
 
-  constructor() { }
+  constructor(private _toaster: ToasterService) { }
 
   ngOnInit() {
+  }
+
+  sendToast() {
+    const types = [ToastType.DEFAULT, ToastType.SUCCESS, ToastType.INFO, ToastType.WARNING, ToastType.DANGER];
+    this._toaster.toast("Testing", "THis is a test message", types[this.toastCount % types.length], 2000);
+    this.toastCount++;
+  }
+
+  showModal() {
+    this.options.isShown = true;
   }
 
 }

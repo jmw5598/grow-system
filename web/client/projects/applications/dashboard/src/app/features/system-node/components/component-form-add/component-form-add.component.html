@@ -1,21 +1,23 @@
 <form class="form" [formGroup]="form" (ngSubmit)="addComponent(this.form.value)" novalidate>
   <fieldset>
     
-    <h4>Component Details</h4>
-    <div class="form-group-inline">
-
-      <div class="form-group">
+    <h3 class="text-primary">Component Details</h3>
+    <div class="">
+      <div class="form-group form-group-inline">
         <label for="alias">Alias</label>
         <input 
             id="alias" 
             name="alias" 
-            type="text" 
-            class="form-control" 
+            type="text"
+            placeholder="Alias"
+            class="form-control"
             [ngClass]="{ 'is-invalid' : form.controls.alias.invalid && form.controls.alias.touched }"
             formControlName="alias" />
       </div>
+    </div>
 
-      <div class="form-group">
+    <div class="">
+      <div class="form-group form-group-inline">
         <label for="type">Type</label>
         <select 
             id="type" 
@@ -30,7 +32,7 @@
         </select>
       </div>
 
-      <div class="form-group">
+      <div class="form-group form-group-inline">
         <label for="pin">GPIO Pin</label>
         <input 
             id="pin" 
@@ -38,6 +40,7 @@
             type="number" 
             min="1" 
             max="40" 
+            placeholder="Pin"
             class="form-control"
             [ngClass]="{ 'is-invalid' : form.controls.pin.invalid && form.controls.pin.touched }"
             formControlName="pin" /> 
@@ -54,9 +57,9 @@
         </ng-container>
         
         <!-- Relay Preferences -->
-        <ng-container *ngSwitchCase="'SRD05'">
+        <!-- <ng-container *ngSwitchCase="'SRD05'">
           <gs-preferences-form-relay [parent]="form"></gs-preferences-form-relay>
-        </ng-container>
+        </ng-container> -->
 
         <!-- Proximity Preferences -->
         <ng-container *ngSwitchCase="'HCSR04'">

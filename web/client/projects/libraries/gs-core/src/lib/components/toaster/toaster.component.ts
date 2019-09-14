@@ -6,7 +6,7 @@ import { ToastLocation } from './toast-location.enum';
 import { ToastMessage } from './toast-message.model';
 
 @Component({
-  selector: 'gs-toaster',
+  selector: 'gs-core-toaster',
   templateUrl: './toaster.component.html',
   styleUrls: ['./toaster.component.scss']
 })
