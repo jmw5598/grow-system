@@ -6,6 +6,6 @@ const JwtRouter = express.Router();
 const { JwtController } = require('../../controllers');
 
 JwtRouter.route('/')
-  .post(JwtController.authenticate);
+  .post((req, res) => JwtController.authenticate(req, res));
 
 module.exports = JwtRouter;

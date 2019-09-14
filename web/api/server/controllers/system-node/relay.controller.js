@@ -34,4 +34,15 @@ class RelayController {
 
 }
 
+/*
+ CommandMessage
+  - command string
+  - nodeId:
+  - componentId:
+  - payload : Object 
+ */
+
+
+ 
+
 module.exports = new RelayController();
