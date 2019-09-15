@@ -26,14 +26,6 @@ class TemperatureHumidityAction {
     }, this.config.preferences.interval);
   }
 
-  _fakeRead() {
-    const temperature = Math.random() * (80 - 65) + 65;
-    const humidity = Math.random() * (40 - 25) + 40;
-    const event = new MqttMessage('system/node/event/temphum', this.buildMessage(temperature, humidity));
-    this.logger.debug(`${this.alias} : T: ${temperature} - H: ${humidity}`);
-    MqttGateway.outbound(event);
-  }
-
   stop() {
     if(this.interval)
       clearInterval(this.interval);
@@ -50,7 +42,7 @@ class TemperatureHumidityAction {
 
   _notify(temperature, humidity) {
     const componentState = this._buildState(temperature, humidity);
-    const event = new EventMessage(EventMessageType.TEMPHUM_STATE, componentState);
+    const event = new EventMessage(EventMessageType.TEMPHUM_STATE_CHANGED, componentState);
     const message = new MqttMessage('system/node/event/temphum', event);
 
     MqttGateway.outbound(message);

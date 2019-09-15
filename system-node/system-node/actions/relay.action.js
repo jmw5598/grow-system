@@ -37,7 +37,7 @@ class RelayAction {
   _notify(state) {
     this.logger.debug(`Sending to new stat (${this.config.alias} : ${state})`);
     const componentState = { nodeId: this.node.id, componentId: this.config.id, state: state };
-    const event = new EventMessage(EventMessageType.RELAY_STATE, componentState);
+    const event = new EventMessage(EventMessageType.RELAY_STATE_CHANGED, componentState);
     const message = new MqttMessage('system/node/event/relay', event);
     MqttGateway.outbound(message);
   }

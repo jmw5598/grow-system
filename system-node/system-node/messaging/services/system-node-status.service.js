@@ -28,7 +28,7 @@ class SystemNodeStatuService {
         timestamp: new Date()
       }
       
-      const event = new EventMessage(EventMessageType.NODE_STATE, nodeState);
+      const event = new EventMessage(EventMessageType.NODE_STATE_CHANGED, nodeState);
       const outbound = new MqttMessage('system/node/status', event);
 
       MqttGateway.outbound(outbound);
