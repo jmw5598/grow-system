@@ -1,6 +1,8 @@
 'use strict';
 
 const DHTSensor = require('node-dht-sensor');
+const EventMessage = require('../messaging/models').EventMessage;
+const EventMessageType = require('../messaging/models').EventMessageType;
 const Logger = require('../utilities').Logger;
 const MqttGateway = require('../messaging/gateways/mqtt.gateway');
 const MqttMessage = require('../messaging/models').MqttMessage;
@@ -18,17 +20,7 @@ class TemperatureHumidityAction {
     this.interval = setInterval(() => {
       DHTSensor.read(22, this.config.pin, (error, temperature, humidity) => {
         if(!error) {
-          const message = new MqttMessage(
-            'system/node/event/temphum', 
-            this.buildMessage(temperature, humidity)
-          );
-          
-          MqttGateway.outbound(message);
-          
-          if(temperature > this.config.preferences.threshold.max || temperature < this.config.preferences.threshold.min) {
-            const notification = new MqttMessage('system/node/event/notification', this.buildMessage(temperature, humidity));
-            MqttGateway.outbound(notification);
-          }
+          this._notify(temperature, humidity);
         }
       });
     }, this.config.preferences.interval);
@@ -56,23 +48,30 @@ class TemperatureHumidityAction {
     this.config.preferences.threshold = value;
   }
 
-  buildMessage(temperature, humidity) {
-    // maybe create a class model for this?
-    // replace with configuration details when possible (node details)
-    return {
-      node: {
-        id: 123,
-        alias: "Alias",
-        component: [{
-          id: this.config.id,
-          alias: this.config.alias,
-          type: this.config.type,
-          pin: this.config.pin,
-          preferences: this.config.preferences,
-          temperature: temperature,
-          humidity: humidity
-        }]
-      }
+  _notify(temperature, humidity) {
+    const componentState = this._buildState(temperature, humidity);
+    const event = new EventMessage(EventMessageType.TEMPHUM_STATE, componentState);
+    const message = new MqttMessage('system/node/event/temphum', event);
+
+    MqttGateway.outbound(message);
+
+    if(temperature > this.config.preferences.threshold.max || temperature < this.config.preferences.threshold.min) {
+      const text = `[${this.node.name}][${this.config.alias}] - Temperature went beyond threshold`;
+      const componentState = this._buildState(temperature, humidity, text);
+      const event = new EventMessage(EventMessageType.NOTIFICATION, componentState);
+      const notification = new MqttMessage('system/node/event/notification', this.buildMessage(temperature, humidity));
+      
+      MqttGateway.outbound(notification);
+    }
+  }
+
+  _buildState(temperature, humidity, message) {
+    return { 
+      nodeId: this.node.id, 
+      componentId: this.config.id, 
+      temperature: temperature,
+      humidity: humidity,
+      message: message
     }
   }
 
