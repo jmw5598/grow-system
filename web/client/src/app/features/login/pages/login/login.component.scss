@@ -1,0 +1,21 @@
+.login {
+  max-width: 476px;
+  min-width: 400px;
+  position: fixed;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+
+  .login-header {
+    min-height: 4rem;
+    position: relative;
+
+    .login-logo {
+      width: 200px;
+      position: absolute;
+      left: 50%;
+      top: -142px;
+      transform: translateX(-50%);
+    }
+  }
+}

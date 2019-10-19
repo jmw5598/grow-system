@@ -1,0 +1,78 @@
+<form class="form" [formGroup]="form" (ngSubmit)="addComponent(this.form.value)" novalidate>
+  <fieldset>
+    
+    <h3 class="text-primary">Component Details</h3>
+    <div class="">
+      <div class="form-group form-group-inline">
+        <label for="alias">Alias</label>
+        <input 
+            id="alias" 
+            name="alias" 
+            type="text"
+            placeholder="Alias"
+            class="form-control"
+            [ngClass]="{ 'is-invalid' : form.controls.alias.invalid && form.controls.alias.touched }"
+            formControlName="alias" />
+      </div>
+    </div>
+
+    <div class="">
+      <div class="form-group form-group-inline">
+        <label for="type">Type</label>
+        <select 
+            id="type" 
+            name="type" 
+            class="form-control"
+            [ngClass]="{ 'is-invalid' : form.controls.type.invalid && form.controls.type.touched }"
+            formControlName="type">
+          <option [value]="null" hidden selected disabled>Select a type</option>
+          <ng-container *ngFor="let type of SystemNodeComponentType | keys">
+            <option [ngValue]="SystemNodeComponentType[type]">{{ type }} ({{ SystemNodeComponentType[type].description }})</option>
+          </ng-container>
+        </select>
+      </div>
+
+      <div class="form-group form-group-inline">
+        <label for="pin">GPIO Pin</label>
+        <input 
+            id="pin" 
+            name="pin" 
+            type="number" 
+            min="1" 
+            max="40" 
+            placeholder="Pin"
+            class="form-control"
+            [ngClass]="{ 'is-invalid' : form.controls.pin.invalid && form.controls.pin.touched }"
+            formControlName="pin" /> 
+      </div>
+    </div>
+
+    <!-- Preferences Form -->
+    <div class="form-group-inline">
+      <ng-container [ngSwitch]="form.controls.type.value?.model">
+
+        <!-- Temperature Humidity Preferences -->
+        <ng-container *ngSwitchCase="'DHT22'">
+          <gs-preferences-form-temperature-humidity [parent]="form"></gs-preferences-form-temperature-humidity>
+        </ng-container>
+        
+        <!-- Relay Preferences -->
+        <!-- <ng-container *ngSwitchCase="'SRD05'">
+          <gs-preferences-form-relay [parent]="form"></gs-preferences-form-relay>
+        </ng-container> -->
+
+        <!-- Proximity Preferences -->
+        <ng-container *ngSwitchCase="'HCSR04'">
+          <gs-preferences-form-proximity [parent]="form"></gs-preferences-form-proximity>
+        </ng-container>
+
+      </ng-container>
+    </div>
+
+    <!-- Form Buttons-->
+    <div class="form-group">
+      <button type="submit" class="btn btn-primary" role="button" [disabled]="form.invalid">Add Component</button>
+    </div>
+
+  </fieldset>
+</form>

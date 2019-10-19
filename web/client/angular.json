@@ -12,7 +12,7 @@
       },
       "root": "",
       "sourceRoot": "src",
-      "prefix": "app",
+      "prefix": "gs",
       "architect": {
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
@@ -28,7 +28,14 @@
               "src/assets"
             ],
             "styles": [
-              "src/styles.scss"
+              "src/assets/scss/fontawesome/scss/fontawesome.scss",
+              "src/assets/scss/fontawesome/scss/brands.scss",
+              "src/assets/scss/fontawesome/scss/regular.scss",
+              "src/assets/scss/fontawesome/scss/solid.scss",
+              "src/assets/scss/fontawesome/scss/v4-shims.scss",
+              "src/assets/scss/main.scss",
+              "src/styles.scss",
+              "./node_modules/ngx-ui-switch/ui-switch.component.css"
             ],
             "scripts": []
           },

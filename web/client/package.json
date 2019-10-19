@@ -19,6 +19,9 @@
     "@angular/platform-browser": "~8.2.11",
     "@angular/platform-browser-dynamic": "~8.2.11",
     "@angular/router": "~8.2.11",
+    "@ngrx/store": "^8.4.0",
+    "ng-event-source": "^1.0.14",
+    "ngx-ui-switch": "^8.2.0",
     "rxjs": "~6.4.0",
     "tslib": "^1.10.0",
     "zone.js": "~0.9.1"
