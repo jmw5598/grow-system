@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 import { AlertMessageComponent } from './components/alert-message/alert-message.component';
+import { KeysPipe } from './pipes/keys.pipe';
 import { ModalComponent } from './components/modal/modal.component';
 import { ToggleSwitchComponent } from './components/toggle-switch/toggle-switch.component';
 import { UiSwitchModule } from 'ngx-ui-switch';
@@ -10,6 +11,7 @@ import { UiSwitchModule } from 'ngx-ui-switch';
 @NgModule({
   declarations: [
     AlertMessageComponent,
+    KeysPipe,
     ModalComponent,
     ToggleSwitchComponent
   ],
@@ -25,6 +27,7 @@ import { UiSwitchModule } from 'ngx-ui-switch';
   ],
   exports: [
     AlertMessageComponent,
+    KeysPipe,
     ModalComponent,
     ToggleSwitchComponent
   ]

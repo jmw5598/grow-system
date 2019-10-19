@@ -7,6 +7,8 @@ import { BreadcrumbsComponent } from './components/breadcrumbs/breadcrumbs.compo
 import { NavigationBarComponent } from './components/navigation-bar/navigation-bar.component';
 import { RelayService } from './services/relay.service';
 import { SseService } from './services/sse.service';
+import { StoreModule } from '@ngrx/store';
+import { SystemNodeReducer } from '@core/store';
 import { ToasterComponent } from './components/toaster/toaster.component';
 import { ToasterService } from './components/toaster/toaster.service';
 
@@ -19,7 +21,10 @@ import { ToasterService } from './components/toaster/toaster.service';
   ],
   imports: [
     CommonModule,
-    RouterModule
+    RouterModule,
+    StoreModule.forRoot({
+      nodes: SystemNodeReducer
+    })
   ],
   exports: [
     BreadcrumbsComponent,

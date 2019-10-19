@@ -1,7 +1,7 @@
 <div>
-  <gs-navigation-bar></gs-navigation-bar>
+  <gs-navigation-bar *ngIf="isAuthenticated"></gs-navigation-bar>
   <main>
-    <gs-breadcrumbs></gs-breadcrumbs>
+    <gs-breadcrumbs *ngIf="isAuthenticated"></gs-breadcrumbs>
     <router-outlet></router-outlet>
   </main>
 </div>
