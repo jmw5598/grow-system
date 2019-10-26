@@ -10,4 +10,24 @@
   &.badge-primary {
     background: $primary;
   }
+
+  &.badge-secondary {
+    background: $secondary;
+  }
+
+  &.badge-success {
+    background: $success;
+  }
+
+  &.badge-info {
+    background: $info;
+  }
+
+  &.badge-warning {
+    background: $warning;
+  }
+
+  &.badge-danger {
+    background: $danger;
+  }
 }
