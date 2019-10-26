@@ -12,29 +12,29 @@
 }
 
 .text-primary {
-  color: $primary;
+  color: darken($primary, 25%);
 }
 
 .text-secondary {
-  color: $secondary;
+  color: darken($secondary, 25%);
 }
 
 .text-info {
-  color: $info;
+  color: darken($info, 25%);
 }
 
 .text-warning {
-  color: $warning;
+  color: darken($warning, 25%);
 }
 
 .text-danger {
-  color: $danger;
+  color: darken($danger, 25%);
 }
 
 .text-light {
-  color: $light;
+  color: darken($light, 25%);
 }
 
 .text-dark {
-  color: $dark;
+  color: darken($dark, 25%);
 }

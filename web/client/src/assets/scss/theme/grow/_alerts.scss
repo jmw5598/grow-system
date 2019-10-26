@@ -1,0 +1,27 @@
+.alert {
+  padding: 2rem;
+  &.alert-primary {
+    background: $primary;
+  }
+
+  &.alert-secondary {
+    background: $secondary;
+  }
+
+  &.alert-success {
+    background: $success;
+  }
+
+  &.alert-info {
+    background: $info;
+  }
+
+  &.alert-warning {
+    background: $warning;
+  }
+
+  &.alert-danger {
+    background: $danger;
+  }
+
+}
