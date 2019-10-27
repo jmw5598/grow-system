@@ -1,0 +1,43 @@
+@import '../../../../assets/scss/theme/grow/variables';
+
+.measurement-container {
+  .measurement-circle {
+    display: block;
+    margin: 10px auto;
+    max-width: 80%;
+    max-height: 250px;
+  }
+
+  .measurement-circle-track {
+    fill: none;
+    stroke: lighten($gray-200, 5%);
+    stroke-width: 3.8;
+  }
+
+  .measurement-circle-fill {
+    fill: none;
+    stroke-width: 3.8;
+    stroke-linecap: round;
+    //animation: fillcircle 1s ease-out forwards;
+  }
+
+  .title {
+    font-size: 0.7rem;
+    display: block;
+    width: 100%;
+    text-align: center;
+  }
+
+  .percentage {
+    fill: $white;
+    font-size: 0.5rem;
+    text-anchor: middle;
+  }
+
+}
+
+// @keyframes fillcircle {
+//   0% {
+//     stroke-dasharray: 0 100;
+//   }
+// }

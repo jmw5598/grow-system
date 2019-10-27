@@ -1,0 +1,27 @@
+@import '../../../../assets/scss/theme/grow/variables';
+
+.measurement-bar {
+  position: relative;
+  margin: 1rem 0;
+  background: lighten($gray-200, 5%) !important;
+  display: block;
+  width: 100% !important;
+  min-height: 6px;
+  border-radius: 6px;
+
+  .measurement-bar-fill {
+    position: absolute;
+    display: block;
+    top: 0;
+    left: 0;
+    min-height: 6px;
+    border-radius: 6px;
+    // animation: fillbar 1s ease-out forwards;
+  }
+}
+
+// @keyframes fillbar {
+//   0% {
+//     width: 0;
+//   }
+// }
