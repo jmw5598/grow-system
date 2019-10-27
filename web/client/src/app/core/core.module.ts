@@ -5,10 +5,11 @@ import { RouterModule, Router } from '@angular/router';
 import { AuthenticationService } from './services/authentication.service';
 import { BreadcrumbsComponent } from './components/breadcrumbs/breadcrumbs.component';
 import { NavigationBarComponent } from './components/navigation-bar/navigation-bar.component';
+import { RelayComponentReducer } from './store/reducers/relay-component.reducer';
 import { RelayService } from './services/relay.service';
 import { SseService } from './services/sse.service';
 import { StoreModule } from '@ngrx/store';
-import { SystemNodeReducer } from '@core/store';
+import { SystemNodeReducer, RelayComponent } from '@core/store';
 import { ToasterComponent } from './components/toaster/toaster.component';
 import { ToasterService } from './components/toaster/toaster.service';
 
@@ -23,7 +24,8 @@ import { ToasterService } from './components/toaster/toaster.service';
     CommonModule,
     RouterModule,
     StoreModule.forRoot({
-      nodes: SystemNodeReducer
+      nodes: SystemNodeReducer,
+      relays: RelayComponentReducer
     })
   ],
   exports: [
