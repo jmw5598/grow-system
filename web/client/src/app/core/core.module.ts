@@ -9,7 +9,7 @@ import { RelayComponentReducer } from './store/reducers/relay-component.reducer'
 import { RelayService } from './services/relay.service';
 import { SseService } from './services/sse.service';
 import { StoreModule } from '@ngrx/store';
-import { SystemNodeReducer, RelayComponent } from '@core/store';
+import { SystemNodeReducer, RelayComponent, TemperatureHumidityComponentReducer } from '@core/store';
 import { ToasterComponent } from './components/toaster/toaster.component';
 import { ToasterService } from './components/toaster/toaster.service';
 
@@ -25,7 +25,8 @@ import { ToasterService } from './components/toaster/toaster.service';
     RouterModule,
     StoreModule.forRoot({
       nodes: SystemNodeReducer,
-      relays: RelayComponentReducer
+      relays: RelayComponentReducer,
+      tempHumSensors: TemperatureHumidityComponentReducer
     })
   ],
   exports: [
