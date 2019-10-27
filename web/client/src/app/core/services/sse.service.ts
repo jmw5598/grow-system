@@ -13,6 +13,8 @@ import { SystemNode } from '../store/models/system-node.model';
 import { UpdateSystemNodeAction } from '../store/actions/system-node.actions';
 
 import { environment } from '@env/environment';
+import { UpdateRelayComponentAction } from '@core/store/actions/realy.actions';
+import { RelayComponent } from '@core/store';
 
 @Injectable({
   providedIn: 'root'
@@ -60,28 +62,29 @@ export class SseService implements OnDestroy {
 
     switch(message.event) {
       case EventMessageType.NODE_STATE_CHANGED:
-        const node: SystemNode = {
-          id: message.payload.id,
-          name: message.payload.name,
-          details: message.payload.details,
-          status: message.payload.status
-        }
-
-        this._store.dispatch(new UpdateSystemNodeAction(node));
+        this._store.dispatch(
+          new UpdateSystemNodeAction(message.payload as SystemNode));
         break;
+      
       case EventMessageType.NOTIFICATION:
         console.log('new notificaiton event!');
         break;
+      
       case EventMessageType.RELAY_STATE_CHANGED:
-        console.log('new relay state change event!');
+        console.log("recieved new relay state chagne event!!!!!!")
+        this._store.dispatch(
+          new UpdateRelayComponentAction(message.payload as RelayComponent));
         break;
+      
       case EventMessageType.TEMPHUM_STATE_CHANGED:
         console.log('new temphum state change event!');
         break;
+      
       case EventMessageType.SYSTEM_CURRENT_STATE:
         console.log('new system current state event');
         break;
-      default:
+      
+        default:
         console.log('received unrecognized event');
         break;
     }
