@@ -9,8 +9,8 @@ export function SystemNodeReducer(state: SystemNode[] = initialState, action: Sy
       console.log(action);
       return [];
     case SystemNodeActionTypes.UPDATE_SYSTEM_NODE:
-      console.log(action);
-      return [];
+      console.log(action); 
+      return [action.payload];
     default: 
       return state;
   }
