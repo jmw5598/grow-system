@@ -1,0 +1,109 @@
+<div class="card" >
+  <div class="card-body m-0 p-2">
+    <h4 class="mb-1">System Node Information</h4>
+
+    <ul class="system-node-details">
+
+      <!-- Overview Details -->
+      <li class="details-section">
+        <label class="details-section-header mb-1">Overview</label>
+        <ul>
+          <li>
+            <label>State</label>
+            <span>
+              <span class="status-dot" 
+                  [ngClass]="{ 'bg-primary' : node?.status?.state === 'online', 'bg-danger' : node?.status?.state === 'offline'}"></span>
+                {{ (node?.status?.state | titlecase) || 'NA' }}
+              </span>
+          </li>
+          <li>
+            <label>Uptime</label>
+            <span>{{ toHoursMinutesSeconds(node?.details?.uptime) || 'NA' }}</span>
+          </li>
+          <li>
+            <label>Heartbeat</label>
+            <span>{{ (node?.status?.timestamp | date:'medium') || 'NA' }}</span>
+          </li>
+          <li>
+            <label>Name</label>
+            <span>{{ (node?.name | titlecase) || 'NA' }}</span>
+          </li>
+        </ul>
+      </li>
+
+      <!-- Operating System Details -->
+      <li class="details-section">
+        <label class="details-section-header mb-1">Operating System</label>
+        <ul>
+          <li>
+            <label>Platform</label>
+            <span>{{ (node?.details?.platform | titlecase) || 'NA' }}</span>
+          </li>
+          <li>
+            <label>Release</label>
+            <span>{{ (node?.details?.release | uppercase) || 'NA' }}</span>
+          </li>
+          <li>
+            <label>Architecture</label>
+            <span>{{ node?.details?.arch || 'NA' }}</span>
+          </li>
+        </ul>
+      </li>
+
+      <!-- Network Details -->
+      <li class="details-section">
+        <label class="details-section-header mb-1">Network</label>
+        <ul>
+          <li>
+            <label>Hostname</label>
+            <span>{{ (node?.details?.hostname | uppercase) || 'NA' }}</span>
+          </li>
+        </ul>
+      </li>
+
+      <!-- CPU Load Details -->
+      <li class="details-section">
+        <label class="details-section-header mb-1">CPU Load</label>
+        <div class="cpu-circles">
+          <ng-container *ngFor="let cpu of node?.details?.cpus; let i = index">
+            <div  class="cpu-core-circle">
+              <gs-chart-percentage-circle
+                  [title]="'Core ' + (i + 1)"
+                  [color]="StrokeColor.PRIMARY"
+                  [value]="calcCoreLoad(cpu)"
+                  [unit]="'%'">
+              </gs-chart-percentage-circle>
+            </div>
+          </ng-container>
+      </div>
+      </li>
+
+      <!-- Memory Usage Details -->
+      <li class="details-section">
+        <label class="details-section-header mb-1">Memory Usage</label>
+        <ul>
+          <li class="d-block">
+            <!-- Make this a reusable component-->
+            <gs-chart-percentage-line
+                [value]="calcFreeMemPercent(node)"
+                [color]="ChartColor.INFO">
+            </gs-chart-percentage-line>
+          </li>
+          <li>
+            <label>Used</label>
+            <span>{{ (toMegabytes(node?.details?.totalmem - node?.details?.freemem)) || 'NA' }}</span>
+          </li>
+          <li>
+            <label>Free</label>
+            <span>{{ (toMegabytes(node?.details?.freemem)) || 'NA' }}</span>
+          </li>
+          <li>
+            <label>Total</label>
+            <span>{{ (toMegabytes(node?.details?.totalmem)) || 'NA' }}</span>
+          </li>
+        </ul>
+      </li>
+
+    </ul>
+  </div>
+</div>

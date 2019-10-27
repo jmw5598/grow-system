@@ -1,0 +1,38 @@
+@import '../../../../../assets/scss/theme/grow/variables';
+
+.system-node-details {
+  .details-section {
+    margin-bottom: 1rem;
+
+    .details-section-header {
+      background: darken($gray-200, 5);
+      font-size: 0.8rem;
+      text-transform: uppercase;
+    }
+    
+    ul {
+      li {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        font-size: 0.8rem;
+        margin: 0.2rem 0;
+
+        .status-dot {
+          display: inline-block;
+          width: 10px;
+          height: 10px;
+          border-radius: 10px;
+        }
+      }
+    }
+
+    .cpu-circles {
+      .cpu-core-circle {
+        display: inline-block !important;
+        width: 25% !important;
+      }
+    }
+
+  }
+}
