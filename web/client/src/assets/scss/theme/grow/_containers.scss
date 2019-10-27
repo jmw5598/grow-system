@@ -2,3 +2,8 @@
   max-width: 1024px;
   margin: auto;
 }
+
+.row {
+  display: flex;
+  flex-direction: row;
+}
