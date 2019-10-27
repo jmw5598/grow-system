@@ -1,17 +1,10 @@
 .toggle-switch {
-
-  .toggle-label {
-    float: left;
-  }
-
-  .toggle-toggle {
-    float: right;
-  }
-
-  &::after {
-    content: ' ';
-    display: block;
-    clear: both;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  
+  label {
+    font-size: 0.8rem;
   }
 
 }
