@@ -16,12 +16,7 @@
     left: 0;
     min-height: 6px;
     border-radius: 6px;
-    // animation: fillbar 1s ease-out forwards;
+    transition: all 500ms ease;
+    transition-property: width, background;
   }
 }
-
-// @keyframes fillbar {
-//   0% {
-//     width: 0;
-//   }
-// }
