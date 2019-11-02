@@ -12,15 +12,24 @@ export class ChartPercentageLineComponent implements OnInit {
   public value: number;
 
   @Input()
+  public max: number;
+
+  @Input()
   public color: ChartColor;
 
   constructor() {
     this.value = 0;
+    this.max = 100;
     this.color = ChartColor.INFO;
   }
 
   ngOnInit() {
-    console.log(this.color);
+
+  }
+
+  determineWidth() {
+    console.log(((this.value / this.max) * 100).toFixed(0));
+    return ((this.value / this.max) * 100).toFixed(0);
   }
 
 }
