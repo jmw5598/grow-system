@@ -28,7 +28,6 @@ export class ChartPercentageLineComponent implements OnInit {
   }
 
   determineWidth() {
-    console.log(((this.value / this.max) * 100).toFixed(0));
     return ((this.value / this.max) * 100).toFixed(0);
   }
 
