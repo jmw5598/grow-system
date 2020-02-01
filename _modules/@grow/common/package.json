@@ -1,0 +1,19 @@
+{
+  "name": "@grow/common",
+  "version": "1.0.0",
+  "description": "",
+  "main": "dist/@grow/common/index.js",
+  "types": "dist/@grow/common/index.d.ts",
+  "scripts": {
+    "build": "tsc",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "typescript": "^3.7.5"
+  },
+  "dependencies": {
+    "rxjs": "^6.5.4"
+  }
+}
