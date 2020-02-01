@@ -15,6 +15,7 @@
         "system/system/command/ping",
         "system/system/command/status",
         "system/system/event/status",
+        "system/system/status",
         "system/node/register",
         "system/node/registered",
         "system/node/status",

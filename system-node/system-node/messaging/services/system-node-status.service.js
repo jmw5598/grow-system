@@ -21,7 +21,7 @@ class SystemNodeStatuService {
     this.interval = setInterval(() => {
       if(!this.config || !this.config.node) return;
 
-      let nodeState = { id: this.config.node.id };
+      let nodeState = { id: this.config.node.id, name: this.config.node.name };
       nodeState.details = this._generateSystemDetails();
       nodeState.status = {
         state: 'online',

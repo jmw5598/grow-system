@@ -5,6 +5,7 @@ const SystemCommandMessageRouter = require('./system/system-command-message.rout
 const SystemEventMessageRouter = require('./system/system-event-message.router');
 const SystemMessageRouter = require('./system/system-message.router');
 const SystemNodeMessageRouter = require('./system-node/system-node-message.router');
+const SystemSchedulerMessageRouter = require('./system-scheduler/system-scheduler.router');
 
 MqttMessageRouter.routes.system.channel
   .subscribe(message => SystemMessageRouter.route(message));
@@ -23,5 +24,6 @@ module.exports = {
   SystemCommandMessageRouter,
   SystemEventMessageRouter,
   SystemMessageRouter,
-  SystemNodeMessageRouter
+  SystemNodeMessageRouter,
+  SystemSchedulerMessageRouter
 }

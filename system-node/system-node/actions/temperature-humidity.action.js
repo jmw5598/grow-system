@@ -50,20 +50,29 @@ class TemperatureHumidityAction {
     if(temperature > this.config.preferences.threshold.max || temperature < this.config.preferences.threshold.min) {
       const text = `[${this.node.name}][${this.config.alias}] - Temperature went beyond threshold`;
       const componentState = this._buildState(temperature, humidity, text);
-      const event = new EventMessage(EventMessageType.NOTIFICATION, componentState);
-      const notification = new MqttMessage('system/node/event/notification', this.buildMessage(temperature, humidity));
+      //const event = new EventMessage(EventMessageType.NOTIFICATION, componentState);
+      //const notification = new MqttMessage('system/node/event/notification', this.buildMessage(temperature, humidity));
       
-      MqttGateway.outbound(notification);
+      //MqttGateway.outbound(notification);
     }
   }
 
   _buildState(temperature, humidity, message) {
     return { 
+      id: this.config.id,
+      alias: this.config.alias,
+      preferences: this.config.preferences,
+      type: this.config.type,
+      details: {
+        temperature: temperature,
+        humidity: humidity,
+        timestamp: new Date()
+      },
+      status: {
+        state: 'started',
+        timestamp: new Date()
+      },
       nodeId: this.node.id, 
-      componentId: this.config.id, 
-      temperature: temperature,
-      humidity: humidity,
-      message: message
     }
   }
 

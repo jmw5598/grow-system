@@ -47,13 +47,41 @@ class SystemNodeStatusService {
           this.logger.warn(`Unresponsive node (${n.name} : ${n.status.timestamp})`);
           n.status = { state: 'offline', timestamp: new Date() };
           this._sendStatus(n);
+          this._notify(n)
         }
       });
     }, 1000)
   }
 
   _sendStatus(node) {
-    const outbound = new MqttMessage(`web/node/event/status`, node);
+    const message = {
+      event: 'NODE_STATE_CHANGED',
+      payload: {
+        id: node.id,
+        name: node.name,
+        details: node.details,
+        status: node.status
+      }
+    }
+    
+    const outbound = new MqttMessage(`web/node/event/status`, message);
+    MqttGateway.outbound(outbound);
+  }
+
+  _notify(node) {
+
+    // NEED TO copy over event-message-type.model form system node for _sendStatus);
+    // NEED TO create Noticiation type (INFO, SUCCESS, WARNING, DANGER)
+
+    const message = {
+      event: 'NOTIFICATION',
+      payload: {
+        type: 'DANGER',
+        message: `System node, ${node.name}, is unresponsive!`
+      }
+    }
+
+    const outbound = new MqttMessage(`web/node/event/notification`, message);
     MqttGateway.outbound(outbound);
   }
   

@@ -1,0 +1,33 @@
+{
+  "system": {
+    "mqtt": {
+      "gateway": {
+        "uri": "mqtt://192.168.1.15",
+        "username": "",
+        "password": ""
+      },
+      "options": {
+        "qos": 2
+      },
+      "topics": {
+        "subscriptions": [
+          "node/0/register",
+          "node/{id}/task/create",
+          "node/{id}/task/update",
+          "node/{id}/task/delete",
+          "node/{id}/schedule/retrieve",
+          "node/{id}/status",
+          "node/{id}/ping"
+        ]
+      }
+    }
+  },
+  "scheduler": {
+    "id": "19291",
+    "name": "System Toggle Scheduler",
+    "description": "Handles schedules for toggling components on/off",
+    "tasks": [
+      
+    ]
+  }
+}

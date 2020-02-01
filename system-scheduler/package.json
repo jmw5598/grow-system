@@ -1,8 +1,8 @@
 {
-  "name": "system-node",
+  "name": "system-scheduler",
   "version": "1.0.0",
-  "description": "A single Raspberry Pi node that receives message from the System router",
-  "main": "system-node.js",
+  "description": "A single Raspberry Pi node that handles automated tasks for system-nodes",
+  "main": "index.js",
   "scripts": {
     "test-init": "./node_modules/jasmine/bin/jasmine.js init",
     "test": "./node_modules/jasmine/bin/jasmine.js"
@@ -17,9 +17,8 @@
   "author": "Jason White",
   "license": "ISC",
   "dependencies": {
-    "mmm-usonic-fixed": "^2.5.4",
+    "@grow/common": "file:../_modules/@grow/common",
     "mqtt": "^2.18.8",
-    "onoff": "^3.2.6",
     "rxjs": "^6.5.3",
     "rxjs-compat": "^6.5.3",
     "shortid": "^2.2.15"
