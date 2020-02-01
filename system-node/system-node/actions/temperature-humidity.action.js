@@ -1,11 +1,9 @@
 'use strict';
 
-const DHTSensor = require('node-dht-sensor');
-const EventMessage = require('../messaging/models').EventMessage;
-const EventMessageType = require('../messaging/models').EventMessageType;
-const Logger = require('../utilities').Logger;
+//const DHTSensor = require('node-dht-sensor');
 const MqttGateway = require('../messaging/gateways/mqtt.gateway');
-const MqttMessage = require('../messaging/models').MqttMessage;
+
+const { EventMessage, EventMessageType, Logger, MqttMessage } = require('@grow/common');
 
 class TemperatureHumidityAction {
 
@@ -18,11 +16,11 @@ class TemperatureHumidityAction {
 
   start() {
     this.interval = setInterval(() => {
-      DHTSensor.read(22, this.config.pin, (error, temperature, humidity) => {
-        if(!error) {
-          this._notify(temperature, humidity);
-        }
-      });
+      // DHTSensor.read(22, this.config.pin, (error, temperature, humidity) => {
+      //   if(!error) {
+      //     this._notify(temperature, humidity);
+      //   }
+      // });
     }, this.config.preferences.interval);
   }
 

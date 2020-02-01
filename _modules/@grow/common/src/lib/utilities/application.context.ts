@@ -1,10 +1,21 @@
-import { BehaviorSubject } from 'rxjs'; //require('rxjs');
+import { BehaviorSubject } from 'rxjs';
 
-class ApplicationContext {
+export class ApplicationContext {
 
+  private static instance: ApplicationContext;
   private _context: any;
 
-  constructor() {}
+  private constructor() {
+    this._context = {};
+  }
+
+  public static getInstance(): ApplicationContext {
+    if (!ApplicationContext.instance) {
+      ApplicationContext.instance = new ApplicationContext();
+    }
+
+    return ApplicationContext.instance;
+  }
 
   setItem(key: string, value: any) {
     if (this._context.hasOwnProperty(key)) {
@@ -29,5 +40,3 @@ class ApplicationContext {
   }
 
 }
-
-export const AppContext = new ApplicationContext();

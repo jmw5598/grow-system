@@ -17,7 +17,7 @@
   "author": "Jason White",
   "license": "ISC",
   "dependencies": {
-    "mmm-usonic-fixed": "^2.5.4",
+    "@grow/common": "file:../_modules/@grow/common",
     "mqtt": "^2.18.8",
     "onoff": "^3.2.6",
     "rxjs": "^6.5.3",

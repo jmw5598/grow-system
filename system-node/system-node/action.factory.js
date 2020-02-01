@@ -1,6 +1,6 @@
 'use strict';
 
-const Logger = require('./utilities').Logger;
+const { Logger } = require('@grow/common');
 const RelayAction = require('./actions/relay.action');
 const TemperatureHumidityAction = require('./actions/temperature-humidity.action');
 

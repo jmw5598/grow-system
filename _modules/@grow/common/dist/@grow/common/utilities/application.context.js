@@ -1,8 +1,16 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-const rxjs_1 = require("rxjs"); //require('rxjs');
+const rxjs_1 = require("rxjs");
 class ApplicationContext {
-    constructor() { }
+    constructor() {
+        this._context = {};
+    }
+    static getInstance() {
+        if (!ApplicationContext.instance) {
+            ApplicationContext.instance = new ApplicationContext();
+        }
+        return ApplicationContext.instance;
+    }
     setItem(key, value) {
         if (this._context.hasOwnProperty(key)) {
             this._context[key].data = value;
@@ -26,4 +34,4 @@ class ApplicationContext {
         }
     }
 }
-exports.AppContext = new ApplicationContext();
+exports.ApplicationContext = ApplicationContext;

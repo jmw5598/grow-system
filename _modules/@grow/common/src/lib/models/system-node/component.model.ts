@@ -1,11 +1,11 @@
-import { ComponentType } from './component-type.enum';
+import { IComponentType } from './component-type.interface';
 import { PinState } from './pin-state.enum';
 
 export class Component {
   constructor(
     public id: string, 
     public alias: string,
-    public type: ComponentType,
+    public type: IComponentType,
     public pin: number, 
     public state: PinState, 
     // @@@ Create preferences class for each kind 

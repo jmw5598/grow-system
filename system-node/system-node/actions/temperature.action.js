@@ -1,6 +1,6 @@
 'use strict';
 
-const Logger = require('../utilities').Logger;
+const { Logger } = require('@grow/common');
 const { MqttGateway } = require('../messaging');
 
 class TemperatureAction {

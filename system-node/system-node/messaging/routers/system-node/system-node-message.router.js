@@ -1,7 +1,6 @@
 'use strict';
 
-const MessageRoute = require('../../models').MessageRoute;
-const MessageRouter = require('../message.router');
+const { MessageRoute, MessageRouter } = require('@grow/common');
 
 const SystemNodeMessageRouter = new MessageRouter();
 

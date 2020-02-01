@@ -1,13 +1,13 @@
 'use strict';
 
 require('./messaging');
-require('./utilities');
 require('./services');
 require('./actions');
 
+const { MqttMessage } = require('@grow/common');
+
 const ApplicationContext = require('./application.context');
 const MqttGateway = require('./messaging').MqttGateway;
-const MqttMessage = require('./messaging/models').MqttMessage;
 const ActionFactory = require('./action.factory');
 
 class SystemNode {

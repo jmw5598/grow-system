@@ -1,11 +1,9 @@
 'use strict';
 
-const EventMessage = require('../messaging/models').EventMessage;
-const EventMessageType = require('../messaging/models/event-message-type.model');
-const Gpio = require('onoff').Gpio;
-const Logger = require('../utilities').Logger;
+//const Gpio = require('onoff').Gpio;
 const MqttGateway = require('../messaging/gateways/mqtt.gateway');
-const MqttMessage = require('../messaging/models').MqttMessage;
+
+const { EventMessage, EventMessageType, MqttMessage, Logger } = require('@grow/common');
 
 class RelayAction {
 
@@ -13,8 +11,8 @@ class RelayAction {
     this.node = node; 
     this.config = config;
     this.logger = new Logger(this.constructor.name);
-    this.relay = new Gpio(this.config.pin, 'out');
-    this.toggle('off');
+    //this.relay = new Gpio(this.config.pin, 'out');
+    //this.toggle('off');
   }
 
   toggle(state) {
@@ -22,11 +20,11 @@ class RelayAction {
     switch(state.toLowerCase()) {
       case 'on':
         this.config.state = state.toLowerCase();
-        this.relay.writeSync(0, this._notify(state));
+        //this.relay.writeSync(0, this._notify(state));
         break;
       case 'off':
         this.config.state = state.toLowerCase();
-        this.relay.writeSync(1, this._notify(state));
+        //this.relay.writeSync(1, this._notify(state));
         break;
       default:
         console.log('[System-Node] RelayAction::State not recognized');

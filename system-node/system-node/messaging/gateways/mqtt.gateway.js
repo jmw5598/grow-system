@@ -2,8 +2,7 @@
 
 const Rx = require('rxjs');
 const mqtt = require('mqtt');
-const Logger = require('../../utilities').Logger;
-const MqttMessage = require('../models').MqttMessage;
+const { MqttMessage, Logger } = require('@grow/common');
 
 class MqttGateway {
 

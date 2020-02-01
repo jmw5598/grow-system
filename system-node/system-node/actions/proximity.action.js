@@ -1,7 +1,8 @@
 'use strict';
 
-const usonic = require('mmm-usonic-fixed');
-const Logger = require('../utilities').Logger;
+//const usonic = require('mmm-usonic-fixed');
+
+const { Logger } = require('@grow/common');
 
 class ProximityAction {
 
