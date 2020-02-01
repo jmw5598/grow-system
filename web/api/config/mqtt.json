@@ -10,8 +10,8 @@
     },
     "topics": {
       "subscriptions": [
-        "web/system/state",
         "web/system/event/nodes",
+        "web/system/event/status",
         "web/system-node/state",
         "web/node/event",
         "web/node/event/humidity",

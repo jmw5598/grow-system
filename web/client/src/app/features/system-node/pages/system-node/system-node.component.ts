@@ -1,10 +1,15 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
+import { Observable } from 'rxjs';
 
 import { FadeAnimation } from '@shared/animations';
 
 import { ModalOptions, ModalType, ModalSize } from '@shared/components';
 import { ToasterService, ToastType } from '@core/components';
 import { RelayService } from '@core/services';
+
+import { Store } from '@ngrx/store';
+import { AppState, SystemNode, RelayComponent, TemperatureHumidityComponent } from '@core/store';
 
 @Component({
   selector: 'gs-system-node',
@@ -20,51 +25,36 @@ export class SystemNodeComponent implements OnInit {
     size: ModalSize.MEDIUM
   }
 
-  public toastCount: number = 0;
-
-  public relays: any = [
-    {
-      id: '1234',
-      alias: 'Nutrient Pump',
-      state: 'off',
-    },
-    {
-      id: '1235',
-      alias: 'Exhaust Fan',
-      state: 'on'
-    },
-    {
-      id: '1236',
-      alias: 'Light',
-      state: 'on',
-    },
-    {
-      id: '1237',
-      alias: 'Circulation Fan',
-      state: 'off'
-    }
-  ];
+  public node: SystemNode;
+  public relays: RelayComponent[];
+  public tempHumSensors: TemperatureHumidityComponent[];
 
   constructor(
+    private _route: ActivatedRoute,
     private _relayService: RelayService,
-    private _toaster: ToasterService
+    private _toaster: ToasterService,
+    private _store: Store<AppState>
   ) { }
 
   ngOnInit() {
-  }
+    const id = this._route.snapshot.params['id'];
+    
+    this._store.select(e => e.nodes)
+      .subscribe(e => this.node = e.find(n => n.id === id));
 
-  sendToast() {
-    const types = [ToastType.DEFAULT, ToastType.SUCCESS, ToastType.INFO, ToastType.WARNING, ToastType.DANGER];
-    this._toaster.toast("Testing", "THis is a test message", types[this.toastCount % types.length], 2000);
-    this.toastCount++;
+    this._store.select(e => e.relays)
+      .subscribe(e => {
+        this.relays =  e.filter(c => c.nodeId === id);
+        console.log("relays", e); 
+      });
+
+    // e in sub is undefined to start when it should be []?????
+    this._store.select(e => e.tempHumSensors)
+      .subscribe(e => this.tempHumSensors = e.filter(s => s.nodeId === id));
   }
 
   showModal() {
     this.options.isShown = true;
-  }
-
-  toggle(relay) {
-    
   }
 
 }

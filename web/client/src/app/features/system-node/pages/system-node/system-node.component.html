@@ -1,17 +1,16 @@
 <div [@fadeAnimation]>
   <!-- MAIN CONTENT : CENTER -->
-  <div class="container-fluid" column-two>
-    <div class="row mb-3 mt-3 ml-3 mr-3">
-      <div class="col-sm-12">
-        <gs-relay-group [relays]="relays"></gs-relay-group>
-        <button class="btn btn-primary m-1" role="button" type="button" (click)="sendToast()">Toast</button>
-        <button class="btn btn-info" role="button" type="button" (click)="showModal()">Modal</button>
-      </div>
-    </div>
+  <div class="container-fluid">
     <div class="row">
-      <div class="col">
-        <div class="card card-body m-1" style="width: 500px;">
-          <gs-component-form-add></gs-component-form-add>
+      <div class="col m-2" style="width: 300px;">
+        <gs-tile-system-node-details [node]="node"></gs-tile-system-node-details>
+      </div>
+      <div class="col m-2" style="width: 300px;">
+        <gs-tile-relays [relays]="relays"></gs-tile-relays>
+      </div>
+      <div class="col m-2" style="width: 300px;">
+        <div *ngFor="let sensor of tempHumSensors">
+          <gs-tile-temphum [sensor]="sensor"></gs-tile-temphum>
         </div>
       </div>
     </div>

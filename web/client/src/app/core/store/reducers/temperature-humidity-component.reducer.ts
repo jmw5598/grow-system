@@ -6,11 +6,14 @@ const initialState = [];
 export function TemperatureHumidityComponentReducer(state: TemperatureHumidityComponent[] = initialState, action: TemperatureHumidityComponentAction) {
   switch(action.type) {
     case TemperatureHumidityComponentActionTypes.ADD_SENSOR:
-      console.log(action);
       return [];
     case TemperatureHumidityComponentActionTypes.UPDATE_SENSOR:
-      console.log(action);
-      return [];
+      const current = state.find(e => e.id === action.payload.id);
+      if (current) 
+        Object.assign(current, action.payload);
+      else 
+        state.push(action.payload);
+      return [...state];
     default:
       return state;
   }

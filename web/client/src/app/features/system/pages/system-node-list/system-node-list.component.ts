@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Observable } from 'rxjs';
 import { Store } from '@ngrx/store';
 
 import { AppState, SystemNode, AddSystemNodeAction, UpdateSystemNodeAction } from '@core/store';
@@ -12,36 +13,20 @@ import { FadeAnimation } from '@shared/animations';
 })
 export class SystemNodeListComponent implements OnInit {
 
-  public nodes: any = [
-    {
-      id: '1234',
-      alias: "Pepper Dutch Buckets",
-      imgUrl: "http://localhost:4200/assets/img/mock/hydro-peppers.png"
-    },
-    {
-      id: '1235',
-      alias: "Basement Herbs",
-      imgUrl: "http://localhost:4200/assets/img/mock/hydro-basil.png"
-    },
-    {
-      id: '1236',
-      alias: "Lettuces Hydroponics",
-      imgUrl: "http://localhost:4200/assets/img/mock/hydro-lettuce.png"
-    }
-  ]
-
-  constructor(private store: Store<AppState>) { }
+  public nodes$: Observable<SystemNode[]>;
+  
+  constructor(private _store: Store<AppState>) { }
 
   ngOnInit() {
-    this.store.select(e => e.nodes)
-      .subscribe(message => console.log("recieved new state!", message));
+    this.nodes$ = this._store.select(e => e.nodes);
+    console.log(this.nodes$);
   }
 
   update() {
     let node: SystemNode = new SystemNode();
 
-    this.store.dispatch(new AddSystemNodeAction(node));
-    this.store.dispatch(new UpdateSystemNodeAction(node));
+    this._store.dispatch(new AddSystemNodeAction(node));
+    this._store.dispatch(new UpdateSystemNodeAction(node));
   }
 
 }

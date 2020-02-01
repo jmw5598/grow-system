@@ -11,6 +11,9 @@ import { PreferencesFormRelayComponent } from './components/preferences-form-rel
 import { PreferencesFormProximityComponent } from './components/preferences-form-proximity/preferences-form-proximity.component';
 import { RelayGroupComponent } from './components/relay-group/relay-group.component';
 import { SystemNodeComponent } from './pages/system-node/system-node.component';
+import { TileSystemNodeDetailsComponent } from './components/tile-system-node-details/tile-system-node-details.component';
+import { TileRelaysComponent } from './components/tile-relays/tile-relays.component';
+import { TileTemphumComponent } from './components/tile-temphum/tile-temphum.component';
 
 
 @NgModule({
@@ -20,7 +23,10 @@ import { SystemNodeComponent } from './pages/system-node/system-node.component';
     PreferencesFormRelayComponent,
     PreferencesFormProximityComponent,
     RelayGroupComponent,
-    SystemNodeComponent
+    SystemNodeComponent,
+    TileSystemNodeDetailsComponent,
+    TileRelaysComponent,
+    TileTemphumComponent
   ],
   imports: [
     CommonModule,

@@ -7,6 +7,7 @@ import { AppState } from '../store/app.state';
 import { AuthenticationService } from './authentication.service';
 import { EventMessageType } from '../models/event-message-type.enum';
 import { EventMessage } from '../models/event-message.model';
+import { ToasterService, ToastMessage, ToastType } from '../components';
 
 import { Token } from '../models';
 import { SystemNode } from '../store/models/system-node.model';
@@ -14,7 +15,7 @@ import { UpdateSystemNodeAction } from '../store/actions/system-node.actions';
 
 import { environment } from '@env/environment';
 import { UpdateRelayComponentAction } from '@core/store/actions/realy.actions';
-import { RelayComponent } from '@core/store';
+import { RelayComponent, UpdateTemperatureHumidityComponentAction, TemperatureHumidityComponent } from '@core/store';
 
 @Injectable({
   providedIn: 'root'
@@ -32,7 +33,11 @@ export class SseService implements OnDestroy {
 
   public message = this._messageSource.asObservable();
 
-  constructor(private _store: Store<AppState>, private _authenticationService: AuthenticationService) {
+  constructor(
+    private _store: Store<AppState>, 
+    private _authenticationService: AuthenticationService,
+    private _toasterService: ToasterService
+  ) {
     this._base = this._environment.api.baseUrl;
     this.zone = new NgZone({enableLongStackTrace: false});
     this._authenticationService.isAuthenticated
@@ -58,8 +63,6 @@ export class SseService implements OnDestroy {
   }
 
   private _process(message: EventMessage) {
-    console.log('processing message', message);
-
     switch(message.event) {
       case EventMessageType.NODE_STATE_CHANGED:
         this._store.dispatch(
@@ -67,17 +70,18 @@ export class SseService implements OnDestroy {
         break;
       
       case EventMessageType.NOTIFICATION:
-        console.log('new notificaiton event!');
+        // Need to check NoticationType and use appropriate toast type.
+        this._toasterService.toast(null, message.payload.message, ToastType.DANGER, 2000);
         break;
       
       case EventMessageType.RELAY_STATE_CHANGED:
-        console.log("recieved new relay state chagne event!!!!!!")
         this._store.dispatch(
           new UpdateRelayComponentAction(message.payload as RelayComponent));
         break;
       
       case EventMessageType.TEMPHUM_STATE_CHANGED:
-        console.log('new temphum state change event!');
+        this._store.dispatch(
+          new UpdateTemperatureHumidityComponentAction(message.payload as TemperatureHumidityComponent));
         break;
       
       case EventMessageType.SYSTEM_CURRENT_STATE:

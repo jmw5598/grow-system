@@ -1,9 +1,15 @@
-<div class="container p-1" [@fadeAnimation]>
-  <div class="chip-group chip-group-horizontal">
-    <ng-container *ngFor="let details of nodes">
+<div class="container p-1">
+  
+  <div *ngIf="(nodes$ | async).length > 0" class="chip-group chip-group-horizontal" [@fadeAnimation]>
+    <ng-container *ngFor="let details of nodes$ | async">
       <div class="chip-item">
         <gs-system-node-details [details]="details"></gs-system-node-details>
       </div>
     </ng-container>
   </div>
+
+  <div *ngIf="(nodes$ | async).length <= 0" class="alert alert-info">
+    <span class="text-info">There currently are no connected system nodes</span>
+  </div>
+
 </div>

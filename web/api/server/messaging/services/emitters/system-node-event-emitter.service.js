@@ -1,8 +1,10 @@
 'use strict';
 
 require('rxjs/add/observable/merge');
+
 const Rx = require('rxjs');
 const Logger = require('../../../utilities').Logger;
+const SystemEventMessageRouter = require('../../routers').SystemEventMessageRouter;
 const SystemNodeEventMessageRouter = require('../../routers').SystemNodeEventMessageRouter;
 const SseEmitterService = require('../../../services').SseEmitterService;
 
@@ -11,6 +13,7 @@ class SystemNodeEventEmitterService {
   constructor() {
     this.logger = new Logger(this.constructor.name);
     Rx.Observable.merge(
+      SystemEventMessageRouter.routes.status.channel,
       SystemNodeEventMessageRouter.routes.humidity.channel,
       SystemNodeEventMessageRouter.routes.moisture.channel,
       SystemNodeEventMessageRouter.routes.notification.channel,
@@ -23,7 +26,7 @@ class SystemNodeEventEmitterService {
   }
 
   emit(message) {
-    this.logger.debug(`Emitting new event ${message.topic}`);
+    this.logger.debug(`Emitting new event ${message.message}`);
     SseEmitterService.emit(message.message);
   }
 

@@ -1,0 +1,21 @@
+<div class="card">
+  <div class="card-body m-0 p-2">
+    <h4 class="mb-1">{{ sensor.alias || 'NA' }}</h4>
+    <ul *ngIf="sensor">
+      <li>
+        <gs-chart-percentage-line
+            [value]="toInteger(sensor.details.humidity)"
+            [max]="100"
+            [color]="generateChartColor()">
+        </gs-chart-percentage-line>
+      </li>
+    </ul>
+    <div class="alert alert-info" *ngIf="!sensor">
+      <span class="text-info">There is no sensor information to dispaly.</span>
+    </div>
+  </div>
+</div>
+
+<pre>
+  {{ sensor | json }}
+</pre>

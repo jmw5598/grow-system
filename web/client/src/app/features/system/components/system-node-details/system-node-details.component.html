@@ -1,9 +1,14 @@
-<div class="system-node-details">
-  <img class="mb-1" [src]="details.imgUrl" />
-  <h4 class="text-center mb-1">{{ details.alias }}</h4>
+<div class="system-node-details" *ngIf="details">
+  <img class="mb-1" src="http://localhost:4200/assets/img/mock/hydro-peppers.png" />
+  <h4 class="text-center mb-1">{{ details.name }}</h4>
   <div class="status mb-1 text-center m-auto">
     <label class="mr-1">Status:</label>
-    <div class="badge badge-primary badge-pill text-center">Online</div>
+    <div class="badge badge-primary badge-pill text-center"
+        [ngClass]="{'badge-primary' : details?.status.state === 'online', 'badge-danger' : details?.status?.state === 'offline'}">{{ details?.status?.state | titlecase }}</div>
   </div>
   <a class="btn btn-info" [routerLink]="['/system-node', details.id]">View</a>
+</div>
+
+<div class="system-node-details" *ngIf="!details">
+  Currently no nodes connected
 </div>
