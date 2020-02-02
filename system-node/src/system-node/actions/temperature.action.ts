@@ -1,44 +1,50 @@
 'use strict';
 
-const { Logger } = require('@grow/common');
-const { MqttGateway } = require('../messaging');
+import { Component, Logger, MqttGateway, SystemNodeConfiguration } from "@grow/common";
 
 export class TemperatureAction {
 
-  constructor(node, config) {
-    this.node = node;
-    this.config = config;
-    this.logger = new Logger(this.constructor.name);
-    this.temperature = 0;
-    this.preferences = config.preferences;
+  private _node: SystemNodeConfiguration;
+  private _logger: Logger;
+  private _component: Component;
+  private _temperature: number;
+  private _preferences: any;
+  private _interval: any;
+
+  constructor(node: SystemNodeConfiguration, component: Component) {
+    this._node = node;
+    this._component = component;
+    this._logger = new Logger(this.constructor.name);
+    this._temperature = 0;
+    this._preferences = component.preferences;
     this.start();
   }
 
-  start() {
-    this.interval = setInterval(() => {
-      console.log('TemperatureAction::Alias::' + this.config.alias);
+  start(): void {
+    this._interval = setInterval(() => {
+      console.log('TemperatureAction::Alias::' + this._component.alias);
       console.log('TemperatureAction::Taking reading');
       console.log('TemperatureAction::Publishing reading');
-    }, this.config.preferences.interval);
+    }, this._component.preferences.interval);
   }
 
-  stop() {
-    if(this.interval)
-      clearInterval(this.interval);
+  stop(): void {
+    if(this._interval)
+      clearInterval(this._interval);
   }
 
-  setInterval(value) {
+  setInterval(value: number): void {
     this.stop();
-    this.config.preferences.interval = value;
+    this._component.preferences.interval = value;
     this.start();
   }
 
-  setThreshold(value) {
-    this.config.preferences.threshold = value;
+  setThreshold(value: number): void {
+    this._component.preferences.threshold = value;
   }
 
-  destroy() {
-    this.logger.debug(`Destroying temperature sensor, ${this.config.alias}`);
+  destroy(): void {
+    this._logger.debug(`Destroying temperature sensor, ${this._component.alias}`);
     this.stop();
   }
 

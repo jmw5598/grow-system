@@ -2,41 +2,41 @@ import { Component, Logger, MqttGateway, SystemNodeConfiguration } from '@grow/c
 
 export class HumidityAction {
 
-  private logger: Logger;
-  private node: SystemNodeConfiguration;
-  private config: Component;
-  private preferences: any;
+  private _logger: Logger;
+  private _node: SystemNodeConfiguration;
+  private _component: Component;
+  private _preferences: any;
 
-  private interval: any;
+  private _interval: any;
 
-  constructor(node: SystemNodeConfiguration, config: Component) {
-    this.node = node;
-    this.config = config
-    this.logger = new Logger(this.constructor.name);
+  constructor(node: SystemNodeConfiguration, component: Component) {
+    this._node = node;
+    this._component = component
+    this._logger = new Logger(this.constructor.name);
     this.start();
   }
 
   start(): void {
-    this.interval = setInterval(() => {
-      console.log('HumidityAction::Alias:' + this.config.alias);
+    this._interval = setInterval(() => {
+      console.log('HumidityAction::Alias:' + this._component.alias);
       console.log('HumidityAction::Taking reading');
       console.log('HumidityAction::Publishing reading');
-    }, this.preferences.interval)
+    }, this._preferences.interval)
   }
 
   stop(): void {
-    if(this.interval)
-      clearInterval(this.config.interval);
+    if(this._interval)
+      clearInterval(this._interval);
   }
 
   setInterval(value: number): void {
     this.stop();
-    this.config.preferences.interval = value;
+    this._component.preferences.interval = value;
     this.start();
   }
 
   setThreshold(value: number): void {
-    this.config.preferences.threshold = value;
+    this._component.preferences.threshold = value;
   }
 
   destroy(): void {

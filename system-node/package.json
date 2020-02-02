@@ -5,7 +5,8 @@
   "main": "system-node.js",
   "scripts": {
     "test-init": "./node_modules/jasmine/bin/jasmine.js init",
-    "test": "./node_modules/jasmine/bin/jasmine.js"
+    "test": "./node_modules/jasmine/bin/jasmine.js",
+    "build": "tsc"
   },
   "keywords": [
     "Hyrdoponics",
@@ -25,6 +26,7 @@
     "shortid": "^2.2.15"
   },
   "devDependencies": {
-    "jasmine": "^3.5.0"
+    "jasmine": "^3.5.0",
+    "typescript": "^3.7.5"
   }
 }

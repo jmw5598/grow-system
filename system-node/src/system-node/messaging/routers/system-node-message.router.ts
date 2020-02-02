@@ -8,4 +8,4 @@ router.setup([
   new MessageRoute('register', 'register')
 ]);
 
-const systemNodeMessageRouter: MessageRouter = router;
+export const systemNodeMessageRouter: MessageRouter = router;

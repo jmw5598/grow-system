@@ -1,10 +1,10 @@
-import { ComponentType } from '@grow/common';
+import { IComponentType } from '@grow/common';
 
 export class ComponentAction {
   constructor(
     public id: string, 
     public alias:string, 
-    public type: ComponentType,
+    public type: IComponentType,
     public pin: number
   ) {}
 }

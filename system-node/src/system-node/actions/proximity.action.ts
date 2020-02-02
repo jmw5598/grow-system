@@ -2,18 +2,18 @@
 
 //const usonic = require('mmm-usonic-fixed');
 
-import { Logger } from '@grow/common';
+import { Component, Logger, SystemNodeConfiguration } from '@grow/common';
 
 export class ProximityAction {
 
   private _logger: Logger;
   private _node: any;
-  private _config: any;
+  private _component: Component;
 
-  constructor(node, config) {
+  constructor(node:  SystemNodeConfiguration, component: Component) {
     this._logger = new Logger(this.constructor.name);
     this._node = node;
-    this._config = config;
+    this._component = component;
     //https://www.npmjs.com/package/mmm-usonic-fixed
   }
 
@@ -25,11 +25,11 @@ export class ProximityAction {
 
   }
 
-  setInterval(value): void {
+  setInterval(value: number): void {
 
   }
 
-  setThreshold(value): void {
+  setThreshold(value: number): void {
 
   }
 

@@ -8,13 +8,13 @@ export class TemperatureHumidityAction {
   private _logger: Logger;
   private _gateway: MqttGateway
   private _node: SystemNodeConfiguration;
-  private _config: Component;
+  private _component: Component;
   private _interval: any;
 
-  constructor(node: SystemNodeConfiguration, config: Component) {
+  constructor(node: SystemNodeConfiguration, component: Component) {
     this._gateway = MqttGateway.getInstance();
     this._node = node;
-    this._config = config;
+    this._component = component;
     this._logger = new Logger(this.constructor.name);
     this.start();
   }
@@ -26,7 +26,7 @@ export class TemperatureHumidityAction {
       //     this._notify(temperature, humidity);
       //   }
       // });
-    }, this._config.preferences.interval);
+    }, this._component.preferences.interval);
   }
 
   stop(): void {
@@ -36,11 +36,11 @@ export class TemperatureHumidityAction {
 
   setInterval(value: number): void {
     this.stop();
-    this._config.preferences.interval = value;
+    this._component.preferences.interval = value;
   }
 
   setThreshold(value: number): void {
-    this._config.preferences.threshold = value;
+    this._component.preferences.threshold = value;
   }
 
   _notify(temperature: number, humidity: number): void {
@@ -50,8 +50,8 @@ export class TemperatureHumidityAction {
 
     this._gateway.outbound(message);
 
-    if(temperature > this._config.preferences.threshold.max || temperature < this._config.preferences.threshold.min) {
-      const text = `[${this._node.name}][${this._config.alias}] - Temperature went beyond threshold`;
+    if(temperature > this._component.preferences.threshold.max || temperature < this._component.preferences.threshold.min) {
+      const text = `[${this._node.name}][${this._component.alias}] - Temperature went beyond threshold`;
       const componentState = this._buildState(temperature, humidity, text);
       //const event = new EventMessage(EventMessageType.NOTIFICATION, componentState);
       //const notification = new MqttMessage('system/node/event/notification', this.buildMessage(temperature, humidity));
@@ -62,10 +62,10 @@ export class TemperatureHumidityAction {
 
   _buildState(temperature: number, humidity: number, message: any): any {
     return { 
-      id: this._config.id,
-      alias: this._config.alias,
-      preferences: this._config.preferences,
-      type: this._config.type,
+      id: this._component.id,
+      alias: this._component.alias,
+      preferences: this._component.preferences,
+      type: this._component.type,
       details: {
         temperature: temperature,
         humidity: humidity,
@@ -80,7 +80,7 @@ export class TemperatureHumidityAction {
   }
 
   destroy(): void {
-    this._logger.debug(`Destroying temperature-humidity action, ${this.config.alias}`);
+    this._logger.debug(`Destroying temperature-humidity action, ${this._component.alias}`);
     this.stop();
   }
 

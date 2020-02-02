@@ -1,15 +1,12 @@
-const MqttMessageRouter = require('./mqtt/mqtt-message.router');
-const SystemNodeMessageRouter = require('./system-node/system-node-message.router');
-const SystemNodeCommandMessageRouter = require('./system-node/system-node-command-message.router');
+import { MqttMessage, MessageRouter } from '@grow/common';
+import { mqttMessageRouter } from './mqtt-message.router';
+import { systemNodeMessageRouter } from './system-node-message.router';
+import { systemNodeCommandMessageRouter } from './system-node-command-message.router';
 
-MqttMessageRouter.routes.node.channel
-  .subscribe(message => SystemNodeMessageRouter.route(message));
+mqttMessageRouter.routes.node.channel
+  .subscribe((message: MqttMessage) => systemNodeMessageRouter.route(message));
 
-SystemNodeMessageRouter.routes.command.channel
-  .subscribe(message => SystemNodeCommandMessageRouter.route(message));
+systemNodeMessageRouter.routes.command.channel
+  .subscribe((message: MqttMessage) => systemNodeCommandMessageRouter.route(message));
 
-module.exports = {
-  MqttMessageRouter,
-  SystemNodeMessageRouter,
-  SystemNodeCommandMessageRouter
-}
+export const inboundMessageRouter: MessageRouter = mqttMessageRouter;
