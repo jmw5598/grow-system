@@ -1,9 +1,9 @@
-import { BehaviorSubject } from 'rxjs';
+import { Observable } from 'rxjs';
+import { ContextValue } from '../models/context-value.model';
 
 export class ApplicationContext {
-
   private static instance: ApplicationContext;
-  private _context: any;
+  private _context: {[key: string]: ContextValue};
 
   private constructor() {
     this._context = {};
@@ -17,26 +17,22 @@ export class ApplicationContext {
     return ApplicationContext.instance;
   }
 
-  setItem(key: string, value: any): void {
+  public setItem(key: string, value: any): void {
     if (this._context.hasOwnProperty(key)) {
-      this._context[key].data = value;
-      this._context[key].source.next(value);
+      this._context[key].setValue(value);
     } else {
-      this._context[key] = { data: value };
-      this._context[key].source = new BehaviorSubject(this._context[key].data);
-      this._context[key].observable = this._context[key].source.asObservable();
+      const contextValue: ContextValue = new ContextValue(value);
+      this._context[key] = contextValue;
     }
   }
 
-  getItem(key: string): void {
+  public getItem(key: string): Observable<any> {
     if (this._context.hasOwnProperty(key)) {
-      return this._context[key].observable;
+      return this._context[key].getValue();
     } else {
-      this._context[key] = { data: null };
-      this._context[key].source = new BehaviorSubject(this._context[key].data);
-      this._context[key].observable = this._context[key].source.asObservable();
-      return this._context[key].observable;
+      const contextValue: ContextValue = this._context[key];
+      this._context[key] = contextValue;
+      return contextValue.getValue();
     }
   }
-
 }

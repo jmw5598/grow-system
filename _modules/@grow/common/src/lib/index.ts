@@ -8,6 +8,7 @@ export * from './config/system-node-configuration';
 export * from './config/system.configuration';
 
 // Models
+export * from './models/context-value.model';
 export * from './models/system-node/component-types.enum';
 export * from './models/system-node/component-type.interface';
 export * from './models/system-node/component.model';
