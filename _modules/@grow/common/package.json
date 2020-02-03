@@ -5,12 +5,14 @@
   "main": "dist/@grow/common/index.js",
   "types": "dist/@grow/common/index.d.ts",
   "scripts": {
+    "prebuild": "tslint -c tslint.json -p tsconfig.json --fix",
     "build": "tsc",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "author": "",
+  "author": "Jason White",
   "license": "ISC",
   "devDependencies": {
+    "tslint": "^6.0.0",
     "typescript": "^3.7.5"
   },
   "dependencies": {
