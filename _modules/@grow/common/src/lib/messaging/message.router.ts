@@ -7,8 +7,6 @@ export class MessageRouter {
 
   public routes: any = {};
 
-  constructor() {}
-
   setup(routes: MessageRoute[]): void {
     routes.forEach(r => {
       this.routes[r.channel] = { source: new Subject<MqttMessage>() };

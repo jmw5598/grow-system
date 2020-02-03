@@ -17,7 +17,7 @@ export class ApplicationContext {
     return ApplicationContext.instance;
   }
 
-  setItem(key: string, value: any) {
+  setItem(key: string, value: any): void {
     if (this._context.hasOwnProperty(key)) {
       this._context[key].data = value;
       this._context[key].source.next(value);
@@ -28,7 +28,7 @@ export class ApplicationContext {
     }
   }
 
-  getItem(key: string) {
+  getItem(key: string): void {
     if (this._context.hasOwnProperty(key)) {
       return this._context[key].observable;
     } else {

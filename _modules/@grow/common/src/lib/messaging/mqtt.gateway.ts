@@ -42,7 +42,7 @@ export class MqttGateway {
 
   inbound(topic: string, message: any): void {
     this._logger.debug(`[MqttGateway] New inbound message: ${topic}`);
-    let routedTopic = topic.split("/");
+    const routedTopic = topic.split("/");
     routedTopic.splice(1, 1);
     const payload = new MqttMessage(routedTopic.join('/'), message);
     this.routes.inbound.source.next(payload);
@@ -57,7 +57,7 @@ export class MqttGateway {
     }
   }
 
-  private _subscriptions(subscriptions: string[]) {
+  private _subscriptions(subscriptions: string[]): void {
     if (this._client) {
       this._client.subscribe(subscriptions, { ...this._config.options } as IClientSubscribeOptions);
     }

@@ -26,6 +26,7 @@ export class Logger {
 
   _log(type: LogType, message: string): void {
     const timestamp: Date = new Date();
+    // tslint:disable-next-line:no-console
     console.log(`[${type}][${timestamp.toISOString()}][${this._class}] ${message}`);
   }
 

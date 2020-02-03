@@ -7,4 +7,4 @@ export class SystemNodeConfiguration {
     public description: string,
     public components: Component[]
   ) {}
-} 
+}
