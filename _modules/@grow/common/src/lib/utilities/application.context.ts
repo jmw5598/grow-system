@@ -21,14 +21,14 @@ export class ApplicationContext {
     if (!this._context.hasOwnProperty(key)) {
       this._context[key] = new ContextValue(value);
     } else {
-      this._context[key].setValue(value); 
+      this._context[key].setValue(value);
     }
   }
 
   public getItem(key: string): Observable<any> {
     if (!this._context.hasOwnProperty(key)) {
       this._context[key] = new ContextValue(null);
-    } 
+    }
 
     return this._context[key].getValue();
   }
