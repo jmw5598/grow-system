@@ -18,21 +18,18 @@ export class ApplicationContext {
   }
 
   public setItem(key: string, value: any): void {
-    if (this._context.hasOwnProperty(key)) {
-      this._context[key].setValue(value);
+    if (!this._context.hasOwnProperty(key)) {
+      this._context[key] = new ContextValue(value);
     } else {
-      const contextValue: ContextValue = new ContextValue(value);
-      this._context[key] = contextValue;
+      this._context[key].setValue(value); 
     }
   }
 
   public getItem(key: string): Observable<any> {
-    if (this._context.hasOwnProperty(key)) {
-      return this._context[key].getValue();
-    } else {
-      const contextValue: ContextValue = this._context[key];
-      this._context[key] = contextValue;
-      return contextValue.getValue();
-    }
+    if (!this._context.hasOwnProperty(key)) {
+      this._context[key] = new ContextValue(null);
+    } 
+
+    return this._context[key].getValue();
   }
 }
