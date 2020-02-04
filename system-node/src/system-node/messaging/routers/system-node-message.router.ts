@@ -1,11 +1,21 @@
-import { MessageRoute, MessageRouter } from '@grow/common';
+import { AbstractMessageRouter, MessageRoute } from '@grow/common';
 
-const router = new MessageRouter();
+export class SystemNodeMessageRouter extends AbstractMessageRouter {
+  private static instance: SystemNodeMessageRouter;
 
-router.setup([
-  new MessageRoute('command', 'command'),
-  new MessageRoute('component', 'component'),
-  new MessageRoute('register', 'register')
-]);
+  private constructor() {
+    super(
+      new MessageRoute('command', 'command'),
+      new MessageRoute('component', 'component'),
+      new MessageRoute('register', 'register')
+    );
+  }
 
-export const systemNodeMessageRouter: MessageRouter = router;
+  public static getInstance(): SystemNodeMessageRouter {
+    if (!SystemNodeMessageRouter.instance) {
+      SystemNodeMessageRouter.instance = new SystemNodeMessageRouter();
+    }
+
+    return SystemNodeMessageRouter.instance;
+  }
+}

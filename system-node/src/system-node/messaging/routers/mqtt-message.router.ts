@@ -1,10 +1,20 @@
-import { MessageRoute, MessageRouter } from '@grow/common';
+import { AbstractMessageRouter, MessageRoute } from '@grow/common';
 
-const router = new MessageRouter();
+export class MqttMessageRouter extends AbstractMessageRouter {
+  private static instance:MqttMessageRouter;
 
-router.setup([
-  new MessageRoute('system', 'system'),
-  new MessageRoute('node', 'node')
-]);
+  private constructor() {
+    super([
+      new MessageRoute('system', 'system'),
+      new MessageRoute('node', 'node')
+    ]);
+  }
 
-export const mqttMessageRouter: MessageRouter = router;;
+  public static getInstance(): MqttMessageRouter {
+    if (!MqttMessageRouter.instance) {
+      MqttMessageRouter.instance = new MqttMessageRouter();
+    }
+
+    return MqttMessageRouter.instance;
+  }
+}
