@@ -1,30 +1,30 @@
 {
   "name": "api",
-  "version": "0.0.0",
-  "private": true,
+  "version": "1.0.0",
+  "description": "The REST Api used for communication from [client][1] to [system][2].",
+  "main": "index.js",
   "scripts": {
-    "test-init": "./node_modules/jasmine/bin/jasmine.js init",
-    "test": "./node_modules/jasmine/bin/jasmine.js",
-    "start": "node ./bin/www"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "lint": "tsc --noEmit && eslint \"**/*.{js,ts}\" --quiet --fix",
+    "build": "tsc"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@types/express": "^4.17.2",
+    "@types/node": "^13.7.0",
+    "@typescript-eslint/eslint-plugin": "^2.19.0",
+    "@typescript-eslint/parser": "^2.19.0",
+    "eslint": "^6.8.0",
+    "eslint-config-prettier": "^6.10.0",
+    "eslint-plugin-prettier": "^3.1.2",
+    "prettier": "^1.19.1",
+    "ts-node": "^8.6.2",
+    "typescript": "^3.7.5"
   },
   "dependencies": {
-    "bcrypt": "^3.0.6",
-    "cookie-parser": "~1.4.3",
-    "cors": "^2.8.5",
-    "debug": "~2.6.9",
-    "ejs": "~2.5.7",
-    "express": "~4.16.0",
-    "http-errors": "~1.6.2",
-    "jsonwebtoken": "^8.4.0",
-    "morgan": "~1.9.0",
-    "mqtt": "^2.18.8",
-    "node-thermal-printer": "^2.0.1",
-    "rxjs": "^6.3.3",
-    "rxjs-compat": "^6.4.0",
-    "sequelize": "^6.0.0",
-    "sqlite3": "^4.1.0"
-  },
-  "devDependencies": {
-    "jasmine": "^3.3.1"
+    "dotenv": "^8.2.0",
+    "express": "^4.17.1"
   }
 }

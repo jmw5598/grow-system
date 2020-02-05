@@ -40,3 +40,5 @@ Thumbs.db
 
 # encryption keys
 /config/*.key
+
+/_old/
