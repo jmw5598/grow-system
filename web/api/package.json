@@ -6,6 +6,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "lint": "tsc --noEmit && eslint \"**/*.{js,ts}\" --quiet --fix",
+    "prebuild": "tsc --noEmit && eslint \"**/*.{js,ts}\" --quiet --fix",
     "build": "tsc"
   },
   "keywords": [],
