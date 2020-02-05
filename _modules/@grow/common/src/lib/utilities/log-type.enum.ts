@@ -3,5 +3,5 @@ export enum LogType {
   WARN = 'WARN',
   ERROR = 'ERROR',
   DANGER = 'DANGER',
-  TRACE = 'TRACE'
+  TRACE = 'TRACE',
 }

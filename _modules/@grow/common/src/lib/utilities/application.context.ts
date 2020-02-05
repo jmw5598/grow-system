@@ -3,7 +3,7 @@ import { ContextValue } from '../models/context-value.model';
 
 export class ApplicationContext {
   private static instance: ApplicationContext;
-  private _context: {[key: string]: ContextValue};
+  private _context: { [key: string]: ContextValue };
 
   private constructor() {
     this._context = {};
@@ -18,7 +18,7 @@ export class ApplicationContext {
   }
 
   public setItem(key: string, value: any): void {
-    if (!this._context.hasOwnProperty(key)) {
+    if (Object.prototype.hasOwnProperty.call(this._context, key)) {
       this._context[key] = new ContextValue(value);
     } else {
       this._context[key].setValue(value);
@@ -26,7 +26,7 @@ export class ApplicationContext {
   }
 
   public getItem(key: string): Observable<any> {
-    if (!this._context.hasOwnProperty(key)) {
+    if (Object.prototype.hasOwnProperty.call(this._context, key)) {
       this._context[key] = new ContextValue(null);
     }
 

@@ -1,7 +1,6 @@
 import { LogType } from './log-type.enum';
 
 export class Logger {
-
   constructor(public _class: string) {}
 
   debug(message: string): void {
@@ -29,5 +28,4 @@ export class Logger {
     // tslint:disable-next-line:no-console
     console.log(`[${type}][${timestamp.toISOString()}][${this._class}] ${message}`);
   }
-
 }

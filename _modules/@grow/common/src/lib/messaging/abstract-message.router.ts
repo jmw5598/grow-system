@@ -6,18 +6,21 @@ import { MessageRoute } from './models/message-route.model';
 import { Route } from './models/route.model';
 
 export abstract class AbstractMessageRouter implements IRoutable {
-  private _routes: {[key: string]: ISendable};
+  private _routes: { [key: string]: ISendable };
 
   constructor(routes: MessageRoute[]) {
     this._routes = {};
-    routes.forEach(r => this._routes[r.channel] = new Route());
+    routes.forEach(r => (this._routes[r.channel] = new Route()));
   }
 
   public routeMessage(message: MqttMessage): void {
     const keys: string[] = Object.keys(this._routes);
     const [segment] = message.topic.split('/');
     if (keys.includes(segment)) {
-      const routedTopic:string = message.topic.split('/').slice(1).join('/');
+      const routedTopic: string = message.topic
+        .split('/')
+        .slice(1)
+        .join('/');
       const outboundMessage: MqttMessage = new MqttMessage(routedTopic, message.message);
       this._routes[segment].sendMessage(outboundMessage);
     }
@@ -31,4 +34,4 @@ export abstract class AbstractMessageRouter implements IRoutable {
 
     return EMPTY;
   }
-};
+}

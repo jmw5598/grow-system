@@ -10,6 +10,6 @@ export class Component {
     public state: PinState,
     // @@@ Create preferences class for each kind
     // @@@ Create type alias for all preferecnes type and tyep that here
-    public preferences: any
+    public preferences: any,
   ) {}
 }

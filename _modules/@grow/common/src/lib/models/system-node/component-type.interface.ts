@@ -1,4 +1,4 @@
 export interface IComponentType {
-  model: string,
-  description: string
+  model: string;
+  description: string;
 }

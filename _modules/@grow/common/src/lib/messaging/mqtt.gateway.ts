@@ -5,7 +5,6 @@ import { MqttMessage } from '../messaging/models/mqtt-message.model';
 import { MqttConfiguration } from '../config/mqtt.configuration';
 
 export class MqttGateway {
-
   private static instance: MqttGateway;
 
   // @@@ TODO:Convert this to a MessageRouter with ('inbound', 'inbound') MessageRoute
@@ -15,7 +14,7 @@ export class MqttGateway {
   private _client: MqttClient | undefined;
 
   private constructor() {
-    this._config =  {} as MqttConfiguration;
+    this._config = {} as MqttConfiguration;
     this._logger = new Logger(this.constructor.name);
     this.routes = {};
     this.routes.inbound = { source: new Subject() };
@@ -42,7 +41,7 @@ export class MqttGateway {
 
   inbound(topic: string, message: any): void {
     this._logger.debug(`[MqttGateway] New inbound message: ${topic}`);
-    const routedTopic = topic.split("/");
+    const routedTopic = topic.split('/');
     routedTopic.splice(1, 1);
     const payload = new MqttMessage(routedTopic.join('/'), message);
     this.routes.inbound.source.next(payload);
@@ -62,5 +61,4 @@ export class MqttGateway {
       this._client.subscribe(subscriptions, { ...this._config.options } as IClientSubscribeOptions);
     }
   }
-
 }

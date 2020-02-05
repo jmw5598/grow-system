@@ -6,6 +6,6 @@ export class MqttConfiguration {
   constructor(
     public gateway: MqttGatewayConfiguration,
     public options: MqttOptionsConfiguration,
-    public topics: MqttTopicsConfiguration
+    public topics: MqttTopicsConfiguration,
   ) {}
 }

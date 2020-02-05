@@ -1,6 +1,3 @@
 export class MessageRoute {
-  constructor(
-    public segment: string,
-    public channel: string
-  ) {}
+  constructor(public segment: string, public channel: string) {}
 }
