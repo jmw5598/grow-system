@@ -42,3 +42,4 @@ Thumbs.db
 /config/*.key
 
 /_old/
+database.sqlite
