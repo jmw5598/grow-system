@@ -8,7 +8,7 @@
     "prebuild": "tsc --noEmit && eslint \"**/*.{js,ts}\" --quiet --fix",
     "build": "tsc",
     "lint": "tsc --noEmit && eslint \"**/*.{js,ts}\" --quiet --fix",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": ""
   },
   "author": "Jason White",
   "license": "ISC",
@@ -27,5 +27,15 @@
   "dependencies": {
     "mqtt": "^3.0.0",
     "rxjs": "^6.5.4"
+  },
+  "lint-staged": {
+    "*.ts": "npm run lint"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged",
+      "pre-push": "npm run lint",
+      "...": "..."
+    }
   }
 }
