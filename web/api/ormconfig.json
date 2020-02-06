@@ -4,10 +4,10 @@
    "synchronize": true,
    "logging": false,
    "entities": [
-      "dist/app/data/entities/**/*.entity.js"
+      "src/app/data/entities/**/*.entity.ts"
    ],
    "migrations": [
-      "dist/app/data/migrations/**/*.js"
+      "src/app/data/migrations/**/*.ts"
    ],
    "subscribers": [
       "dist/app/data/subscribers/**/*.subscriber.js"

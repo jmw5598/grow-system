@@ -7,7 +7,9 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "lint": "tsc --noEmit && eslint \"**/*.{js,ts}\" --quiet --fix",
     "prebuild": "tsc --noEmit && eslint \"**/*.{js,ts}\" --quiet --fix",
-    "build": "tsc"
+    "build": "tsc",
+    "migrations": "ts-node node_modules/typeorm/cli.js migration:run",
+    "migrations:generate": "ts-node node_modules/typeorm/cli.js migration:generate --name InitialEntities"
   },
   "keywords": [],
   "author": "",
