@@ -1,5 +1,3 @@
 import { Request, Response } from 'express';
 
-export class UsersController {
-  contructor() {}
-}
+export class UsersController {}

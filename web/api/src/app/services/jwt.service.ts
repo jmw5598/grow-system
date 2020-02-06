@@ -29,13 +29,13 @@ export class JwtService {
     jwt.verify(token, 'shhhhh', function(err: VerifyErrors, decoded: any) {
       if (err) {
         return false;
-      } 
+      }
     });
 
     return true;
   }
 
-  public decodeToken(token: string): string | {[key: string]: any} | null {
+  public decodeToken(token: string): string | { [key: string]: any } | null {
     return jwt.decode(token, { complete: true });
   }
 }

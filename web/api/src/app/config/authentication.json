@@ -1,0 +1,9 @@
+{
+  "payload": {},
+  "options": {
+    "issuer": "TEST",
+    "audience": "http://localhost:4200/'",
+    "expiresIn": "12h",
+    "algorithm": "RS256"
+  }
+}
