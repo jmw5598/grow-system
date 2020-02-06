@@ -1,5 +1,6 @@
 {
   "compilerOptions": {
+    "lib": ["es6"],
     "target": "es6",                         
     "module": "commonjs",                    
     "strict": true,                          
@@ -9,7 +10,9 @@
     "sourceMap": true,
     "outDir": "dist",
     "baseUrl": ".",
-    "forceConsistentCasingInFileNames": true,  
+    "forceConsistentCasingInFileNames": true,
+    "emitDecoratorMetadata": true,
+    "experimentalDecorators": true,
     "paths": {
       "*": [
         "node_modules/*"

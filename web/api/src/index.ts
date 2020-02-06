@@ -1,7 +1,11 @@
+import 'reflect-metadata';
+import { createConnection } from 'typeorm';
 import { Application } from './app';
 import * as dotenv from 'dotenv';
 
 dotenv.config();
 
-const application: Application = Application.getInstance();
-application.start();
+createConnection().then(async connection => {
+  const application: Application = Application.getInstance();
+  application.start();
+});
