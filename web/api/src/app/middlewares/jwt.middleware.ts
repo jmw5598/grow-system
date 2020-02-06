@@ -1,9 +1,10 @@
 import { Request, Response, NextFunction } from 'express';
+import { JwtService } from '../services';
 
 export class JwtMiddleware {
   public static verify(req: Request, res: Response, next: NextFunction): any {
     const token: string = JwtMiddleware.getTokenFromHeader(req);
-    const valid: boolean = JwtService.getInstance().verify(token);
+    const valid: boolean = JwtService.getInstance().verifyToken(token);
     
     return valid ? next() : res.status(401).send({ error: 'Unauthorized' });
   }
