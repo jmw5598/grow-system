@@ -5,7 +5,8 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "lint": "tsc --noEmit && eslint \"**/*.{js,ts}\" --quiet --fix",
+    "lint": "tsc --noEmit && eslint \"**/*.{js,ts}\" --quiet",
+    "lint:fix": "tsc --noEmit && eslint \"**/*.{js,ts}\" --quite --fix",
     "prebuild": "tsc --noEmit && eslint \"**/*.{js,ts}\" --quiet --fix",
     "build": "tsc",
     "migrations": "ts-node node_modules/typeorm/cli.js migration:run",

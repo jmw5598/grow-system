@@ -2,8 +2,8 @@ import { Column } from 'typeorm';
 
 export class BaseEntity {
   @Column()
-  public createAt!: Date;
+  public createdAt!: Date;
 
   @Column()
-  public udpatedAt!: Date;
+  public updatedAt!: Date;
 }

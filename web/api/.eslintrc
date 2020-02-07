@@ -21,6 +21,11 @@
         "ignoreParameters": true
       }
     ],
+    "@typescript-eslint/interface-name-prefix": [
+      "error", {
+          "prefixWithI": "always"
+      }
+    ],
     "@typescript-eslint/no-unused-vars": "warn"
   }
 }
