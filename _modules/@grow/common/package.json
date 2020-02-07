@@ -5,9 +5,10 @@
   "main": "dist/@grow/common/index.js",
   "types": "dist/@grow/common/index.d.ts",
   "scripts": {
-    "prebuild": "tsc --noEmit && eslint \"**/*.{js,ts}\" --quiet --fix",
+    "prebuild": "tsc --noEmit && eslint \"**/*.{js,ts}\" --quiet",
     "build": "tsc",
-    "lint": "tsc --noEmit && eslint \"**/*.{js,ts}\" --quiet --fix",
+    "lint": "tsc --noEmit && eslint \"**/*.{js,ts}\" --quiet",
+    "lint:fix": "tsc --noEmit && eslint \"**/*.{js,ts}\" --quite --fix",
     "test": ""
   },
   "author": "Jason White",
@@ -33,9 +34,7 @@
   },
   "husky": {
     "hooks": {
-      "pre-commit": "lint-staged",
-      "pre-push": "npm run lint",
-      "...": "..."
+      "pre-commit": "lint-staged"
     }
   }
 }
