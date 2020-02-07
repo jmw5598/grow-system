@@ -1,9 +1,9 @@
 import { Observable, EMPTY } from 'rxjs';
-import { ISendable } from './interfaces/sendable.interface';
-import { IRoutable } from './interfaces/routable.interface';
-import { MqttMessage } from './models/mqtt-message.model';
-import { MessageRoute } from './models/message-route.model';
-import { Route } from './models/route.model';
+import { ISendable } from '../interfaces/sendable.interface';
+import { IRoutable } from '../interfaces/routable.interface';
+import { MqttMessage } from '../models/mqtt-message.model';
+import { MessageRoute } from '../models/message-route.model';
+import { Route } from '../models/route.model';
 
 export abstract class AbstractMessageRouter implements IRoutable {
   private _routes: { [key: string]: ISendable };

@@ -19,12 +19,13 @@ export * from './models/system-node/component.model';
 export * from './models/system-node/pin-state.enum';
 
 // Messaging
-export * from './messaging/abstract-message.router';
 export * from './messaging/models/event-message-type.model';
 export * from './messaging/models/event-message.model';
 export * from './messaging/models/message-route.model';
 export * from './messaging/models/mqtt-message.model';
 export * from './messaging/mqtt.gateway';
+export * from './messaging/routers/abstract-message.router';
+export * from './messaging/routers/mqtt-inbound-message.router';
 
 // Utilities
 export * from './utilities/application.context';
