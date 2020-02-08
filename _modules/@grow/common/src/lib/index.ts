@@ -17,6 +17,7 @@ export * from './models/system-node/component-types.enum';
 export * from './models/system-node/component-type.interface';
 export * from './models/system-node/component.model';
 export * from './models/system-node/pin-state.enum';
+export * from './models/system-node/system-details.model';
 
 // Messaging
 export * from './messaging/models/event-message-type.model';
