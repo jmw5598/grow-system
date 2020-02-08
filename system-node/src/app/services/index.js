@@ -1,7 +1,1 @@
-'use strict';
-
-const ConfigurationPersistenceService = require('./configuration-persistence.service');
-
-module.exports = {
-  ConfigurationPersistenceService
-}
+export * from './configuration-persistence.service';
