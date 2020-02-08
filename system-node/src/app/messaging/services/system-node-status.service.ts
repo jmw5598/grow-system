@@ -2,7 +2,7 @@ import * as os from 'os';
 import { Observable } from 'rxjs';
 import { ApplicationContext, EventMessage, EventMessageType, IMessageService, MqttGateway, MqttMessage, Logger, SystemDetails } from '@grow/common'
 import { SystemNodeMessageRouter } from '../routers/system-node-message.router';
-import { ChannelSegments } from 'system-node/application.constants';
+import { ChannelSegments } from '../../application.constants';
 
 const {  } = require('@grow/common');
 

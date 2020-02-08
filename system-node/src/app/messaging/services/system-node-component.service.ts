@@ -2,7 +2,7 @@ import { ApplicationContext, Logger, MqttMessage, IMessageService, GlobalConfigu
 import { Observable } from 'rxjs';
 import { SystemNodeMessageRouter } from '../routers/system-node-message.router';
 import { ActionFactory } from '../../action.factory';
-import { ApplicationContextKeys } from 'system-node/application.constants';
+import { ApplicationContextKeys } from '../../application.constants';
 
 const shortid = require('shortid');
 

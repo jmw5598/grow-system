@@ -5,7 +5,7 @@ import { TemperatureHumidityCommandService } from './temperature-humidity-comman
 import { RelayCommandService } from './relay-command.service';
 import { SystemNodeMessageRouter } from '../routers/system-node-message.router';
 import { SystemNodeComponentService } from './system-node-component.service';
-import { ChannelSegments } from 'system-node/application.constants';
+import { ChannelSegments } from '../../application.constants';
 import { SystemNodeStatusService } from './system-node-status.service';
 
 export const configureMessageServices: Function = (): IMessageService[] => {
