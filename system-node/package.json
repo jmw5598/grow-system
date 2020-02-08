@@ -39,7 +39,7 @@
     "typescript": "^3.7.5"
   },
   "lint-staged": {
-    "*.ts": "npm run lint"
+    "src/**/*.ts": "npm run lint"
   },
   "husky": {
     "hooks": {
