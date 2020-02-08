@@ -1,6 +1,5 @@
 export class SystemNodeState {
-  public temp: any;
   constructor() {
-    this.temp = '';
+    // @@@ RETHINK THIS MODELING?????
   }
 }
