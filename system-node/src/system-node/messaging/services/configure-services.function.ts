@@ -13,13 +13,11 @@ export const configureMessageServices: Function = (): IMessageService[] => {
   const componentChannel: Observable<MqttMessage> = SystemNodeMessageRouter.getInstance().getChannel(ChannelSegments.COMPONENT);
   const tempHumChannel: Observable<MqttMessage> = SystemNodeCommandMessageRouter.getInstance().getChannel(ChannelSegments.TEMPHUM);
   const registerChannel: Observable<MqttMessage> = SystemNodeMessageRouter.getInstance().getChannel(ChannelSegments.REGISTER);
-  
-  const services: IMessageService[] = [
+
+  return [
     new RelayCommandService(relayChannel),
     new SystemNodeComponentService(componentChannel),
     new SystemNodeStatusService(registerChannel),
     new TemperatureHumidityCommandService(tempHumChannel)
   ];
-
-  return services;
 };
