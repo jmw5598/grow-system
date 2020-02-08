@@ -22,8 +22,7 @@
     "@grow/common": "file:../_modules/@grow/common",
     "mqtt": "^2.18.8",
     "onoff": "^3.2.6",
-    "rxjs": "^6.5.3",
-    "rxjs-compat": "^6.5.3",
+    "rxjs": "^6.5.4",
     "shortid": "^2.2.15"
   },
   "devDependencies": {
