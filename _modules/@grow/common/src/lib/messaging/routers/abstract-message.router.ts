@@ -5,7 +5,7 @@ import { MqttMessage } from '../models/mqtt-message.model';
 import { MessageRoute } from '../models/message-route.model';
 import { Route } from '../models/route.model';
 
-export abstract class AbstractMessageRouter implements IRoutable {
+export class AbstractMessageRouter implements IRoutable {
   private _routes: { [key: string]: ISendable };
 
   constructor(routes: MessageRoute[]) {

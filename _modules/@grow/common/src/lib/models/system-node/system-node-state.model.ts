@@ -1,3 +1,6 @@
 export class SystemNodeState {
-  constructor() {}
+  public temp: any;
+  constructor() {
+    this.temp = '';
+  }
 }
