@@ -4,8 +4,10 @@
   "description": "A single Raspberry Pi node that handles automated tasks for system-nodes",
   "main": "index.js",
   "scripts": {
-    "test-init": "./node_modules/jasmine/bin/jasmine.js init",
-    "test": "./node_modules/jasmine/bin/jasmine.js"
+    "prebuild": "tsc --noEmit && eslint \"**/*.{js,ts}\" --quiet",
+    "build": "tsc",
+    "lint": "tsc --noEmit && eslint \"**/*.{js,ts}\" --quiet",
+    "lint:fix": "tsc --noEmit && eslint \"**/*.{js,ts}\" --quiet --fix"
   },
   "keywords": [
     "Hyrdoponics",
@@ -24,6 +26,23 @@
     "shortid": "^2.2.15"
   },
   "devDependencies": {
-    "jasmine": "^3.5.0"
+    "@typescript-eslint/eslint-plugin": "^2.19.0",
+    "@typescript-eslint/parser": "^2.19.0",
+    "eslint": "^6.8.0",
+    "eslint-config-prettier": "^6.10.0",
+    "eslint-plugin-prettier": "^3.1.2",
+    "husky": "^4.2.1",
+    "lint-staged": "^10.0.7",
+    "prettier": "^1.19.1",
+    "ts-node": "^8.6.2",
+    "typescript": "^3.7.5"
+  },
+  "lint-staged": {
+    "src/**/*.ts": "npm run lint"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
   }
 }
