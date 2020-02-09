@@ -18,7 +18,7 @@ export class ApplicationContext {
   }
 
   public setItem(key: string, value: any): void {
-    if (Object.prototype.hasOwnProperty.call(this._context, key)) {
+    if (!Object.prototype.hasOwnProperty.call(this._context, key)) {
       this._context[key] = new ContextValue(value);
     } else {
       this._context[key].setValue(value);
@@ -26,7 +26,7 @@ export class ApplicationContext {
   }
 
   public getItem(key: string): Observable<any> {
-    if (Object.prototype.hasOwnProperty.call(this._context, key)) {
+    if (!Object.prototype.hasOwnProperty.call(this._context, key)) {
       this._context[key] = new ContextValue(null);
     }
 
