@@ -9,11 +9,15 @@ import { WebOutboundMessageService } from './web-outbound-message.service';
 
 export const configureMessageServices: Function = (): IMessageService[] => {
   const systemNodeCommandChannel: Observable<MqttMessage> = SystemNodeMessageRouter.getInstance().getChannel('command');
-  const systemNodeComponentChannel: Observable<MqttMessage> = SystemNodeMessageRouter.getInstance().getChannel('component');
-  const systemNodeRegistrationChannel: Observable<MqttMessage> = SystemNodeMessageRouter.getInstance().getChannel('register');
+  const systemNodeComponentChannel: Observable<MqttMessage> = SystemNodeMessageRouter.getInstance().getChannel(
+    'component',
+  );
+  const systemNodeRegistrationChannel: Observable<MqttMessage> = SystemNodeMessageRouter.getInstance().getChannel(
+    'register',
+  );
   const systemNodeStatusChannel: Observable<MqttMessage> = SystemNodeMessageRouter.getInstance().getChannel('status');
   const systemNodeEventChannel: Observable<MqttMessage> = SystemNodeMessageRouter.getInstance().getChannel('event');
-  
+
   return [
     new SystemNodeCommandMessageService(systemNodeCommandChannel),
     new SystemNodeComponentMessageService(systemNodeComponentChannel),

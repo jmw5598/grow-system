@@ -5,5 +5,5 @@ export enum ApplicationContextKeys {
 }
 
 export enum RouterChannels {
-  INBOUND = 'inbound'
+  INBOUND = 'inbound',
 }

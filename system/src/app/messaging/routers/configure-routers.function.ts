@@ -17,22 +17,23 @@ export const configureMessageRouters: Function = (): IRoutable => {
 
   // @@@ TODO get rid fo these magic string
   // Do the same in system-node routers function
-  mqttInboundMessageRouter.getChannel('inbound')
+  mqttInboundMessageRouter
+    .getChannel('inbound')
     .subscribe((message: MqttMessage) => mqttMessageRouter.routeMessage(message));
 
-  mqttMessageRouter.getChannel('system')
-    .subscribe((message: MqttMessage) => systemMessageRouter.routeMessage(message));
+  mqttMessageRouter.getChannel('system').subscribe((message: MqttMessage) => systemMessageRouter.routeMessage(message));
 
-  mqttMessageRouter.getChannel('node')
+  mqttMessageRouter
+    .getChannel('node')
     .subscribe((message: MqttMessage) => systemNodeMessageRouter.routeMessage(message));
 
-  systemMessageRouter.getChannel('command')
+  systemMessageRouter
+    .getChannel('command')
     .subscribe((message: MqttMessage) => systemCommandMessageRouter.routeMessage(message));
 
-  systemMessageRouter.getChannel('event')
+  systemMessageRouter
+    .getChannel('event')
     .subscribe((message: MqttMessage) => systemEventMessageRouter.routeMessage(message));
 
-  
-  
   return mqttInboundMessageRouter;
 };
