@@ -1,7 +1,7 @@
 import { Observable } from 'rxjs';
 import { IMessageService, MqttGateway, MqttMessage } from '@grow/common';
 
-export class SystemNodeCommandMessageRouter implements IMessageService {
+export class SystemNodeCommandMessageService implements IMessageService {
   private _mqttGateway: MqttGateway;
 
   constructor(channel: Observable<MqttMessage>) {

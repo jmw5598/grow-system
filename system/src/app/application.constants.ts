@@ -3,3 +3,7 @@ export enum ApplicationContextKeys {
   CONFIG = 'config',
   NODES = 'nodes',
 }
+
+export enum RouterChannels {
+  INBOUND = 'inbound'
+}
