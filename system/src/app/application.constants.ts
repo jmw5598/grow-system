@@ -1,4 +1,5 @@
 export enum ApplicationContextKeys {
   ACTIONS = 'actions',
-  CONFIG = 'config'
+  CONFIG = 'config',
+  NODES = 'nodes',
 }
