@@ -1,12 +1,12 @@
 import { Observable } from 'rxjs';
-import { IMessageService, MqttGateway, MqttMessage } from '@grow/common';
+import { IMessageService, IPubSubChannel, MqttGateway, MqttMessage } from '@grow/common';
 
 export class SystemNodeCommandMessageService implements IMessageService {
   private _mqttGateway: MqttGateway;
 
-  constructor(channel: Observable<MqttMessage>) {
+  constructor(channel: IPubSubChannel) {
     this._mqttGateway = MqttGateway.getInstance();
-    channel.subscribe((message: MqttMessage) => this.processMessage(message));
+    channel.receivedMessage().subscribe((message: MqttMessage) => this.processMessage(message));
   }
 
   public processMessage(message: MqttMessage): void {

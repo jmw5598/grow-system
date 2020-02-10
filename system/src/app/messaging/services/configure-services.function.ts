@@ -1,5 +1,5 @@
 import { Observable } from 'rxjs';
-import { IMessageService, MqttMessage } from '@grow/common';
+import { IMessageService, IPubSubChannel, MqttMessage } from '@grow/common';
 import { SystemNodeMessageRouter } from '../routers/system-node-message.router';
 import { SystemNodeCommandMessageService } from './system-node-command-message.service';
 import { SystemNodeComponentMessageService } from './system-node-component-message.service';
@@ -8,15 +8,11 @@ import { SystemNodeStatusService } from './system-node-status.service';
 import { WebOutboundMessageService } from './web-outbound-message.service';
 
 export const configureMessageServices: Function = (): IMessageService[] => {
-  const systemNodeCommandChannel: Observable<MqttMessage> = SystemNodeMessageRouter.getInstance().getChannel('command');
-  const systemNodeComponentChannel: Observable<MqttMessage> = SystemNodeMessageRouter.getInstance().getChannel(
-    'component',
-  );
-  const systemNodeRegistrationChannel: Observable<MqttMessage> = SystemNodeMessageRouter.getInstance().getChannel(
-    'register',
-  );
-  const systemNodeStatusChannel: Observable<MqttMessage> = SystemNodeMessageRouter.getInstance().getChannel('status');
-  const systemNodeEventChannel: Observable<MqttMessage> = SystemNodeMessageRouter.getInstance().getChannel('event');
+  const systemNodeCommandChannel: IPubSubChannel = SystemNodeMessageRouter.getInstance().getChannel('command');
+  const systemNodeComponentChannel: IPubSubChannel = SystemNodeMessageRouter.getInstance().getChannel('component');
+  const systemNodeRegistrationChannel: IPubSubChannel = SystemNodeMessageRouter.getInstance().getChannel('register');
+  const systemNodeStatusChannel: IPubSubChannel = SystemNodeMessageRouter.getInstance().getChannel('status');
+  const systemNodeEventChannel: IPubSubChannel = SystemNodeMessageRouter.getInstance().getChannel('event');
 
   return [
     new SystemNodeCommandMessageService(systemNodeCommandChannel),

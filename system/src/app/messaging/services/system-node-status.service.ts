@@ -1,5 +1,5 @@
 import { Observable } from 'rxjs';
-import { ApplicationContext, IMessageService, Logger, MqttGateway, MqttMessage } from '@grow/common';
+import { ApplicationContext, IMessageService, IPubSubChannel, Logger, MqttGateway, MqttMessage } from '@grow/common';
 import { ApplicationContextKeys } from '../../application.constants';
 
 // @@@ TODO Clean this mess up!!
@@ -10,13 +10,13 @@ export class SystemNodeStatusService implements IMessageService {
   private _nodes: any;
   private _interval: any;
 
-  constructor(channel: Observable<MqttMessage>) {
+  constructor(channel: IPubSubChannel) {
     this._applicationContext = ApplicationContext.getInstance();
     this._mqttGateway = MqttGateway.getInstance();
     this._logger = new Logger(this.constructor.name);
     this._nodes = [];
     this._applicationContext.getItem(ApplicationContextKeys.NODES).subscribe((nodes: any) => (this._nodes = nodes));
-    channel.subscribe((message: MqttMessage) => this.processMessage(message));
+    channel.receivedMessage().subscribe((message: MqttMessage) => this.processMessage(message));
     this._checkHealth();
   }
 

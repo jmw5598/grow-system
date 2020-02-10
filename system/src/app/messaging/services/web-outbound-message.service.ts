@@ -1,14 +1,14 @@
 import { Observable } from 'rxjs';
-import { Logger, IMessageService, MqttGateway, MqttMessage } from '@grow/common';
+import { Logger, IMessageService, IPubSubChannel, MqttGateway, MqttMessage } from '@grow/common';
 
 export class WebOutboundMessageService implements IMessageService {
   private _mqttGateway: MqttGateway;
   private _logger: Logger;
 
-  constructor(channel: Observable<MqttMessage>) {
+  constructor(channel: IPubSubChannel) {
     this._mqttGateway = MqttGateway.getInstance();
     this._logger = new Logger(this.constructor.name);
-    channel.subscribe((message: MqttMessage) => this.processMessage(message));
+    channel.receivedMessage().subscribe((message: MqttMessage) => this.processMessage(message));
   }
 
   public processMessage(message: MqttMessage): void {

@@ -19,20 +19,27 @@ export const configureMessageRouters: Function = (): IRoutable => {
   // Do the same in system-node routers function
   mqttInboundMessageRouter
     .getChannel('inbound')
+    .receivedMessage()
     .subscribe((message: MqttMessage) => mqttMessageRouter.routeMessage(message));
 
-  mqttMessageRouter.getChannel('system').subscribe((message: MqttMessage) => systemMessageRouter.routeMessage(message));
+  mqttMessageRouter
+    .getChannel('system')
+    .receivedMessage()
+    .subscribe((message: MqttMessage) => systemMessageRouter.routeMessage(message));
 
   mqttMessageRouter
     .getChannel('node')
+    .receivedMessage()
     .subscribe((message: MqttMessage) => systemNodeMessageRouter.routeMessage(message));
 
   systemMessageRouter
     .getChannel('command')
+    .receivedMessage()
     .subscribe((message: MqttMessage) => systemCommandMessageRouter.routeMessage(message));
 
   systemMessageRouter
     .getChannel('event')
+    .receivedMessage()
     .subscribe((message: MqttMessage) => systemEventMessageRouter.routeMessage(message));
 
   return mqttInboundMessageRouter;

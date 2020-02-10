@@ -7,9 +7,9 @@ import {
   MqttGateway,
   MqttMessage,
   IMessageService,
+  IPubSubChannel,
 } from '@grow/common';
 import { ApplicationContextKeys } from '../../application.constants';
-const SystemCommandMessageRouter = require('../routers').SystemCommandMessageRouter;
 
 export class SystemStatusService implements IMessageService {
   private _applicationContext: ApplicationContext;
@@ -17,7 +17,7 @@ export class SystemStatusService implements IMessageService {
   private _nodes: any;
   private _config: GlobalConfiguration;
 
-  constructor(channel: Observable<MqttMessage>) {
+  constructor(channel: IPubSubChannel) {
     this._applicationContext = ApplicationContext.getInstance();
     this._mqttGateway = MqttGateway.getInstance();
     this._config = {} as GlobalConfiguration;
@@ -25,6 +25,7 @@ export class SystemStatusService implements IMessageService {
     this._applicationContext
       .getItem(ApplicationContextKeys.CONFIG)
       .subscribe((config: GlobalConfiguration) => (this._config = config));
+    channel.receivedMessage().subscribe((message: MqttMessage) => this.processMessage(message));
   }
 
   public processMessage(message: MqttMessage): void {
