@@ -9,8 +9,9 @@ export * from './config/system.configuration';
 
 // Interfaces
 export * from './messaging/interfaces/message-service.interface';
-export * from './messaging/interfaces/sendable.interface';
+export * from './messaging/interfaces/pub-sub-channel.interface';
 export * from './messaging/interfaces/routable.interface';
+
 // Models
 export * from './models/context-value.model';
 export * from './models/system-node/component-types.enum';
@@ -20,6 +21,7 @@ export * from './models/system-node/pin-state.enum';
 export * from './models/system-node/system-details.model';
 
 // Messaging
+export * from './messaging/channels/pub-sub.channel';
 export * from './messaging/models/event-message-type.model';
 export * from './messaging/models/event-message.model';
 export * from './messaging/models/message-route.model';

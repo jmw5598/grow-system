@@ -1,20 +1,20 @@
 import { Observable, EMPTY } from 'rxjs';
-import { ISendable } from '../interfaces/sendable.interface';
+import { IPubSubChannel } from '../interfaces/pub-sub-channel.interface';
 import { IRoutable } from '../interfaces/routable.interface';
 import { MqttMessage } from '../models/mqtt-message.model';
 import { MessageRoute } from '../models/message-route.model';
-import { Route } from '../models/route.model';
+import { PubSubChannel } from '../channels/pub-sub.channel';
 
 export abstract class AbstractMessageRouter implements IRoutable {
-  private _routes: { [key: string]: ISendable };
+  private _channels: { [key: string]: IPubSubChannel };
 
   constructor(routes: MessageRoute[]) {
-    this._routes = {};
-    routes.forEach(r => (this._routes[r.channel] = new Route()));
+    this._channels = {};
+    routes.forEach(r => (this._channels[r.channel] = new PubSubChannel()));
   }
 
   public routeMessage(message: MqttMessage): void {
-    const keys: string[] = Object.keys(this._routes);
+    const keys: string[] = Object.keys(this._channels);
     const [segment] = message.topic.split('/');
     if (keys.includes(segment)) {
       const routedTopic: string = message.topic
@@ -22,16 +22,15 @@ export abstract class AbstractMessageRouter implements IRoutable {
         .slice(1)
         .join('/');
       const outboundMessage: MqttMessage = new MqttMessage(routedTopic, message.message);
-      this._routes[segment].sendMessage(outboundMessage);
+      this._channels[segment].sendMessage(outboundMessage);
     }
   }
 
-  public getChannel(channelName: string): Observable<MqttMessage> {
-    const keys: string[] = Object.keys(this._routes);
-    if (keys.includes(channelName)) {
-      return this._routes[channelName].getChannel(channelName);
+  public getChannel(channelName: string): IPubSubChannel {
+    if (!Object.prototype.hasOwnProperty.call(this._channels, channelName)) {
+      this._channels[channelName] = new PubSubChannel();
     }
 
-    return EMPTY;
+    return this._channels[channelName];
   }
 }

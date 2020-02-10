@@ -1,7 +1,7 @@
 import { Observable } from 'rxjs';
 import { MqttMessage } from '../models/mqtt-message.model';
 
-export interface ISendable {
+export interface IPubSubChannel {
   sendMessage(message: MqttMessage): void;
-  getChannel(channelName: string): Observable<MqttMessage>;
+  receivedMessage(): Observable<MqttMessage>;
 }
