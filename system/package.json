@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "prebuild": "tsc --noEmit && eslint \"**/*.{js,ts}\" --quiet",
-    "build": "tsc",
+    "build": "tsc && mkdir -p dist/system/config && cp src/config/configuration.json dist/system/config/",
     "lint": "tsc --noEmit && eslint \"**/*.{js,ts}\" --quiet",
     "lint:fix": "tsc --noEmit && eslint \"**/*.{js,ts}\" --quiet --fix",
     "test": ""
@@ -25,6 +25,7 @@
     "rxjs": "^6.5.4"
   },
   "devDependencies": {
+    "@types/node": "^13.7.0",
     "@typescript-eslint/eslint-plugin": "^2.19.0",
     "@typescript-eslint/parser": "^2.19.0",
     "eslint": "^6.8.0",
