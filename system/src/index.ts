@@ -1,8 +1,10 @@
 import * as fs from 'fs';
+import * as path from 'path';
 import { GlobalConfiguration } from '@grow/common';
 import { System } from './app';
 
-const config: GlobalConfiguration = JSON.parse(fs.readFileSync('config/configuraiton.json', 'utf8'));
+const filePath: string = path.resolve(__dirname, './config/configuration.json');
+const config: GlobalConfiguration = JSON.parse(fs.readFileSync(filePath, 'utf8'));
 
 const system: System = new System(config);
 system.start();
