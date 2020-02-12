@@ -1,15 +1,7 @@
 {
+  "extends": "../tsconfig.json",
   "compilerOptions": {
-    "target": "es6",
-    "baseUrl": "src", 
-    "module": "commonjs",
-    "declaration": true,
-    "outDir": "./dist/system-scheduler",
-    "strict": true,
-    "esModuleInterop": true,
-    "lib": [
-      "es2015"
-    ]
+    "outDir": "./dist/system-scheduler"
   },
   "include": ["src"],
   "exclude": ["node_modules", "**/__tests__/*"]
