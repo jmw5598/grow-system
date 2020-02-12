@@ -1,12 +1,12 @@
 import { SegmentMatchMessageRouter, MessageRoute } from '@grow/common';
-
+import { ChannelSegments } from '../../application.constants';
 export class MqttMessageRouter extends SegmentMatchMessageRouter {
   private static instance:MqttMessageRouter;
 
   private constructor() {
     super([
-      new MessageRoute('system', 'system'),
-      new MessageRoute('node', 'node')
+      new MessageRoute(ChannelSegments.SYSTEM, ChannelSegments.SYSTEM),
+      new MessageRoute(ChannelSegments.NODE, ChannelSegments.NODE)
     ]);
   }
 

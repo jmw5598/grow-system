@@ -4,8 +4,16 @@ export enum ApplicationContextKeys {
 }
 
 export enum ChannelSegments {
-  RELAY = 'relay',
+  COMMAND = 'command',
   COMPONENT = 'component',
+  HUMIDITY = 'humidity',
+  INBOUND = 'inbound',
+  MOISTURE = 'moisture',
+  NODE = 'node',
+  PROXIMITY = 'proximity',
   REGISTER = 'register',
-  TEMPHUM = 'temphum'
+  RELAY = 'relay',
+  SYSTEM = 'system',
+  TEMPERATURE = 'temperature',
+  TEMPHUM = 'temphum',
 }
