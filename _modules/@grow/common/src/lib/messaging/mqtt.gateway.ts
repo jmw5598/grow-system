@@ -11,6 +11,7 @@ export class MqttGateway {
   private _config: MqttConfiguration;
   private _logger: Logger;
   private _client: MqttClient | undefined;
+  private _router: IRoutable | undefined;
 
   private constructor() {
     this._config = {} as MqttConfiguration;
@@ -28,17 +29,14 @@ export class MqttGateway {
   public setup(config: MqttConfiguration, router: IRoutable): void {
     this._config = config;
     this._client = connect(this._config.gateway.uri);
-
+    this._router = router;
     if (this._client) {
       this._client.on('connect', () => this._subscriptions(this._config.topics.subscriptions));
       this._client.on('message', (topic, message) => {
-        const routedTopic = topic
-          .split('/')
-          .slice(1)
-          .join('/');
         const routedMessage = JSON.parse(message.toString());
-        const payload = new MqttMessage(routedTopic, routedMessage);
-        router.routeMessage(payload);
+        const payload = new MqttMessage(topic, routedMessage);
+        if (this._router) this._router.routeMessage(payload);
+        else console.log('router is  undefined');
       });
     }
   }

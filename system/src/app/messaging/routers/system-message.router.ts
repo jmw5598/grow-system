@@ -1,6 +1,6 @@
-import { AbstractMessageRouter, MessageRoute } from '@grow/common';
+import { SegmentMatchMessageRouter, MessageRoute } from '@grow/common';
 
-export class SystemMessageRouter extends AbstractMessageRouter {
+export class SystemMessageRouter extends SegmentMatchMessageRouter {
   private static instance: SystemMessageRouter;
 
   private constructor() {
