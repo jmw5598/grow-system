@@ -3,6 +3,6 @@
   "compilerOptions": {
     "outDir": "./dist/system"
   },
-  "include": ["src"],
+  "include": ["src", "test"],
   "exclude": ["node_modules", "**/__tests__/*"]
 }

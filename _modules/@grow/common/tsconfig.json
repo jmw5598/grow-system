@@ -3,6 +3,6 @@
   "compilerOptions": {
     "outDir": "./dist/@grow/common"
   },
-  "include": ["src"],
+  "include": ["src", "test"],
   "exclude": ["node_modules", "**/__tests__/*"]
 }
