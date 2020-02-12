@@ -5,7 +5,7 @@ import { SystemEventMessageRouter } from './system-event-message.router';
 import { SystemMessageRouter } from './system-message.router';
 import { SystemNodeMessageRouter } from './system-node-message.router';
 import { SystemSchedulerMessageRouter } from './system-scheduler-message.router';
-import { RouterChannels } from 'app/application.constants';
+import { ChannelSegments } from '../../application.constants';
 import { SystemNodeCommandMessageService } from '../services/system-node-command-message.service';
 
 const mqttInboundMessageRouter: MqttInboundMessageRouter = MqttInboundMessageRouter.getInstance();
@@ -18,27 +18,27 @@ const systemSchedulerMessageRouter: SystemSchedulerMessageRouter = SystemSchedul
 
 export const configureMessageRouters: Function = (): IRoutable => {
   mqttInboundMessageRouter
-    .getChannel('inbound')
+    .getChannel(ChannelSegments.INBOUND)
     .receivedMessage()
     .subscribe((message: MqttMessage): void => mqttMessageRouter.routeMessage(message));
 
   mqttMessageRouter
-    .getChannel('system')
+    .getChannel(ChannelSegments.SYSTEM)
     .receivedMessage()
     .subscribe((message: MqttMessage): void => systemMessageRouter.routeMessage(message));
 
   mqttMessageRouter
-    .getChannel('node')
+    .getChannel(ChannelSegments.NODE)
     .receivedMessage()
     .subscribe((message: MqttMessage): void => systemNodeMessageRouter.routeMessage(message));
 
   systemMessageRouter
-    .getChannel('command')
+    .getChannel(ChannelSegments.COMMAND)
     .receivedMessage()
     .subscribe((message: MqttMessage): void => systemCommandMessageRouter.routeMessage(message));
 
   systemMessageRouter
-    .getChannel('event')
+    .getChannel(ChannelSegments.EVENT)
     .receivedMessage()
     .subscribe((message: MqttMessage): void => systemEventMessageRouter.routeMessage(message));
 

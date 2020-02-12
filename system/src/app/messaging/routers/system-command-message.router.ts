@@ -1,10 +1,11 @@
 import { SegmentMatchMessageRouter, MessageRoute } from '@grow/common';
+import { ChannelSegments } from '../../application.constants';
 
 export class SystemCommandMessageRouter extends SegmentMatchMessageRouter {
   private static instance: SystemCommandMessageRouter;
 
   private constructor() {
-    super([new MessageRoute('status', 'status')]);
+    super([new MessageRoute(ChannelSegments.STATUS, ChannelSegments.STATUS)]);
   }
 
   public static getInstance(): SystemCommandMessageRouter {

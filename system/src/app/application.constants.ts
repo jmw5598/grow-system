@@ -4,6 +4,15 @@ export enum ApplicationContextKeys {
   NODES = 'nodes',
 }
 
-export enum RouterChannels {
+export enum ChannelSegments {
+  COMMAND = 'command',
+  COMPONENT = 'component',
+  EVENT = 'event',
   INBOUND = 'inbound',
+  NODE = 'node',
+  REGISTER = 'register',
+  SCHEDULER = 'scheduler',
+  SCHEDULE = 'schedule',
+  STATUS = 'status',
+  SYSTEM = 'system',
 }
