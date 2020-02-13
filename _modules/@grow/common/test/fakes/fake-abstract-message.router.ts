@@ -1,6 +1,6 @@
 import { AbstractMessageRouter, MessageRoute, MqttMessage } from '../../src/lib';
 
-export class MockAbstractMessageRouter extends AbstractMessageRouter{
+export class FakeAbstractMessageRouter extends AbstractMessageRouter{
   constructor(routes: MessageRoute[]) {
     super(routes);
   }
