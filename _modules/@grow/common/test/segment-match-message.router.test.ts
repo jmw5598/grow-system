@@ -19,8 +19,6 @@ describe('abstract-message.router', () => {
     mockMessageRoutedResult = new MqttMessage('result', { test: 'test'});
   });
 
-
-
   it('should be defined', () => {
     expect(mockSegmentMatchMessageRouter).toBeDefined();
   });
