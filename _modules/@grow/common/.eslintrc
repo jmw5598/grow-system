@@ -27,5 +27,9 @@
       }
     ],
     "@typescript-eslint/no-unused-vars": "warn"
+  },
+  "env": {
+    "browser": true,
+    "node": true
   }
 }
