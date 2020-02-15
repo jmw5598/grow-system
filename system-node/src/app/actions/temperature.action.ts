@@ -1,9 +1,8 @@
 'use strict';
 
-import { Component, Logger, MqttGateway, SystemNodeConfiguration } from "@grow/common";
+import { Component, Logger, MqttGateway, SystemNodeConfiguration } from '@grow/common';
 
 export class TemperatureAction {
-
   private _node: SystemNodeConfiguration;
   private _logger: Logger;
   private _component: Component;
@@ -29,8 +28,7 @@ export class TemperatureAction {
   }
 
   stop(): void {
-    if(this._interval)
-      clearInterval(this._interval);
+    if (this._interval) clearInterval(this._interval);
   }
 
   setInterval(value: number): void {
@@ -47,5 +45,4 @@ export class TemperatureAction {
     this._logger.debug(`Destroying temperature sensor, ${this._component.alias}`);
     this.stop();
   }
-
 }

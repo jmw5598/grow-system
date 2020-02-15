@@ -24,6 +24,6 @@ export const configureMessageRouters: Function = (): IRoutable => {
     .getChannel(ChannelSegments.COMMAND)
     .receivedMessage()
     .subscribe((message: MqttMessage): void => systemNodeCommandMessageRouter.routeMessage(message));
-  
+
   return mqttInboundMessageRouter;
-}
+};

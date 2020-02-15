@@ -24,12 +24,15 @@
   "dependencies": {
     "@grow/common": "file:../_modules/@grow/common",
     "mqtt": "^2.18.8",
-    "onoff": "^3.2.6",
+    "node-dht-sensor": "^0.4.1",
+    "onoff": "^3.2.9",
     "rxjs": "^6.5.4",
     "shortid": "^2.2.15"
   },
   "devDependencies": {
     "@types/jest": "^25.1.2",
+    "@types/onoff": "^4.1.0",
+    "@types/shortid": "0.0.29",
     "@typescript-eslint/eslint-plugin": "^2.19.0",
     "@typescript-eslint/parser": "^2.19.0",
     "eslint": "^6.8.0",

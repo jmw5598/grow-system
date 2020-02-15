@@ -1,5 +1,5 @@
 import { SegmentMatchMessageRouter, MessageRoute } from '@grow/common';
-import { ChannelSegments } from 'app/application.constants';
+import { ChannelSegments } from '../../application.constants';
 
 export class SystemNodeCommandMessageRouter extends SegmentMatchMessageRouter {
   private static instance: SystemNodeCommandMessageRouter;
@@ -11,8 +11,8 @@ export class SystemNodeCommandMessageRouter extends SegmentMatchMessageRouter {
       new MessageRoute(ChannelSegments.PROXIMITY, ChannelSegments.PROXIMITY),
       new MessageRoute(ChannelSegments.RELAY, ChannelSegments.RELAY),
       new MessageRoute(ChannelSegments.TEMPERATURE, ChannelSegments.TEMPERATURE),
-      new MessageRoute(ChannelSegments.TEMPHUM, ChannelSegments.TEMPHUM)
-    ])
+      new MessageRoute(ChannelSegments.TEMPHUM, ChannelSegments.TEMPHUM),
+    ]);
   }
 
   public static getInstance(): SystemNodeCommandMessageRouter {

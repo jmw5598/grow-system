@@ -1,7 +1,6 @@
 import { Component, Logger, MqttGateway, SystemNodeConfiguration } from '@grow/common';
 
 export class HumidityAction {
-
   private _logger: Logger;
   private _node: SystemNodeConfiguration;
   private _component: Component;
@@ -11,7 +10,7 @@ export class HumidityAction {
 
   constructor(node: SystemNodeConfiguration, component: Component) {
     this._node = node;
-    this._component = component
+    this._component = component;
     this._logger = new Logger(this.constructor.name);
     this.start();
   }
@@ -21,12 +20,11 @@ export class HumidityAction {
       console.log('HumidityAction::Alias:' + this._component.alias);
       console.log('HumidityAction::Taking reading');
       console.log('HumidityAction::Publishing reading');
-    }, this._preferences.interval)
+    }, this._preferences.interval);
   }
 
   stop(): void {
-    if(this._interval)
-      clearInterval(this._interval);
+    if (this._interval) clearInterval(this._interval);
   }
 
   setInterval(value: number): void {
@@ -42,5 +40,4 @@ export class HumidityAction {
   destroy(): void {
     this.stop();
   }
-
 }

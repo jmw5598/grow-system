@@ -8,7 +8,7 @@ export class SystemNodeMessageRouter extends SegmentMatchMessageRouter {
     super([
       new MessageRoute(ChannelSegments.COMMAND, ChannelSegments.COMMAND),
       new MessageRoute(ChannelSegments.COMPONENT, ChannelSegments.COMPONENT),
-      new MessageRoute(ChannelSegments.REGISTER, ChannelSegments.REGISTER)
+      new MessageRoute(ChannelSegments.REGISTER, ChannelSegments.REGISTER),
     ]);
   }
 

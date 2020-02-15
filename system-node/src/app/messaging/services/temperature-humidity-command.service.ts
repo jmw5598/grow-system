@@ -1,26 +1,26 @@
-import { ApplicationContext, IMessageService, MqttMessage } from '@grow/common'; 
+import { ApplicationContext, IMessageService, IPubSubChannel, MqttMessage } from '@grow/common';
 import { Observable } from 'rxjs';
 
 export class TemperatureHumidityCommandService implements IMessageService {
   private readonly _context: ApplicationContext;
   private _actions: any;
 
-  constructor(channel: Observable<MqttMessage>) {
+  constructor(channel: IPubSubChannel) {
     this._context = ApplicationContext.getInstance();
-    this._context.getItem('action').subscribe((actions: any) => this._actions = actions);
-    
-    channel.subscribe((message: MqttMessage) => this.processMessage(message));      
+    this._context.getItem('action').subscribe((actions: any) => (this._actions = actions));
+
+    channel.receivedMessage().subscribe((message: MqttMessage) => this.processMessage(message));
   }
 
   public processMessage(message: MqttMessage): void {
-    if(!this._actions) return;
-    let sensor = this._actions.find((sensor: any) => sensor.id === message.message.component.id);
-    
+    if (!this._actions) return;
+    const sensor = this._actions.find((sensor: any) => sensor.id === message.message.component.id);
+
     if (!sensor) return;
 
     const event = message.message.command;
 
-    switch(event) {
+    switch (event) {
       case 'start':
         sensor.start();
         break;
@@ -37,7 +37,5 @@ export class TemperatureHumidityCommandService implements IMessageService {
         console.log('[TemperatureHumidityCommandService] Process, no processing case found');
         break;
     }
-
   }
-
 }

@@ -1,6 +1,6 @@
 export enum ApplicationContextKeys {
   ACTIONS = 'actions',
-  CONFIG = 'config'
+  CONFIG = 'config',
 }
 
 export enum ChannelSegments {
