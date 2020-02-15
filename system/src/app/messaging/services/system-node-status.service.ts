@@ -1,5 +1,14 @@
 import { Observable } from 'rxjs';
-import { ApplicationContext, IMessageService, IPubSubChannel, Logger, MqttGateway, MqttMessage } from '@grow/common';
+import {
+  ApplicationContext,
+  EventMessageType,
+  IMessageService,
+  IPubSubChannel,
+  Logger,
+  MqttGateway,
+  MqttMessage,
+  NotificationType,
+} from '@grow/common';
 import { ApplicationContextKeys } from '../../application.constants';
 
 // @@@ TODO Clean this mess up!!
@@ -58,7 +67,8 @@ export class SystemNodeStatusService implements IMessageService {
 
   private _sendStatus(node: any): void {
     const message = {
-      event: 'NODE_STATE_CHANGED',
+      // EventType.NODE_STATE_CHANGED
+      event: EventMessageType.NODE_STATE_CHANGED,
       payload: {
         id: node.id,
         name: node.name,
@@ -74,11 +84,12 @@ export class SystemNodeStatusService implements IMessageService {
   private _notify(node: any): void {
     // NEED TO copy over event-message-type.model form system node for _sendStatus);
     // NEED TO create Noticiation type (INFO, SUCCESS, WARNING, DANGER)
-
+    // EventType.NOTIFICATION
+    // NotificationType.DANGER
     const message = {
-      event: 'NOTIFICATION',
+      event: EventMessageType.NOTIFICATION,
       payload: {
-        type: 'DANGER',
+        type: NotificationType.ERROR,
         message: `System node, ${node.name}, is unresponsive!`,
       },
     };
