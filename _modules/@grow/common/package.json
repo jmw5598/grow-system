@@ -2,8 +2,8 @@
   "name": "@grow/common",
   "version": "1.0.0",
   "description": "",
-  "main": "dist/@grow/common/index.js",
-  "types": "dist/@grow/common/index.d.ts",
+  "main": "dist/@grow/common/src/lib/index.js",
+  "types": "dist/@grow/common/src/lib/index.d.ts",
   "scripts": {
     "prebuild": "tsc --noEmit && eslint \"**/*.{js,ts}\" --quiet",
     "build": "tsc",
