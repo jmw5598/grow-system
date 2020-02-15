@@ -26,6 +26,7 @@ export * from './messaging/models/event-message-type.model';
 export * from './messaging/models/event-message.model';
 export * from './messaging/models/message-route.model';
 export * from './messaging/models/mqtt-message.model';
+export * from './messaging/models/notification-type.enum';
 export * from './messaging/mqtt.gateway';
 export * from './messaging/routers/abstract-message.router';
 export * from './messaging/routers/segment-match-message.router';
