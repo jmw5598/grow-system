@@ -10,13 +10,13 @@ describe('mqtt.gateway.ts', () => {
   it('should be the same instance', () => {
     const anotherMqttGateway: MqttGateway = MqttGateway.getInstance();
     expect(mqttGateway).toBe(anotherMqttGateway);
-  })
+  });
 
   it('should call setup method', () => {
     const mqttGatewaySetupSpy = jest.spyOn(mqttGateway, 'setup').mockImplementation();
     // mqttGateway.setup;
     // expect(mqttGatewaySetupSpy).toBeCalledWith(...);
-  })
+  });
 
   it('should call start method', () => {
     const mqttGatewayOutboundSpy = jest.spyOn(mqttGateway, 'outbound').mockImplementation();
@@ -24,4 +24,4 @@ describe('mqtt.gateway.ts', () => {
     mqttGateway.outbound(mqttMessage);
     expect(mqttGatewayOutboundSpy).toBeCalledWith(mqttMessage);
   });
-})
+});

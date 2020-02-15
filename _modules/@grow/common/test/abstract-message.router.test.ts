@@ -6,27 +6,25 @@ describe('abstract-message.router', () => {
   let fakeAbstractMessageRouter: FakeAbstractMessageRouter;
   let fakeChannelName: string;
   let fakeChannel: IPubSubChannel;
-  
+
   beforeAll(() => {
     fakeChannelName = 'test';
-    fakeAbstractMessageRouter = new FakeAbstractMessageRouter(
-      [new MessageRoute(fakeChannelName, fakeChannelName)]
-    );
+    fakeAbstractMessageRouter = new FakeAbstractMessageRouter([new MessageRoute(fakeChannelName, fakeChannelName)]);
   });
 
   beforeEach(() => {
     fakeChannel = fakeAbstractMessageRouter.getChannel('test');
   });
-  
+
   it('should return channel of test', () => {
     expect(fakeChannel).toBeDefined();
   });
 
   it('should return an instance of PubSubChannel', () => {
     expect(fakeChannel).toBeInstanceOf(PubSubChannel);
-  })
+  });
 
-  it('should create channel if doesn\'t exist', () => {
+  it('should create channel if does not exist', () => {
     const channel: IPubSubChannel = fakeAbstractMessageRouter.getChannel('test2');
     expect(channel).toBeDefined();
   });

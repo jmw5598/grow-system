@@ -9,14 +9,15 @@ describe('pub-sub-channel.ts', () => {
     channel = new PubSubChannel();
   });
 
-  it('should send message down channel', (done) => {
+  it('should send message down channel', done => {
     const testMessage: MqttMessage = new MqttMessage('test', 'test');
-    channel.receivedMessage()
+    channel
+      .receivedMessage()
       .pipe(take(1))
       .subscribe({
         next: (message: MqttMessage) => expect(message).toEqual(testMessage),
-        complete: () => done()
+        complete: () => done(),
       });
     channel.sendMessage(testMessage);
-  })
+  });
 });

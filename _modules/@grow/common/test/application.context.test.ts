@@ -21,24 +21,26 @@ describe('application.context.ts', () => {
     expect(applicationContext).toBe(anotherContext);
   });
 
-  it('should get null when key doesn\'t exist', (done) => {
-    const keyThatDoesntExist: string = 'keyThatDoesntExist';
-    applicationContext.getItem(keyThatDoesntExist)
-      .pipe(take(1))  
+  it('should get null when key does not exist', done => {
+    const keyThatDoesntExist = 'keyThatDoesntExist';
+    applicationContext
+      .getItem(keyThatDoesntExist)
+      .pipe(take(1))
       .subscribe({
         next: value => expect(value).toBeNull(),
-        complete: () => done()
+        complete: () => done(),
       });
   });
 
-  it('should get expected value when key exists', (done) => {
-    const expectedValue: string = 'testValue';
+  it('should get expected value when key exists', done => {
+    const expectedValue = 'testValue';
     applicationContext.setItem(testKey, testValue);
-    applicationContext.getItem(testKey)
-      .pipe(take(1))  
+    applicationContext
+      .getItem(testKey)
+      .pipe(take(1))
       .subscribe({
         next: value => expect(value).toBe(expectedValue),
-        complete: () => done()
+        complete: () => done(),
       });
     applicationContext.setItem(testKey, testValue);
   });

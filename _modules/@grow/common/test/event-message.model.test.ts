@@ -14,5 +14,5 @@ describe('event-message.model.ts', () => {
   it('should be equal', () => {
     const expectedEventMessage: EventMessage = new EventMessage('test', { test: 'test' });
     expect(eventMessage).toEqual(expectedEventMessage);
-  })
+  });
 });
