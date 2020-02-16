@@ -20,7 +20,7 @@ module.exports = {
   mode: 'production',
   output: {
     filename: '[name].js',
-    path: path.resolve(__dirname, 'bundles/system'),
+    path: path.resolve(__dirname, 'bundle/'),
   },
   externals: nodeModules,
   resolve: {
