@@ -4,13 +4,16 @@
   "description": "A single Raspberry Pi node that handles automated tasks for system-nodes",
   "main": "index.js",
   "scripts": {
-    "prebuild": "tsc --noEmit && eslint \"**/*.{js,ts}\" --quiet",
-    "build": "tsc",
-    "lint": "tsc --noEmit && eslint \"**/*.{js,ts}\" --quiet",
-    "lint:fix": "tsc --noEmit && eslint \"**/*.{js,ts}\" --quiet --fix",
+    "prebuild": "tsc --noEmit && eslint \"src/**/*.{js,ts}\" --quiet",
+    "transpile": "tsc && mkdir -p dist/system/config && cp src/config/configuration.json dist/system/config/",
+    "lint": "tsc --noEmit && eslint \"src/**/*.{js,ts}\" --quiet",
+    "lint:fix": "tsc --noEmit && eslint \"src/**/*.{js,ts}\" --quiet --fix",
     "test": "jest",
     "test:watch": "jest --watch",
-    "coverage": "jest --coverage"
+    "coverage": "jest --coverage",
+    "bundle": "NODE_ENV=production webpack",
+    "copy": "cp package.json bundle/ && cp README.md bundle/ && cp configuration.json bundle/",
+    "build": "npm run bundle && npm run copy"
   },
   "keywords": [
     "Hyrdoponics",
@@ -22,7 +25,6 @@
   "author": "Jason White",
   "license": "ISC",
   "dependencies": {
-    "@grow/common": "file:../_modules/@grow/common",
     "mqtt": "^2.18.8",
     "rxjs": "^6.5.3",
     "rxjs-compat": "^6.5.3",
@@ -37,7 +39,6 @@
     "eslint-plugin-prettier": "^3.1.2",
     "husky": "^4.2.1",
     "jest": "^25.1.0",
-    "lint-staged": "^10.0.7",
     "prettier": "^1.19.1",
     "ts-jest": "^25.2.0",
     "ts-node": "^8.6.2",
@@ -46,9 +47,13 @@
   "lint-staged": {
     "src/**/*.ts": "npm run lint"
   },
+  "optionalDependencies": {
+    "@grow/common": "file:../_modules/@grow/common"
+  },
   "husky": {
     "hooks": {
-      "pre-commit": "lint-staged"
+      "pre-commit": "npm run lint",
+      "pre-push": "npm run test"
     }
   }
 }
