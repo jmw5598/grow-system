@@ -12,7 +12,7 @@
     "test:watch": "jest --watch",
     "coverage": "jest --coverage",
     "bundle": "NODE_ENV=production webpack",
-    "copy": "cp package.json bundle/ && cp README.md bundle/ && cp -r src/config bundle/",
+    "copy": "cp package.json bundle/ && cp README.md bundle/ && cp configuration.json bundle/",
     "build": "npm run bundle && npm run copy"
   },
   "keywords": [
