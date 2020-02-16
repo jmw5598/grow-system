@@ -12,12 +12,15 @@ fs.readdirSync('node_modules')
   });
 
 module.exports = {
-  entry: './src/index.ts',
+  entry: {
+    main: ['./src/index.ts'],
+    common: ['./node_modules/@grow/common/src/lib/index.ts']
+  },
   target: 'node',
   mode: 'production',
   output: {
-    filename: 'system.js',
-    path: path.resolve(__dirname, 'bundles'),
+    filename: '[name].js',
+    path: path.resolve(__dirname, 'bundles/system'),
   },
   externals: nodeModules,
   resolve: {
