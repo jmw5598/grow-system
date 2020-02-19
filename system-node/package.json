@@ -35,8 +35,10 @@
     "@types/jest": "^25.1.2",
     "@types/onoff": "^4.1.0",
     "@types/shortid": "0.0.29",
+    "@types/webpack": "^4.41.6",
     "@typescript-eslint/eslint-plugin": "^2.19.0",
     "@typescript-eslint/parser": "^2.19.0",
+    "awesome-typescript-loader": "^5.2.1",
     "eslint": "^6.8.0",
     "eslint-config-prettier": "^6.10.0",
     "eslint-plugin-prettier": "^3.1.2",
@@ -45,7 +47,9 @@
     "prettier": "^1.19.1",
     "ts-jest": "^25.2.0",
     "ts-node": "^8.6.2",
-    "typescript": "^3.7.5"
+    "typescript": "^3.7.5",
+    "webpack": "^4.41.6",
+    "webpack-cli": "^3.3.11"
   },
   "optionalDependencies": {
     "@grow/common": "file:../_modules/@grow/common"
