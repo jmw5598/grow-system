@@ -1,6 +1,5 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { BreadcrumbStub } from './core/components/breadcrumbs/breadcrumb-stub.model';
 
 const routes: Routes = [
   {
@@ -9,7 +8,6 @@ const routes: Routes = [
   },
   {
     path: 'system',
-    data: { stub: new BreadcrumbStub('System', 'system') },
     loadChildren: './features/system/system.module#SystemModule'
   },
   {
