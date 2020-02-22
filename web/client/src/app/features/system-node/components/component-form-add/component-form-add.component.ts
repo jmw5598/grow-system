@@ -1,8 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { SystemNodeComponent, SystemNodeComponentType, System } from '@shared/models';
-
-import { SystemNodeComponentService } from '../../../../core/services/system-node-component.service';
+import { SystemNodeComponentService } from '@core/services';
 
 @Component({
   selector: 'gs-component-form-add',
@@ -16,7 +15,7 @@ export class ComponentFormAddComponent implements OnInit {
 
   constructor(
     private _formBuilder: FormBuilder,
-    private _systemNodeComponentService: SystemNodeComponentService  
+    private _systemNodeComponentService: SystemNodeComponentService
   ) { }
 
   ngOnInit() {
