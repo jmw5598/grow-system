@@ -1,4 +1,8 @@
-import { MigrationInterface, QueryRunner } from 'typeorm';
+import { MigrationInterface, QueryRunner, getRepository } from 'typeorm';
+import { User } from '../entities/user.entity';
+import { Role } from '../entities/role.entity';
+import { seedRoles } from '../seeds/roles.seed';
+import { seedUsers } from '../seeds/users.seed';
 
 export class InitialUserRole1581036436488 implements MigrationInterface {
   name = 'InitialUserRole1581036436488';
@@ -44,6 +48,10 @@ export class InitialUserRole1581036436488 implements MigrationInterface {
       'CREATE INDEX "IDX_4be2f7adf862634f5f803d246b" ON "user_roles_role" ("roleId") ',
       undefined,
     );
+
+    // Seed Data
+    const roles = await getRepository(Role).save(seedRoles);
+    const users = await getRepository(User).save(seedUsers);
   }
 
   public async down(queryRunner: QueryRunner): Promise<any> {
