@@ -1,11 +1,15 @@
 import { Request, Response } from 'express';
-import { getRepository, Repository } from 'typeorm';
 import { User } from '../data';
+import { UsersRepository } from '../repositories';
 
 export class AuthenticationController {
   public async authenticate(req: Request, res: Response): Promise<any> {
-    const usersRepository: Repository<User> = getRepository(User);
-    const users: User[] = await usersRepository.find();
-    return res.status(200).send(users);
+    const username: string = req.body.username;
+    const usersRepository: UsersRepository = UsersRepository.getInstance();
+    const user: User | undefined = await usersRepository.findByUsername(username);
+    
+    if (!user) return res.status(401).send('Invalid username/password');
+    
+    return res.status(200).send(user);
   }
 }
