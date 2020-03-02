@@ -1,22 +1,8 @@
 import { getRepository, Repository } from 'typeorm';
+import { IUsersRepository } from './interfaces/users-repository.interface';
 import { User } from '../data';
-import { rejects } from 'assert';
 
-export class UsersRepository {
-  private static instance: UsersRepository;
-
-  private constructor() {
-    /* Singleton private constructor */
-  }
-
-  public static getInstance(): UsersRepository {
-    if (!UsersRepository.instance) {
-      this.instance = new UsersRepository();
-    }
-
-    return UsersRepository.instance;
-  }
-
+export class UsersRepository implements IUsersRepository {
   public async findByUsername(username: string): Promise<User | undefined> {
     const usersRepository: Repository<User> = getRepository(User);
     return await usersRepository
