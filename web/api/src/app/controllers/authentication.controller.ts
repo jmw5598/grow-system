@@ -1,15 +1,20 @@
-import { Request, Response } from 'express';
-import { User } from '../data';
-import { UsersRepository } from '../repositories';
+import { Request, Response, NextFunction } from 'express';
+import { IAuthenticationService, AuthenticationService } from '../services';
+import { AuthenticatedUser } from '../models';
 
 export class AuthenticationController {
-  public async authenticate(req: Request, res: Response): Promise<any> {
-    const username: string = req.body.username;
-    const usersRepository: UsersRepository = UsersRepository.getInstance();
-    const user: User | undefined = await usersRepository.findByUsername(username);
+  private readonly _authenticationService: IAuthenticationService;
 
-    if (!user) return res.status(401).send('Invalid username/password');
+  constructor() {
+    this._authenticationService = new AuthenticationService();
+  }
 
-    return res.status(200).send(user);
+  public async authenticate(req: Request, res: Response, next: NextFunction): Promise<any> {
+    const username: string = (req.body.username || '').trim();
+    const password: string = (req.body.password || '').trim();
+    
+    return this._authenticationService.authenticateUser(username, password)
+      .then((authenticatedUser: AuthenticatedUser) => res.status(200).send(authenticatedUser))
+      .catch((error: Error) => res.status(401).send(error.message));
   }
 }
