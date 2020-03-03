@@ -1,5 +1,6 @@
 import express, { Express, Request, Response, NextFunction } from 'express';
 import bodyParser from 'body-parser';
+import cors from 'cors';
 import { applicationRouter } from './routers';
 
 export class Application {
@@ -12,7 +13,9 @@ export class Application {
     this._server.set('port', process.env.PORT || 3000);
     this._server.use(bodyParser.json());
     this._server.use(bodyParser.urlencoded({ extended: true }));
+    this._server.use(cors());
     this._server.use(applicationRouter);
+    
   }
 
   public static getInstance(): Application {
