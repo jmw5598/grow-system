@@ -1,41 +1,44 @@
 import { Request, Response, NextFunction } from 'express';
-import { JwtService } from '../services';
+import { JwtTokenService, ITokenService } from '../services';
 
+// @@@ RETHINK THIS.
 export class JwtMiddleware {
-  public static verify(req: Request, res: Response, next: NextFunction): any {
+  
+  public static async verify(req: Request, res: Response, next: NextFunction): Promise<any> {
     const token: string = JwtMiddleware.getTokenFromHeader(req);
-    const valid: boolean = JwtService.getInstance().verifyToken(token);
+    const jwtService: ITokenService = JwtTokenService.getInstance();
+    const valid: boolean = await jwtService.verifyToken(token);
 
     return valid ? next() : res.status(401).send({ error: 'Unauthorized' });
   }
 
-  public static hasRole(role: string): Function {
-    return (req: Request, res: Response, next: NextFunction): any => {
+  public static async hasRole(role: string): Promise<Function> {
+    return async (req: Request, res: Response, next: NextFunction): Promise<any> => {
       const token: string = JwtMiddleware.getTokenFromHeader(req);
-      const decoded: any = JwtService.getInstance().decodeToken(token);
-
+      const jwtService: ITokenService = JwtTokenService.getInstance();
+      const decoded: any = await jwtService.decodeToken(token);
       const foundRole: boolean = decoded.payload.roles.find((e: any) => e.role === role);
 
       return foundRole ? next() : res.status(403).send({ error: 'Access Denied' });
     };
   }
 
-  public static hasAllRoles(roles: string[]): Function {
-    return (req: Request, res: Response, next: NextFunction): any => {
+  public static async hasAllRoles(roles: string[]): Promise<Function> {
+    return async (req: Request, res: Response, next: NextFunction): Promise<any> => {
       const token: string = JwtMiddleware.getTokenFromHeader(req);
-      const decoded: any = JwtService.getInstance().decodeToken(token);
-
+      const jwtService: ITokenService = JwtTokenService.getInstance();
+      const decoded: any = await jwtService.decodeToken(token);
       const foundAllRoles: boolean = roles.every((e: string) => decoded.payload.roles.find((i: any) => i.role === e));
 
       return foundAllRoles ? next() : res.status(403).send('Access Denied');
     };
   }
 
-  public static hasAnyRole(roles: string[]): Function {
-    return (req: Request, res: Response, next: NextFunction): any => {
+  public static async hasAnyRole(roles: string[]): Promise<Function> {
+    return async (req: Request, res: Response, next: NextFunction): Promise<any> => {
       const token: string = JwtMiddleware.getTokenFromHeader(req);
-      const decoded: any = JwtService.getInstance().decodeToken(token);
-
+      const jwtService: ITokenService = JwtTokenService.getInstance();
+      const decoded: any = await jwtService.decodeToken(token);
       const foundAllRoles: boolean = roles.some((e: string) => decoded.payload.roles.find((i: any) => i.role === e));
 
       return foundAllRoles ? next() : res.status(403).send('Access Denied');
