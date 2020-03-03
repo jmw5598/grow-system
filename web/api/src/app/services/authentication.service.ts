@@ -14,7 +14,7 @@ export class AuthenticationService implements IAuthenticationService {
   }
 
   public async authenticateUser(username: string, password: string): Promise<AuthenticatedUser> {
-    const user: User = await this._usersRepository.findByUsername(username);
+    const user: User | undefined = await this._usersRepository.findByUsername(username);
 
     if (!user) {
       throw new Error('Invalid username or password');

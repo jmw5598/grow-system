@@ -9,6 +9,7 @@ const privateKeyPath: string = path.resolve(__dirname, '../config/private.key');
 const publicKeyPath: string = path.resolve(__dirname, '../config/public.key');
 
 export class JwtTokenService implements ITokenService {
+  private static instance: ITokenService;
   private readonly _authConfig: any;
   private readonly _privateKey: string;
   private readonly _publicKey: string;
@@ -17,6 +18,14 @@ export class JwtTokenService implements ITokenService {
     this._authConfig = JSON.parse(fs.readFileSync(authConfigPath, 'utf8'));
     this._privateKey = fs.readFileSync(privateKeyPath, 'utf8');
     this._publicKey = fs.readFileSync(publicKeyPath, 'utf8');
+  }
+
+  public static getInstance(): ITokenService {
+    if (!JwtTokenService.instance) {
+      JwtTokenService.instance = new JwtTokenService();
+    }
+
+    return JwtTokenService.instance;
   }
 
   // @@@ TODO figure out token expirations???
