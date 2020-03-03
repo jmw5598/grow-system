@@ -4,7 +4,6 @@ import { JwtTokenService, ITokenService } from '../services';
 // @@@ RETHINK THIS.
 export class JwtMiddleware {
   
-
   public static async verify(req: Request, res: Response, next: NextFunction): Promise<any> {
     const token: string = JwtMiddleware.getTokenFromHeader(req);
     const jwtService: ITokenService = JwtTokenService.getInstance();
