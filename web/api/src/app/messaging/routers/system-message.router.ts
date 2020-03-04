@@ -1,5 +1,5 @@
 import { SegmentMatchMessageRouter, MessageRoute } from '@grow/common';
-import { ChannelSegments } from '../../application.contants';
+import { ChannelSegments } from '../../application.constants';
 
 export class SystemMessageRouter extends SegmentMatchMessageRouter {
   private static instance: SystemMessageRouter;
