@@ -1,7 +1,7 @@
 import { take } from 'rxjs/operators';
-import { MqttMessageRouter } from '../src/app/messaging/routers/mqtt-message.router';
+import { MqttMessageRouter } from '../../../src/app/messaging/routers/mqtt-message.router';
 import { MqttMessage } from '@grow/common';
-import { ChannelSegments } from '../src/app/application.constants';
+import { ChannelSegments } from '../../../src/app/application.constants';
 
 describe('mqtt-messager.router.ts',  () => {
   let mqttMessageRouter: MqttMessageRouter;
