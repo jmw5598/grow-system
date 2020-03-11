@@ -1,0 +1,27 @@
+{
+  "mqtt": {
+    "gateway": {
+      "uri": "mqtt://192.168.1.15",
+      "username": "",
+      "password": ""
+    },
+    "options": {
+      "qos": 2
+    },
+    "topics": {
+      "subscriptions": [
+        "web/system/event/nodes",
+        "web/system/event/status",
+        "web/system-node/state",
+        "web/node/event",
+        "web/node/event/humidity",
+        "web/node/event/notification",
+        "web/node/event/proximity",
+        "web/node/event/relay",
+        "web/node/event/temperature",
+        "web/node/event/temphum",
+        "web/node/event/status"
+      ]
+    }
+  }
+}
