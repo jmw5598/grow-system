@@ -9,7 +9,7 @@ export class Application {
   private _server: Express;
   private _gateway: MqttGateway;
   private _messageRouting: IRoutable;
-  private _messageServices: IMessageService[]
+  private _messageServices: IMessageService[];
 
   constructor(private _config: GlobalConfiguration) {
     this._server = express();

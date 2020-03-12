@@ -12,8 +12,9 @@ export class AuthenticationController {
   public async authenticate(req: Request, res: Response, next: NextFunction): Promise<any> {
     const username: string = (req.body.username || '').trim();
     const password: string = (req.body.password || '').trim();
-    
-    return this._authenticationService.authenticateUser(username, password)
+
+    return this._authenticationService
+      .authenticateUser(username, password)
       .then((authenticatedUser: AuthenticatedUser) => res.status(200).send(authenticatedUser))
       .catch((error: Error) => res.status(401).send(error.message));
   }

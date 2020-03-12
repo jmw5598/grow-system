@@ -27,19 +27,19 @@ export class AuthenticationService implements IAuthenticationService {
     }
 
     // @@@ TODO figure out token expiration?
-    const userDetails: UserDetails = new UserDetails(username, user.roles.map(role => role.role));
+    const userDetails: UserDetails = new UserDetails(
+      username,
+      user.roles.map(role => role.role),
+    );
     const accessToken: string = await this._tokenService.generateToken(userDetails);
 
     return new AuthenticatedUser(userDetails, accessToken, new Date());
   }
 
   private async _validatePassword(user: User, password: string): Promise<boolean> {
-    return await bcrypt.compare(password, user.password)
-      .then((isValid: boolean) => {
-        if (isValid)
-          return true;
-        else
-          return false;
-      });
+    return await bcrypt.compare(password, user.password).then((isValid: boolean) => {
+      if (isValid) return true;
+      else return false;
+    });
   }
 }

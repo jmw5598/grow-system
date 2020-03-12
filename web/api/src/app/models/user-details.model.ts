@@ -1,6 +1,3 @@
 export class UserDetails {
-  constructor(
-    public username: string,
-    public roles: string[]
-  ) {}
+  constructor(public username: string, public roles: string[]) {}
 }

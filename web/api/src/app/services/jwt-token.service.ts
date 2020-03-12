@@ -13,7 +13,7 @@ export class JwtTokenService implements ITokenService {
   private readonly _authConfig: any;
   private readonly _privateKey: string;
   private readonly _publicKey: string;
-  
+
   constructor() {
     this._authConfig = JSON.parse(fs.readFileSync(authConfigPath, 'utf8'));
     this._privateKey = fs.readFileSync(privateKeyPath, 'utf8');
@@ -30,7 +30,7 @@ export class JwtTokenService implements ITokenService {
 
   // @@@ TODO figure out token expirations???
   public async generateToken(user: UserDetails): Promise<string> {
-    return jwt.sign({...user}, this._privateKey, this._authConfig.options);
+    return jwt.sign({ ...user }, this._privateKey, this._authConfig.options);
   }
 
   public async verifyToken(accessToken: string): Promise<boolean> {
@@ -43,7 +43,7 @@ export class JwtTokenService implements ITokenService {
     return true;
   }
 
-  public async decodeToken(accessToken: string): Promise<string | {[key: string]: any} | null> {
+  public async decodeToken(accessToken: string): Promise<string | { [key: string]: any } | null> {
     return jwt.decode(accessToken, { complete: true });
   }
 }
