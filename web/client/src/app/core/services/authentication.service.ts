@@ -6,7 +6,7 @@ import { map } from 'rxjs/operators';
 
 import { environment } from '@env/environment';
 
-import { Credentials, Token } from '../models';
+import { Credentials, AuthenticatedUser, Token } from '../models';
 
 
 @Injectable({
@@ -22,10 +22,11 @@ export class AuthenticationService {
 
   constructor(private _http: HttpClient, private _router: Router) {}
 
+  // @@@ Need to create AuthenticatedUser, UserDetails,  and Token models
   login(credentials: Credentials): Observable<Token> {
-    return this._http.post<Token>(`${this._environment.auth.baseUrl}/tokens`, credentials)
-      .pipe(map(data => {
-        this.token = new Token(data.token);
+    return this._http.post<AuthenticatedUser>(`${this._environment.auth.baseUrl}/tokens`, credentials)
+      .pipe(map((data: any) => {
+        this.token = new Token(data.accessToken);
         this.authenticated = true;
         return data;
       }))

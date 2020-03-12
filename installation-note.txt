@@ -76,3 +76,11 @@ ngrx store
 - login in take to node selection screen.
 - each selection will have link to dashbaord for the node or configurtation/settings page
 - dashboard will contain components and graphs for the selected node only
+
+
+- clone
+- build _modules@grow/common
+- cd system and npm install (should include optional deps)
+- npm run build (bundles to bundles/)
+- copy over bundles directory
+- cd bundles npm install --no-optional
