@@ -28,14 +28,14 @@ export const configureMessageRouters: Function = (): IRoutable => {
     .getChannel(ChannelSegments.NODE)
     .receivedMessage()
     .subscribe((message: MqttMessage): void => systemNodeMessageRouter.routeMessage(message));
-  
+
   systemMessageRouter
     .getChannel(ChannelSegments.SYSTEM)
     .receivedMessage()
     .subscribe((message: MqttMessage): void => systemEventMessageRouter.routeMessage(message));
 
   systemNodeMessageRouter
-    .getChannel(ChannelSegments.NODE)
+    .getChannel(ChannelSegments.EVENT)
     .receivedMessage()
     .subscribe((message: MqttMessage): void => systemNodeEventMessageRouter.routeMessage(message));
 

@@ -1,9 +1,8 @@
 import { MqttMessage, IMessageService, IPubSubChannel } from '@grow/common';
 
-export class ProximityPersistenceService implements IMessageService{
+export class ProximityPersistenceService implements IMessageService {
   constructor(channel: IPubSubChannel) {
-    channel.receivedMessage()
-      .subscribe((message: MqttMessage) => this.processMessage(message));
+    channel.receivedMessage().subscribe((message: MqttMessage) => this.processMessage(message));
   }
 
   public processMessage(message: MqttMessage): void {

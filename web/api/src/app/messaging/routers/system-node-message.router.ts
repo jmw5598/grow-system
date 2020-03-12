@@ -5,9 +5,7 @@ export class SystemNodeMessageRouter extends SegmentMatchMessageRouter {
   private static instance: SystemNodeMessageRouter;
 
   private constructor() {
-    super([
-      new MessageRoute(ChannelSegments.EVENT, ChannelSegments.EVENT)
-    ]);
+    super([new MessageRoute(ChannelSegments.EVENT, ChannelSegments.EVENT)]);
   }
 
   public static getInstance(): SystemNodeMessageRouter {

@@ -13,7 +13,7 @@ export class SystemNodeEventMessageRouter extends SegmentMatchMessageRouter {
       new MessageRoute(ChannelSegments.RELAY, ChannelSegments.RELAY),
       new MessageRoute(ChannelSegments.TEMPERATURE, ChannelSegments.TEMPERATURE),
       new MessageRoute(ChannelSegments.TEMPHUM, ChannelSegments.TEMPHUM),
-      new MessageRoute(ChannelSegments.STATUS, ChannelSegments.STATUS)
+      new MessageRoute(ChannelSegments.STATUS, ChannelSegments.STATUS),
     ]);
   }
 

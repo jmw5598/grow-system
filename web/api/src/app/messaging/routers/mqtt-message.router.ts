@@ -7,7 +7,7 @@ export class MqttMessageRouter extends SegmentMatchMessageRouter {
   private constructor() {
     super([
       new MessageRoute(ChannelSegments.SYSTEM, ChannelSegments.SYSTEM),
-      new MessageRoute(ChannelSegments.NODE, ChannelSegments.NODE)
+      new MessageRoute(ChannelSegments.NODE, ChannelSegments.NODE),
     ]);
   }
 
