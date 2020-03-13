@@ -1,7 +1,7 @@
-import { Request, Response } from 'express';
+import { Request, Response, NextFunction } from 'express';
 
 export class SseMiddleware {
-  public static enrich(req: Request, res: Response | any): any {
+  public static enrich(req: Request, res: Response | any, next: NextFunction): any {
     res.sseSetup = (): void => {
       res.set({
         'Content-Type': 'text/event-stream',
@@ -15,5 +15,7 @@ export class SseMiddleware {
       res.write('event: message\n');
       res.write(`data: ${data}\n\n`);
     };
+
+    next();
   }
 }
