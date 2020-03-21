@@ -14,18 +14,18 @@
     },
     "topics": {
       "subscriptions": [
-        "node/0/register",
-        "node/{id}/command/humidity",
-        "node/{id}/command/proximity",
-        "node/{id}/command/relay",
-        "node/{id}/command/temperature",
-        "node/{id}/command/temphum",
-        "node/{id}/command/heartbeat",
-        "node/{id}/component/create",
-        "node/{id}/component/update",
-        "node/{id}/component/delete",
-        "node/{id}/status",
-        "node/{id}/ping"
+        "node/0/node/register",
+        "node/{id}/node/command/humidity",
+        "node/{id}/node/command/proximity",
+        "node/{id}/node/command/relay",
+        "node/{id}/node/command/temperature",
+        "node/{id}/node/command/temphum",
+        "node/{id}/node/command/heartbeat",
+        "node/{id}/node/component/create",
+        "node/{id}/node/component/update",
+        "node/{id}/node/component/delete",
+        "node/{id}/node/status",
+        "node/{id}/node/ping"
       ]
     }
   },

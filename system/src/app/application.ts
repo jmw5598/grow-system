@@ -1,4 +1,11 @@
-import { GlobalConfiguration, IMessageService, IRoutable, MqttGateway, ApplicationContext } from '@grow/common';
+import {
+  GlobalConfiguration,
+  IMessageService,
+  IRoutable,
+  MqttGateway,
+  MqttMessage,
+  ApplicationContext,
+} from '@grow/common';
 import { ApplicationContextKeys } from './application.constants';
 import { configureMessageRouters, configureMessageServices } from './messaging';
 
@@ -19,5 +26,7 @@ export class System {
 
   public start(): void {
     console.log('starting system application');
+    const registrationRequest = new MqttMessage('node/0/node/register', { message: 'Regsiter your node' });
+    this._gateway.outbound(registrationRequest);
   }
 }

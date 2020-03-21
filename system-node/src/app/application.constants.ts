@@ -7,6 +7,7 @@ export enum ChannelSegments {
   COMMAND = 'command',
   COMPONENT = 'component',
   HUMIDITY = 'humidity',
+  ID = 'id',
   INBOUND = 'inbound',
   MOISTURE = 'moisture',
   NODE = 'node',

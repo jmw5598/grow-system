@@ -10,7 +10,7 @@ export class SystemNodeCommandMessageService implements IMessageService {
   }
 
   public processMessage(message: MqttMessage): void {
-    const routedTopic = `node/${message.message.node.id}/command/${message.topic}`;
+    const routedTopic = `node/${message.message.node.id}/node/command/${message.topic}`;
     const outbound = new MqttMessage(routedTopic, message.message);
     this._mqttGateway.outbound(outbound);
   }

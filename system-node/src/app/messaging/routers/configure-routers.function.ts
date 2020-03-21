@@ -3,8 +3,10 @@ import { MqttMessageRouter } from './mqtt-message.router';
 import { SystemNodeMessageRouter } from './system-node-message.router';
 import { SystemNodeCommandMessageRouter } from './system-node-command-message.router';
 import { ChannelSegments } from '../../application.constants';
+import { IdSegmentRemovalRouter } from './id-segment-removal.router';
 
 const mqttInboundMessageRouter: MqttInboundMessageRouter = MqttInboundMessageRouter.getInstance();
+const idSegmentRemovalRouter: IdSegmentRemovalRouter = IdSegmentRemovalRouter.getInstance();
 const mqttMessageRouter: MqttMessageRouter = MqttMessageRouter.getInstance();
 const systemNodeMessageRouter: SystemNodeMessageRouter = SystemNodeMessageRouter.getInstance();
 const systemNodeCommandMessageRouter: SystemNodeCommandMessageRouter = SystemNodeCommandMessageRouter.getInstance();
@@ -12,6 +14,11 @@ const systemNodeCommandMessageRouter: SystemNodeCommandMessageRouter = SystemNod
 export const configureMessageRouters: Function = (): IRoutable => {
   mqttInboundMessageRouter
     .getChannel(ChannelSegments.INBOUND)
+    .receivedMessage()
+    .subscribe((message: MqttMessage): void => idSegmentRemovalRouter.routeMessage(message));
+
+  idSegmentRemovalRouter
+    .getChannel(ChannelSegments.ID)
     .receivedMessage()
     .subscribe((message: MqttMessage): void => mqttMessageRouter.routeMessage(message));
 
