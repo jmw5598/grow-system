@@ -4,15 +4,15 @@ import { Routes, RouterModule } from '@angular/router';
 const routes: Routes = [
   {
     path: 'login',
-    loadChildren: './features/login/login.module#LoginModule'
+    loadChildren: () => import('./features/login/login.module').then(m => m.LoginModule)
   },
   {
     path: 'system',
-    loadChildren: './features/system/system.module#SystemModule'
+    loadChildren: () => import('./features/system/system.module').then(m => m.SystemModule)
   },
   {
     path: 'system-node',
-    loadChildren: './features/system-node/system-node.module#SystemNodeModule'
+    loadChildren: () => import('./features/system-node/system-node.module').then(m => m.SystemNodeModule)
   },
   {
     path: '',

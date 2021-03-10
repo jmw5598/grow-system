@@ -10,6 +10,9 @@ import { NgxChartsModule } from '@swimlane/ngx-charts';
 import { ToggleSwitchComponent } from './components/toggle-switch/toggle-switch.component';
 import { UiSwitchModule } from 'ngx-ui-switch';
 
+import { GridContainerComponent } from './components/grid/grid-container/grid-container.component';
+import { GridBoxComponent } from './components/grid/grid-box/grid-box.component';
+
 @NgModule({
   declarations: [
     AlertMessageComponent,
@@ -19,7 +22,9 @@ import { UiSwitchModule } from 'ngx-ui-switch';
     ModalComponent,
     ToggleSwitchComponent,
     ChartPercentageCircleComponent,
-    ChartPercentageLineComponent
+    ChartPercentageLineComponent,
+    GridContainerComponent,
+    GridBoxComponent
   ],
   imports: [
     CommonModule,
@@ -36,6 +41,8 @@ import { UiSwitchModule } from 'ngx-ui-switch';
     AlertMessageComponent,
     ChartPercentageCircleComponent,
     ChartPercentageLineComponent,
+    GridBoxComponent,
+    GridContainerComponent,
     KeysPipe,
     ModalComponent,
     ToggleSwitchComponent,

@@ -1,6 +1,6 @@
-<div [@fadeAnimation]>
+<!-- <div [@fadeAnimation]> -->
   <!-- MAIN CONTENT : CENTER -->
-  <div class="container-fluid">
+  <!-- <div class="container-fluid">
     <div class="row">
       <div class="col m-2" style="width: 300px;">
         <gs-tile-system-node-details [node]="node"></gs-tile-system-node-details>
@@ -15,7 +15,7 @@
       </div>
     </div>
   </div>
-</div>
+</div> -->
 
 <div>
   <gs-modal [options]="options">
@@ -23,5 +23,26 @@
       <gs-component-form-add></gs-component-form-add>
     </ng-container>
   </gs-modal>
+</div>
+
+<div [@fadeAnimation]>
+  <gs-grid-container>
+    <gs-grid-box>
+      <gs-tile-system-node-details [node]="node"></gs-tile-system-node-details>
+    </gs-grid-box>
+    <gs-grid-box>
+      <gs-tile-relays [relays]="relays"></gs-tile-relays>
+    </gs-grid-box>
+
+    <ng-container *ngFor="let sensor of tempHumSensors">
+      <gs-grid-box>
+        <gs-tile-temphum [sensor]="sensor"></gs-tile-temphum>
+      </gs-grid-box>
+    </ng-container>
+
+    <gs-grid-box>
+      <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Iure, fuga, non impedit esse fugiat, minus repellendus nobis nostrum architecto</p>
+    </gs-grid-box>
+  </gs-grid-container>
 </div>
   
