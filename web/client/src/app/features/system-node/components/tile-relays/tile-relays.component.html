@@ -9,7 +9,7 @@
       <ng-container *ngFor="let relay of relays">
         <li class="relay-item">
           <gs-toggle-switch
-              [label]="relay?.alias || NA"
+              [label]="relay?.alias || 'NA'"
               (onToggle)="onToggle($event)">
           </gs-toggle-switch>
         </li>
