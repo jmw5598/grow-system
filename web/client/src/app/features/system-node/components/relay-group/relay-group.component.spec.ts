@@ -1,4 +1,4 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 
 import { RelayGroupComponent } from './relay-group.component';
 
@@ -6,7 +6,7 @@ describe('RelayGroupComponent', () => {
   let component: RelayGroupComponent;
   let fixture: ComponentFixture<RelayGroupComponent>;
 
-  beforeEach(async(() => {
+  beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       declarations: [ RelayGroupComponent ]
     })

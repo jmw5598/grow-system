@@ -1,4 +1,4 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 
 import { PreferencesFormRelayComponent } from './preferences-form-relay.component';
 
@@ -6,7 +6,7 @@ describe('PreferencesFormRelayComponent', () => {
   let component: PreferencesFormRelayComponent;
   let fixture: ComponentFixture<PreferencesFormRelayComponent>;
 
-  beforeEach(async(() => {
+  beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       declarations: [ PreferencesFormRelayComponent ]
     })

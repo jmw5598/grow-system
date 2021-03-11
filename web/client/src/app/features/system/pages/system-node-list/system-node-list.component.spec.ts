@@ -1,4 +1,4 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 
 import { SystemNodeListComponent } from './system-node-list.component';
 
@@ -6,7 +6,7 @@ describe('SystemNodeListComponent', () => {
   let component: SystemNodeListComponent;
   let fixture: ComponentFixture<SystemNodeListComponent>;
 
-  beforeEach(async(() => {
+  beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       declarations: [ SystemNodeListComponent ]
     })

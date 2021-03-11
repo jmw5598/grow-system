@@ -1,4 +1,4 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 
 import { PreferencesFormTemperatureHumidityComponent } from './preferences-form-temperature-humidity.component';
 
@@ -6,7 +6,7 @@ describe('PreferencesFormTemperatureHumidityComponent', () => {
   let component: PreferencesFormTemperatureHumidityComponent;
   let fixture: ComponentFixture<PreferencesFormTemperatureHumidityComponent>;
 
-  beforeEach(async(() => {
+  beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       declarations: [ PreferencesFormTemperatureHumidityComponent ]
     })

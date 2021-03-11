@@ -1,4 +1,4 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 
 import { PreferencesFormProximityComponent } from './preferences-form-proximity.component';
 
@@ -6,7 +6,7 @@ describe('PreferencesFormProximityComponent', () => {
   let component: PreferencesFormProximityComponent;
   let fixture: ComponentFixture<PreferencesFormProximityComponent>;
 
-  beforeEach(async(() => {
+  beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       declarations: [ PreferencesFormProximityComponent ]
     })
