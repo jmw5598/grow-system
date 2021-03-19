@@ -1,10 +1,11 @@
 import express, { NextFunction, Request, Response, Router } from 'express';
+import { TemperatureHumidityController } from '../../../controllers';
 
 const router: Router = express.Router({ mergeParams: true });
-// const temperatureHumidityController: TemperatureHumidtyController = new TemperatureHumidtyController();
+const temperatureHumidityController: TemperatureHumidityController = new TemperatureHumidityController();
 
-router.get('/', async (req: Request, res: Response, next: NextFunction) => {
-  console.log('Temp hum router works!');
+router.route('/:sensorId/command').patch(async (req: Request, res: Response, next: NextFunction) => {
+  temperatureHumidityController.issueCommand(req, res, next);
 });
 
 export const temperatureHumidityRouter: Router = router;
